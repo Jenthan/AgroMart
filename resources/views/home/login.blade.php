@@ -12,7 +12,7 @@
                     <input type="password" name="" placeholder="Enter Password">
                     <input type="submit" name="" value="Login">
                     <a href="#">Lost your password?</a><br>
-                    <a href="#">Don't have an account?</a>
+                    <a href="{{url('user_select')}}">Don't have an account?</a>
                 </form>
         </div>
 
