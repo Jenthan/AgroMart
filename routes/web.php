@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +49,7 @@ Route::get('farmerloginProfile',[MainController::class,'farmerloginProfileDispla
 Route::get('farmerprofileproduct',[MainController::class,'farmerproductdisplay']);
 Route::get('farmerprofileedit',[MainController::class,'farmeredit']);
 Route::get('farmeraddproduct',[MainController::class,'addproduct']);
+
+
+/*------User Register form select -----*/
+Route::get('user_select',[UserController::class,'index']);
