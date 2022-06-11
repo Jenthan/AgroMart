@@ -10,7 +10,8 @@ class Farmer extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'farmerName',
+        'firstName',
+        'lastName',
         'gsCertificate',
         'farmName',
         'farmAddressNo',
