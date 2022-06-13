@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -82,4 +85,25 @@ class UserController extends Controller
     {
         //
     }
+
+    
+        public function insertrecord(){
+            $customer = new Customer();
+            $customer->customerName = "jenthan";
+            $customer->customerAddressNo = "20";
+            $customer->customerAddressStreet = "ganthi road";
+            $customer ->customerAddressCity = "batticaloa";
+    
+            $user = new User();
+            $user->role ="customer";
+            $user->email = "jen@gmail.com";
+            $user->password = encrypt('secret');
+            $user->save();
+            $user->customer()->save($customer);
+    
+            
+    
+            return "customer record success!!!";
+        }
+    
 }

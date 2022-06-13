@@ -8,14 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Farmer extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'user_id',
-        'firstName',
-        'lastName',
-        'gsCertificate',
-        'farmName',
-        'farmAddressNo',
-		'farmAddressStreet',
-		'farmAddressCity',
-    ];
+    protected $table = "famers";
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
 }
