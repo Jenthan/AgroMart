@@ -14,9 +14,7 @@ class CreateVehiclesTable extends Migration
     public function up()
     {
         Schema::create('vehicles', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('vender_id');
-            $table->foreign('vender_id')->references('id')->on('vendors')->onDelete('cascade'); 					
+            $table->id();					
             $table->string('vehicleNo');
 			$table->string('vehiclePhoto');
 			$table->string('vehicleType');
