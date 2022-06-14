@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class FarmerRequestVendor extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'farmer_id',
-        'vendor_id',
-    ];
+    protected $table = "farmer_request_vendors";
+
+
+    
 }
