@@ -6,7 +6,6 @@
         <a href="#">
         <div class="icon"></div>
         </a>
-        
             <div class="input">
                     <input type="text" placeholder="Search" id="mysearch">
             </div>
