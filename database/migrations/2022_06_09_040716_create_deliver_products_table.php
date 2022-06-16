@@ -20,7 +20,8 @@ class CreateDeliverProductsTable extends Migration
 			$table->unsignedBigInteger('product_id');					
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 			$table->unsignedBigInteger('vendor_id');					
-            $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');    
+            $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');  
+            $table->enum('deliverstatus',['yes','no'])->nullable();  
             $table->timestamps();
         });
     }

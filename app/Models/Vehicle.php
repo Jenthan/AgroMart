@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Vehicle extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'vehicleNo',
-        'vehiclePhoto',
-		'vehicleType',
-    ];	
+    protected $table = "vehicles";
+
+    public function vender(){
+        return $this->belongsTO(Vender::class); 
+    }
 }

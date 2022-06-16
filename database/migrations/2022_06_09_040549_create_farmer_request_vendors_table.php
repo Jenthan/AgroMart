@@ -18,7 +18,8 @@ class CreateFarmerRequestVendorsTable extends Migration
             $table->unsignedBigInteger('farmer_id');					
             $table->foreign('farmer_id')->references('id')->on('farmers')->onDelete('cascade');
             $table->unsignedBigInteger('vendor_id');					
-            $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');    
+            $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
+            $table->enum('requeststatus',['cancelled','accepted'])->nullable();
             $table->timestamps();
         });
     }
