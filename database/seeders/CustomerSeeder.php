@@ -17,6 +17,12 @@ class CustomerSeeder extends Seeder
      */
     public function run()
     {
-       //
+       
+        DB::table('users')->insert([   
+        'email' => 'customer@gmail.com',
+        'role'=>'customer',
+        'password' => Hash::make('cus123'),
+        'remember_token' => Str::random(10),
+    ]);
     }
 }
