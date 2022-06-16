@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Farmer extends Model
 {
     use HasFactory;
-    protected $table = "famers";
+    protected $table = "farmers";
 
     public function user(){
         return $this->belongsTo('App\Models\User');
