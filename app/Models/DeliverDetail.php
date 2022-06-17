@@ -8,11 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class DeliverDetail extends Model
 {
     use HasFactory;
-    protected $fillable = [
-		'deliver_id',
-        'orderAddressNo',
-        'orderAddressStreet',
-		'orderAddressCity',
-		
-    ];
+    protected $table = "deliver_details";
+
+    public function deliverproduct(){
+      return $this->hasOne('App\Models\DeliverProduct');
+  }
 }

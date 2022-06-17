@@ -8,9 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Farmer extends Model
 {
     use HasFactory;
-    protected $table = "famers";
+    protected $table = "farmers";
 
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
+
+    public function product(){
+        return $this->hasMany(Product::class);
+    }
+
+    public function vender(){
+        return $this->belongsToMany(Vender::class,'farmer_request_vendors');
+    }
+
 }

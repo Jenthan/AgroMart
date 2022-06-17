@@ -14,7 +14,7 @@ class CreateVehiclesTable extends Migration
     public function up()
     {
         Schema::create('vehicles', function (Blueprint $table) {
-            $table->id();
+            $table->id();					
             $table->string('vehicleNo');
 			$table->string('vehiclePhoto');
 			$table->string('vehicleType');
