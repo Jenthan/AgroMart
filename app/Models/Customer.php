@@ -9,6 +9,13 @@ class Customer extends Model
 {
     use HasFactory;
     protected $table = "customers";
+    protected $fillable = [
+        'user_id',
+        'customerName',
+        'customerAddressNo',
+        'customerAddressStreet',
+        'customerAddressCity',
+    ];
 
     public function user(){
         return $this->belongsTo('App\Models\User');

@@ -5,6 +5,8 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\FarmerController;
+use App\Http\Controllers\FarmerMakeProductController;
 
 
 /*
@@ -75,3 +77,10 @@ Route::get('/adminproduct',[AdminController::class,'productdisplay']);
 Route::get('/adminvender',[AdminController::class,'venderdisplay']);
 Route::get('/adminfarmer',[AdminController::class,'farmerdisplay']);
 
+/* Farmer Dashboard */
+Route::get('/farmer-base',[FarmerController::class,'index']);
+
+/* Farmer add product */
+Route::get('/add-product',[FarmerMakeProductController::class,'index']);
+Route::get('/create-product',[FarmerMakeProductController::class,'create']);
+Route::post('/store-product',[FarmerMakeProductController::class,'store']);
