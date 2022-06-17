@@ -58,7 +58,7 @@ Route::get('farmeraddproduct',[MainController::class,'addproduct']);
 
 /*------User Register form select -admincustomer----*/
 Route::get('user_select',[UserController::class,'index']);
-
+Route::get('register-customer',[UserController::class,'register_customer']);
 
 
 

@@ -21,6 +21,10 @@ class UserController extends Controller
     {
         return view('register.userselect');
     }
+    public function register_customer()
+    {
+        return view('register.CustomerRegistration');
+    }
 
     /**
      * Show the form for creating a new resource.
