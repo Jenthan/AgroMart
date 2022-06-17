@@ -24,6 +24,7 @@ Route::get('/f', function () {
     return view('index');
 });
 
+
 /*----  Home page Route  starts ---*/
 Route::get('/',[MainController::class,'homeDisplay']);
 Route::get('farmer',[MainController::class,'farmerDisplay']);
@@ -34,9 +35,13 @@ Route::get('vender',[MainController::class,'venderDisplay']);
 Route::get('homelogin',[MainController::class,'homeloginDisplay']);
 Route::get('adminprofile',[MainController::class,'adminprofileDisplay']);
 
+
+
 /*------ check login --- */
 Route::get('/checklogin',[UserController::class,'checklogin']);
 
+//Route::get('/vendorlogin',[UserController::class,'checklogin']);
+Route::get('/userprofile/{id}',[UserController::class,'userprofilelogin'])->name('/userprofile/{id}');
 
 
 
