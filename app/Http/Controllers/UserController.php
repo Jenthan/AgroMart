@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Auth;
+use validator;
 
 class UserController extends Controller
 {
@@ -82,4 +87,58 @@ class UserController extends Controller
     {
         //
     }
+
+    
+        public function insertrecord(){
+            $customer = new Customer();
+            $customer->customerName = "jenthan";
+            $customer->customerAddressNo = "20";
+            $customer->customerAddressStreet = "ganthi road";
+            $customer ->customerAddressCity = "batticaloa";
+    
+            $user = new User();
+            $user->role ="customer";
+            $user->email = "jen@gmail.com";
+            $user->password = encrypt('secret');
+            $user->save();
+            $user->customer()->save($customer);
+    
+            
+    
+            return "customer record success!!!";
+        }
+        
+        public function checklogin(Request $request){
+           
+            $user = User::all()->where('role','user');
+			// Validation
+            $this->validate($request, [
+                'email' => 'required|email',
+                'password' => 'required'
+            ]);
+    
+
+        //Authentication
+
+            $user_data = array(
+                'email' => $request->get('email'),
+                'password' => $request->get('password')
+            );
+            if(Auth::attempt($user_data))
+                {
+                    if(Auth::user()->role =='admin'){
+                        return view('admindashboard.index',compact('user'));
+                    }elseif(Auth::user()->role =='customer'){
+                        return view('emporder.empdash',compact('user'));
+                    }elseif(Auth::user()->role =='farmer'){
+                        return view('customers.dash');
+                    }elseif(Auth::user()->role =='vender'){
+                        return view();
+                    }
+                }else{
+                    return back()->with('error','Wrong Login Details');
+                }
+                
+        }
+    
 }

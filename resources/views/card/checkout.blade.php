@@ -19,7 +19,6 @@
         
     </div>
     <br>
-
     <table class="table table-bordered">
         <thead class="table-secondary">
             <tr>
