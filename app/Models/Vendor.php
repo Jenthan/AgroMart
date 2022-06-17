@@ -9,7 +9,12 @@ class Vendor extends Model
 {
     use HasFactory;
     protected $table="vendors";
-
+    protected $fillable = [
+        'user_id',
+        'vehicle_id',
+        'vendorName',
+        'lisencePhoto',
+    ];
     public function vehicle(){
         return $this->hasMany(vehicle::class);
     }

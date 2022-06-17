@@ -9,7 +9,11 @@ class FarmerRequestVendor extends Model
 {
     use HasFactory;
     protected $table = "farmer_request_vendors";
-
+    protected $fillable =[
+        'farmer_id',
+        'vendor_id',
+        'requeststatus',
+    ];
 
     
 }

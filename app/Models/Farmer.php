@@ -9,7 +9,16 @@ class Farmer extends Model
 {
     use HasFactory;
     protected $table = "farmers";
-
+    protected $fillable = [
+        'user_id',
+        'firstName',
+        'lastName',
+        'gsCertificate',
+        'farmName',
+        'farmAddressNo',
+        'farmAddressStreet',
+        'farmAddressCity',
+    ];
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
