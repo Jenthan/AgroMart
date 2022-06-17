@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 use App\Models\Customer;
-
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         // \App\Models\User::factory(10)->create();
+
+    
+
         DB::table('customers')->insert([
             'customerName'=>"jenthan",
             'customerAddressNo'=>"21",
@@ -26,6 +29,6 @@ class DatabaseSeeder extends Seeder
            // 'email' => Str::random(10).'@gmail.com',
            // 'password' => Hash::make('password'),
         ]);
-        
     }
+        
 }
