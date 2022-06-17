@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\FarmerController;
+use App\Http\Controllers\FarmerMakeProductController;
 
 
 /*
@@ -30,6 +34,9 @@ Route::get('vender',[MainController::class,'venderDisplay']);
 Route::get('homelogin',[MainController::class,'homeloginDisplay']);
 Route::get('adminprofile',[MainController::class,'adminprofileDisplay']);
 
+/*------ check login --- */
+Route::get('/checklogin',[UserController::class,'checklogin']);
+
 
 
 
@@ -51,5 +58,29 @@ Route::get('farmerprofileedit',[MainController::class,'farmeredit']);
 Route::get('farmeraddproduct',[MainController::class,'addproduct']);
 
 
-/*------User Register form select -----*/
+/*------User Register form select -admincustomer----*/
 Route::get('user_select',[UserController::class,'index']);
+
+
+
+
+Route::get('/customeradd',[UserController::class,'insertrecord']);
+
+
+/* ---Admindashboard ----*/
+
+Route::get('/adminorders',[AdminController::class,'admindashorders']);
+Route::resource('admin',AdminController::class);
+Route::get('/admindash',[AdminController::class,'index']);
+Route::get('/admincustomerdisplay',[AdminController::class,'customerdisplay']);
+Route::get('/adminproduct',[AdminController::class,'productdisplay']);
+Route::get('/adminvender',[AdminController::class,'venderdisplay']);
+Route::get('/adminfarmer',[AdminController::class,'farmerdisplay']);
+
+/* Farmer Dashboard */
+Route::get('/farmer-base',[FarmerController::class,'index']);
+
+/* Farmer add product */
+Route::get('/add-product',[FarmerMakeProductController::class,'index']);
+Route::get('/create-product',[FarmerMakeProductController::class,'create']);
+Route::post('/store-product',[FarmerMakeProductController::class,'store']);
