@@ -9,6 +9,14 @@ class Product extends Model
 {
     use HasFactory;
     protected $table = "products";
+    protected $fillable = [
+        'farmer_id',
+        'productName',
+        'productImg',
+        'qty',
+        'productType',
+        'unitPrice',
+    ];
 
     public function farmer(){
         return $this->belongsTO(Farmer::class);
