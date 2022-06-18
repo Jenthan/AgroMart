@@ -1,0 +1,50 @@
+.box {
+    height:500px;
+    width:25%;
+    border: 1px black solid;
+    padding-top:20px;
+    padding-left:20px;
+    background-color:rgb(159, 216, 159);
+    border-radius:10px;
+    align-items:center;
+    float:left;
+}
+.head_box {
+    padding-top:10px;
+    width:300px;
+    border:4px white solid;
+    text-align:center;
+    background-color:rgb(183, 214, 183);
+    border-radius:20px;
+}
+.item {
+    margin-top:20px;
+    width:250px;
+    font-size:25px;
+    background-color:rgb(70, 179, 70);
+    border:2px rgb(131, 175, 131) solid;
+    border-radius:20px;
+    padding-left:10px;
+    color:black;
+}
+.rightupbox {
+    width:75%;
+    height:50px;
+    border: 1px green solid;
+    float:right;
+}
+.rightbox {
+    width:75%;
+    height:90%;
+    float:right;
+    border:1px darkgreen solid;
+}
+.search_length {
+    width:70%;
+}
+.right {
+    float:right;
+}
+.left {
+    float:left;
+}

@@ -89,7 +89,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        Auth::logout();
+        return redirect('/');
     }
 
     
@@ -135,7 +136,7 @@ class UserController extends Controller
                     }elseif(Auth::user()->role =='customer'){
                         return view('emporder.empdash',compact('user'));
                     }elseif(Auth::user()->role =='farmer'){
-                        return view('customers.dash');
+                        return view('farmer-dash.index');
                     }elseif(Auth::user()->role =='vender'){
                         return view();
                     }
