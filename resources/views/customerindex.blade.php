@@ -36,6 +36,7 @@
     <!-- select user design -->
     <link rel="stylesheet" href="select/style.css">
 
+
     <!--- bootstrap css --->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -62,9 +63,9 @@
     </nav>
 
     <div class="icons">
-        <a onclick="ordersalert()" class="fas fa-shopping-cart"></a>
+        <a href="{{url('card')}}" class="fas fa-shopping-cart"></a>
     <!--  <a href="#" class="fas fa-heart"></a>  -->
-        <a onclick="pleaselogin()" class="fas fa-user-circle"></a>
+        <a href="{{route('customer',Auth::user()->id)}}" class="fas fa-user-circle"></a>
     </div>
 
     </div>

@@ -9,6 +9,12 @@ class DeliverDetail extends Model
 {
     use HasFactory;
     protected $table = "deliver_details";
+    protected $fillable =[
+      'deliver_id',
+      'orderAddressNo',
+      'orderAddressStreet',
+      'orderAddressCity',
+    ];
 
     public function deliverproduct(){
       return $this->hasOne('App\Models\DeliverProduct');

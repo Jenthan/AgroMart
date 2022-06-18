@@ -9,6 +9,11 @@ class Vehicle extends Model
 {
     use HasFactory;
     protected $table = "vehicles";
+    protected $fillable = [
+        'vehicleNo',
+        'vehiclePhoto',
+        'vehicleType',
+    ];
 
     public function vender(){
         return $this->belongsTO(Vender::class); 
