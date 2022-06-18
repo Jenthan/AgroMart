@@ -6,7 +6,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\FarmerController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FarmerMakeProductController;
+use App\Http\Controllers\OrderController;
 
 
 /*
@@ -89,3 +91,11 @@ Route::get('/farmer-base',[FarmerController::class,'index']);
 Route::get('/add-product',[FarmerMakeProductController::class,'index']);
 Route::get('/create-product',[FarmerMakeProductController::class,'create']);
 Route::post('/store-product',[FarmerMakeProductController::class,'store']);
+
+
+/* customer Dashboard */
+Route::get('/customer/{id}',[CustomerController::class,'index'])->name('customer');
+
+Route::get('/customerorder/{id}',[OrderController::class,'customerOrderindex'])->name('customerorder');
+Route::get('/customerprofile/{id}',[CustomerController::class,'customerprofileview'])->name('customerprofile');
+Route::get('/customerprofileedit/{id}',[CustomerController::class,'customerprofileedit'])->name('customerprofileedit');
