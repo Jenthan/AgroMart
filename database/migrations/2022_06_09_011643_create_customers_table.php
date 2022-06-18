@@ -17,6 +17,7 @@ class CreateCustomersTable extends Migration
             $table->id();
             $table->BigInteger('user_id')->unsigned();					
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('prophoto')->nullable();
             $table->string('customerName');
 			$table->string('customerAddressNo');
 			$table->string('customerAddressStreet');
