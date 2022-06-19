@@ -7,11 +7,11 @@
 					<h1>Dashboard</h1>
 					<ul class="breadcrumb">
 						<li>
-							<a href="#">Dashboard</a>
+							<a href="{{route('customerlogin')}}">Dashboard</a>
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="#">Home</a>
+							<a class="active" href="{{route('customerlogin')}}">Home</a>
 						</li>
 					</ul>
 				</div>

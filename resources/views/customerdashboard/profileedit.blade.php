@@ -736,33 +736,47 @@ body {
 				</div>
 			
 			</div>
+			@if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div><br />
+        @endif
+
+		@if ($message = Session::get('success'))
+			<div class="alert alert-success">
+				<p>{{ $message }}</p>
+			</div>
+         @endif
 
 			<ul class="box-info">
+
 				
-               <form class="border border-success rounded-3">
-
+			<form class="border border-success rounded-3" method="POST" action="{{route('customeredit',Auth::user()->id)}}">
+				@csrf
+				@method('PUT')
+                
                     <h2>Customer Details</h2> <br>
+               
 
                     <div class="row mb-2">
-                        <label for="fname" class="col-sm-2 col-form-label-sm">First Name:</label>
+                        <label for="fname" class="col-sm-2 col-form-label-sm">Customer Name:</label>
                         <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-sm" id="fname">
+                        <input type="text" class="form-control form-control-sm" id="fname" value="{{$customers->customerName}}" name="customerName">
                         </div>
                     </div>
 
-                    <div class="row mb-2">
-                        <label for="lname" class="col-sm-2 col-form-label-sm">Last Name:</label>
-                        <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-sm" id="lname">
-                        </div>
-                    </div>
+                    
 
                     <div class="row mb-2">
                         <label for="address" class="col-sm-2 col-form-label-sm">Address:</label>
                         <div class="col-sm-9">
-                        <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="No/Apartment/Village" id="address"></div>
-                        <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="Street(optional)" id="address"></div>
-                        <input type="text" class="form-control form-control-sm" placeholder="City" id="address">
+                        <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="No/Apartment/Village" id="address" value="{{$customers->customerAddressNo}}" name="customerAddressNo"></div>
+                        <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="Street(optional)" id="address" value="{{$customers->customerAddressStreet}}" name="customerAddressStreet"></div>
+                        <input type="text" class="form-control form-control-sm" placeholder="City" id="address" value="{{$customers->customerAddressCity}}"  name="customerAddressCity">
                         </div>
                     </div>
 
@@ -770,7 +784,7 @@ body {
                         <label for="phone" class="col-sm-2 col-form-label-sm">Phone:</label>
                         <div class="col-sm-9">
                         <div class="mb-2"><input type="tel" class="form-control form-control-sm " patern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="phone" maxlength="10" placeholder="mobile"></div>
-                        <input type="tel" class="form-control form-control-sm" patern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="phone" maxlength="10" placeholder="office">
+                        <input type="tel" class="form-control form-control-sm" patern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="phone" maxlength="10" placeholder="office" value="{{$usersphone->phone}}" name="phone" >
                         </div>
                     </div>
 
@@ -785,19 +799,18 @@ body {
                     <div class="row mb-2">
                         <label for="mail" class="col-sm-2 col-form-label-sm">Email:</label>
                         <div class="col-sm-9">
-                        <input type="email" class="form-control form-control-sm" id="mail">
+                        <input type="email" class="form-control form-control-sm" id="mail" value="{{$user->email}}" name="email">
                         </div>
                     </div>
-                   
+                    
                     <br>
-
-                    <div class="d-grid gap-2 col-6 mx-auto">
-                        <button class="btn" type="submit">Sign Up</button>
+							
+					<div class="d-grid gap-2 col-6 mx-auto">
+                        <button class="btn" type="submit">Update</button>
                         
                     </div>
                     </form>
 			
-               
 			</ul>  
 
 

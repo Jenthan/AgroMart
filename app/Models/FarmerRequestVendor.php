@@ -12,6 +12,7 @@ class FarmerRequestVendor extends Model
     protected $fillable =[
         'farmer_id',
         'vendor_id',
+        'order_id',
         'requeststatus',
     ];
 
