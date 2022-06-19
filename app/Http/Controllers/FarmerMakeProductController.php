@@ -61,9 +61,15 @@ class FarmerMakeProductController extends Controller
                 'unitPrice' => $request->get('unitp'),
                 'qty' => $request->get('qty'),
                 'productType' => $request->get('category'),
-                'productImg' => $request->get('proImg'),
+                //'productImg' => $request->file('proImg'),
                 'farmer_id' => $request->get('farmerId'),
             ]);
+            if($request->file('proImg')){
+                $file= $request->file('proImg');
+                $filename= date('YmdHi').$file->getClientOriginalName();
+                $file-> move(public_path('public/productImage'), $filename);
+                $item['productImg']= $filename;
+            }
             $item->save();
             return redirect('add-product');
         }
