@@ -36,12 +36,10 @@ class CustomerController extends Controller
 
     public function customerprofileview($id)
     {
-        $id = Auth::user()->id;
-        $customer = Customer::all();
+        $customer = Customer::all()->where('user_id','$id');
          $user = User::all()->where('role','customer');
 
-         return view('customerdashboard.profileview',compact('customer',
-        'user'));
+         return view('customerdashboard.profileview',compact('customer','user'));
     }
 
     public function customerprofileedit($id)
