@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
 			$table->unsignedBigInteger('farmer_id');					
             $table->foreign('farmer_id')->references('id')->on('farmers')->onDelete('cascade');
 			$table->string('productName');
-            $table->string('productImg');
+            $table->string('productImg')->nullable();
 			$table->integer('qty');
             $table->enum('productType',['fruit','vegetable','milk']); 
 			$table->integer('unitPrice');
