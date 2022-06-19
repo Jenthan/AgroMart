@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Farmer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -21,7 +22,8 @@ class FarmerMakeProductController extends Controller
     {
         $user=User::all()->where('role','farmer');
         $farmer=Farmer::all();
-        return view('farmer-add-product.index',compact('user','farmer'));
+        $products = Product::all();
+        return view('farmer-add-product.index',compact('user','farmer','products'));
     }
 
     /**
@@ -60,9 +62,15 @@ class FarmerMakeProductController extends Controller
                 'unitPrice' => $request->get('unitp'),
                 'qty' => $request->get('qty'),
                 'productType' => $request->get('category'),
-                'productImg' => $request->get('proImg'),
+                //'productImg' => $request->file('proImg'),
                 'farmer_id' => $request->get('farmerId'),
             ]);
+            if($request->file('proImg')){
+                $file= $request->file('proImg');
+                $filename= date('YmdHi').$file->getClientOriginalName();
+                $file-> move(public_path('public/productImage'), $filename);
+                $item['productImg']= $filename;
+            }
             $item->save();
             return redirect('add-product');
         }
