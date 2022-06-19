@@ -1,7 +1,7 @@
 @extends('farmer-dash/base')
 @section('main')
 <main>
-    <form method="post" action="{{url('store-product')}}">
+    <form method="post" action="{{url('store-product')}}" enctype="multipart/form-data">
         @csrf
     <div class="form-group row">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Product Name</label>
