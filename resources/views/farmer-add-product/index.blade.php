@@ -10,58 +10,35 @@
 					<span class="text">Add Product</span>
 				</a>
             </div>
-					<table>
-						<thead>
-							<tr>
-								<th>Product Name</th>
-								<th>Category</th>
-								<th>Price</th>
-								<th>Total Qty</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status process">Process</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+			<table>
+				<thead>
+					<tr>
+						<th>Product Name</th>
+						<th>Category</th>
+						<th>Price</th>
+						<th>Total Qty</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($products as $product)
+					<tr>
+						<td>
+							<img src="{{url('public/productImage/'.$product->productImg)}}" >
+							
+							<p>
+							<p>{{$product->productName}}</p>
+						</td>
+						<td>{{$product->productType}}</td>
+						<td>{{$product->unitPrice}}</td>
+						<td>{{$product->qty}} kg</td>
+						<td><a href="" class="status completed">Edit</a>
+							<a href="" class="status completed">Delete</a></td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
+		</div>
+	</div>
 </main>
 @endsection
