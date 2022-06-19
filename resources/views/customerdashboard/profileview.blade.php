@@ -751,7 +751,7 @@ body {
                     <div class="row mb-2">
                         <label for="fname" class="col-sm-2 col-form-label-sm">First Name:</label>
                         <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-sm" id="fname">
+                        <input type="text" class="form-control form-control-sm" id="fname" value="{{$customer->customerName}}">
                         </div>
                     </div>
 
