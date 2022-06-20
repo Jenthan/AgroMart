@@ -486,6 +486,12 @@ body {
 #content main .table-data .order table tr td .status.pending {
 	background: var(--orange);
 }
+#content main .table-data .order table tr td .status.cancell {
+	background: var(--red);
+}
+#content main .table-data .order table tr td .status.cancelling {
+	background: var(--green);
+}
 
 
 #content main .table-data .todo {
@@ -592,3 +598,6 @@ body {
 		min-width: 420px;
 	}
 }
+
+/*vendorcss starts*/
+

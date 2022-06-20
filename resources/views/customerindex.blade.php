@@ -65,7 +65,7 @@
     <div class="icons">
         <a href="{{url('card')}}" class="fas fa-shopping-cart"></a>
     <!--  <a href="#" class="fas fa-heart"></a>  -->
-        <a href="{{route('customer',Auth::user()->id)}}" class="fas fa-user-circle"></a>
+        <a href="{{route('customerlogin')}}" class="fas fa-user-circle"></a>
     </div>
 
     </div>

@@ -5,11 +5,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminProductController;
-use App\Http\Controllers\FarmerController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\FarmerMakeProductController;
-use App\Http\Controllers\OrderController;
-
+use App\Http\Controllers\VendorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +37,7 @@ Route::get('adminprofile',[MainController::class,'adminprofileDisplay']);
 
 /*------ check login --- */
 Route::get('/checklogin',[UserController::class,'checklogin']);
+
 
 //Route::get('/vendorlogin',[UserController::class,'checklogin']);
 Route::get('/userprofile/{id}',[UserController::class,'userprofilelogin'])->name('/userprofile/{id}');
@@ -84,18 +81,12 @@ Route::get('/adminproduct',[AdminController::class,'productdisplay']);
 Route::get('/adminvender',[AdminController::class,'venderdisplay']);
 Route::get('/adminfarmer',[AdminController::class,'farmerdisplay']);
 
-/* Farmer Dashboard */
-Route::get('/farmer-base',[FarmerController::class,'index']);
-
-/* Farmer add product */
-Route::get('/add-product',[FarmerMakeProductController::class,'index']);
-Route::get('/create-product',[FarmerMakeProductController::class,'create']);
-Route::post('/store-product',[FarmerMakeProductController::class,'store']);
-
-
-/* customer Dashboard */
-Route::get('/customer/{id}',[CustomerController::class,'index'])->name('customer');
-
-Route::get('/customerorder/{id}',[OrderController::class,'customerOrderindex'])->name('customerorder');
-Route::get('/customerprofile/{id}',[CustomerController::class,'customerprofileview'])->name('customerprofile');
-Route::get('/customerprofileedit/{id}',[CustomerController::class,'customerprofileedit'])->name('customerprofileedit');
+// vendor routes starts
+Route::get('/vendorLogout',[VendorController::class,'logout']);
+Route::get('/vendorDashboard',[VendorController::class,'vendorDashboard']);
+Route::get('/vendorOrders',[VendorController::class,'orderDetails']);
+Route::get('/venderDeliveryDetails',[VendorController::class,'venderDeliveryDetails']);
+Route::get('/cancelledOrders',[VendorController::class,'cancelledOrders']);
+Route::get('/cancelledDeliverStatus/{id}',[VendorController::class,'cancelledDeliverStatus']);
+Route::get('/acceptDeliverStatus/{id}',[VendorController::class,'acceptDeliverStatus']);
+Route::get('/doneDeliverStatus/{id}',[VendorController::class,'doneDeliverStatus']);

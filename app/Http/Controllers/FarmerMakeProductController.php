@@ -22,7 +22,8 @@ class FarmerMakeProductController extends Controller
     {
         $user=User::all()->where('role','farmer');
         $farmer=Farmer::all();
-        return view('farmer-add-product.index',compact('user','farmer'));
+        $products = Product::all();
+        return view('farmer-add-product.index',compact('user','farmer','products'));
     }
 
     /**

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+hi<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -12,48 +12,43 @@
     <!-- boortstrap --->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    
-	<title>CustomerHub</title>
+	<title>VendorHub</title>
 </head>
 <body>
 
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-		<a href="{{route('customerlogin')}}" class="brand">
-			<i class='bx bxs-smile'></i>
-			<span class="text">CustomerHub</span>
+	
+		<a href="#" class="brand">
+			<img src="images/logo.png" alt="" width="230px">
 		</a>
 		<ul class="side-menu top">
-			<li class="active">
-				<a href="{{route('customerlogin')}}">
+		<li class="{{ (request()->is('vendorDashboard')) ? 'active' : '' }}">  
+				<a href="{{url('/vendorDashboard')}}">
 					<i class='bx bxs-dashboard' ></i>
-					<span class="text">Dashboard</span>
+					<span class="text">Vendor Dashboard</span>
 				</a>
 			</li>
-			<li>
-				<a href="{{route('customerorder',Auth::user()->id)}}">
+			<li class="{{ (request()->is('vendorOrders')) ? 'active' : '' }}">  
+				<a href="{{url('/vendorOrders')}}">
 					<i class='bx bxs-shopping-bag-alt' ></i>
-					<span class="text">Orders</span>
+					<span class="text">Order Details</span>
 				</a>
 			</li>
-            
+            <li class="{{ (request()->is('venderDeliveryDetails')) ? 'active' : '' }}"> 
+				<a href="{{url('/venderDeliveryDetails')}}">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">Delivery Details</span>
+				</a>
+			</li>
+            <li class="{{ (request()->is('cancelledOrders')) ? 'active' : '' }}"> 
+				<a href="{{url('/cancelledOrders')}}">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">Cancelled Orders</span>
+				</a>
+			</li>
            
-			
-		</ul>
-		<ul class="side-menu">
-			<li>
-				<a href="{{route('customerprofile',Auth::user()->id)}}">
-					<i class='bx bxs-cog' ></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
-				<a href="#" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
-					<span class="text">Logout</span>
-				</a>
-			</li>
 		</ul>
 	</section>
 	<!-- SIDEBAR -->
@@ -64,17 +59,20 @@
 	<section id="content">
 		<!-- NAVBAR -->
 		<nav>
-			<i class='bx bx-menu' ></i>
-			<a href="#" class="nav-link">Categories</a>
 			<form action="#">
 				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
 				</div>
 			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>   
-			
+			<a href="#">
+					<i class='bx bxs-cog' ></i>
+				</a>
+			<a href="#" class="profile">
+				<img src="admin/images/people.png">
+			</a>
+            <a href="{{url('/vendorLogout')}}" class="logout">
+                <i class='bx bxs-log-out-circle' ></i>
+                <span class="text">Logout</span>
+            </a>
 		</nav>
 		<!-- NAVBAR -->
 

@@ -1,14 +1,13 @@
 <?php
 
 namespace Database\Seeders;
-
+use App\Models\DeliverDetail;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use App\Models\User;
 
-class Adminseeder extends Seeder
+class DeliverDetailsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,12 +16,11 @@ class Adminseeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'email' => 'admin@gmail.com',
-            'role'=>'admin',
-            'password' => Hash::make('admin123'),
-            'remember_token' => Str::random(10),
+        DB::table('deliver_details')->insert([   
+            'deliver_id' => '1',
+            'orderAddressNo'=>'12',
+            'orderAddressStreet' => 'Main Street',
+            'orderAddressCity' => 'Galle'
         ]);
-        
     }
 }

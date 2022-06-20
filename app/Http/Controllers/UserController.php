@@ -142,12 +142,20 @@ class UserController extends Controller
                     }elseif(Auth::user()->role =='farmer'){
                         return view('farmer-dash.index',compact('farmer'));
                     }elseif(Auth::user()->role =='vender'){
-                        return view('vendorindex',compact('vendor'));
+                        return redirect('/vendorDashboard');
                     }
                 }else{
                     return back()->with('error','Wrong Login Details');
                 }
                 
+        }
+
+        public function usertableupdate(){
+            $id = 1;
+            $user = User::find($id);
+            $user->role = "farmer";
+
+            $user->update();
         }
     
 }
