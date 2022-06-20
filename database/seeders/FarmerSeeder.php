@@ -19,15 +19,19 @@ class FarmerSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('farmers')->insert([
-            'user_id'=>"4",
-            'firstName'=>"Ajanthan",
-            'lastName'=>"Rethnakumar",
-            'gsCertificate'=>"------",
-            'farmName'=>"Matale",
-            'farmAddressNo'=>"50",
-            'farmAddressStreet'=>"New Town",
-            'farmAddressCity'=>"MainStreet"
+        User::Create([
+            'email' => 'ajan@gmail.com',
+            'role' => 'farmer',
+            'password' => Hash::make('password'),
+        ]);
+        Farmer::Create([
+            'user_id'=> 1,
+            'firstname' => 'Ajan',
+            'lastname' => 'Than',
+            'farmName' => 'Fresh Fruits',
+            'farmAddressNo' => '23/5',
+            'farmAddressStreet' => 'Yarl road',
+            'farmAddressCity' => 'Jaffna',
         ]);
         UserPhone::Create([
             'user_id' => 1,
