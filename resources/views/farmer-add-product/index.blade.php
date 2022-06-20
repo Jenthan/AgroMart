@@ -30,9 +30,9 @@
 							<p>{{$product->productName}}</p>
 						</td>
 						<td>{{$product->productType}}</td>
-						<td>{{$product->unitPrice}}</td>
+						<td>Rs. {{$product->unitPrice}}.00</td>
 						<td>{{$product->qty}} kg</td>
-						<td><a href="" class="status completed">Edit</a>
+						<td><a href="{{url('edit-product')}}" class="status completed">Edit</a>
 							<a href="" class="status completed">Delete</a></td>
 					</tr>
 					@endforeach
