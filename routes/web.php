@@ -82,3 +82,12 @@ Route::get('/adminvender',[AdminController::class,'venderdisplay']);
 Route::get('/adminfarmer',[AdminController::class,'farmerdisplay']);
 
 
+// vendor routes starts
+Route::get('/vendorLogout',[VendorController::class,'logout']);
+Route::get('/vendorDashboard',[VendorController::class,'vendorDashboard']);
+Route::get('/vendorOrders',[VendorController::class,'orderDetails']);
+Route::get('/venderDeliveryDetails',[VendorController::class,'venderDeliveryDetails']);
+Route::get('/cancelledOrders',[VendorController::class,'cancelledOrders']);
+Route::get('/cancelledDeliverStatus/{id}',[VendorController::class,'cancelledDeliverStatus']);
+Route::get('/acceptDeliverStatus/{id}',[VendorController::class,'acceptDeliverStatus']);
+Route::get('/doneDeliverStatus/{id}',[VendorController::class,'doneDeliverStatus']);
