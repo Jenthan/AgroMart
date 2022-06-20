@@ -6,6 +6,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\FarmerController;
+use App\Http\Controllers\FarmerMakeProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -64,7 +67,7 @@ Route::get('farmeraddproduct',[MainController::class,'addproduct']);
 
 /*------User Register form select -admincustomer----*/
 Route::get('user_select',[UserController::class,'index']);
-
+Route::get('register-customer',[UserController::class,'register_customer']);
 
 
 
@@ -82,3 +85,22 @@ Route::get('/adminvender',[AdminController::class,'venderdisplay']);
 Route::get('/adminfarmer',[AdminController::class,'farmerdisplay']);
 
 
+// vendor routes starts
+Route::get('/vendorLogout',[VendorController::class,'logout']);
+Route::get('/vendorDashboard',[VendorController::class,'vendorDashboard']);
+Route::get('/vendorOrders',[VendorController::class,'orderDetails']);
+Route::get('/venderDeliveryDetails',[VendorController::class,'venderDeliveryDetails']);
+Route::get('/cancelledOrders',[VendorController::class,'cancelledOrders']);
+Route::get('/cancelledDeliverStatus/{id}',[VendorController::class,'cancelledDeliverStatus']);
+Route::get('/acceptDeliverStatus/{id}',[VendorController::class,'acceptDeliverStatus']);
+Route::get('/doneDeliverStatus/{id}',[VendorController::class,'doneDeliverStatus']);
+
+// Farmer
+Route::get('/farmer-base',[FarmerController::class,'index']);
+
+
+// Farmer  add product 
+Route::get('/add-product',[FarmerMakeProductController::class,'index']);
+Route::get('/create-product',[FarmerMakeProductController::class,'create']);
+Route::post('/store-product',[FarmerMakeProductController::class,'store']);
+Route::get('/edit-product',[FarmerMakeProductController::class,'edit']);
