@@ -63,9 +63,9 @@
     </nav>
 
     <div class="icons">
-        <a onclick="ordersalert()" class="fas fa-shopping-cart"></a>
+       <button onclick="ordersalert()"> <a  class="fas fa-shopping-cart"></a> </button>
     <!--  <a href="#" class="fas fa-heart"></a>  -->
-        <a onclick="pleaselogin()" class="fas fa-user-circle"></a>
+        <a href="#" class="fas fa-user-circle"></a>
     </div>
 
     </div>

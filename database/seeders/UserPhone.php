@@ -3,12 +3,11 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Customer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use App\Models\User;
-
-class Adminseeder extends Seeder
+class UserPhone extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,12 +16,10 @@ class Adminseeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'email' => 'admin@gmail.com',
-            'role'=>'admin',
-            'password' => Hash::make('admin123'),
-            'remember_token' => Str::random(10),
+        DB::table('user_phones')->insert([ 
+            'user_id'=> 2,  
+            'phone' => '0776655432',
+            
         ]);
-        
     }
 }

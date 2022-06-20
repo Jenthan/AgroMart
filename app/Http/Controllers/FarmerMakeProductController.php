@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Farmer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -19,8 +20,10 @@ class FarmerMakeProductController extends Controller
      */
     public function index()
     {
-        $products=Product::all();
-        return view('farmer-add-product.index',compact('products'));
+        $user=User::all()->where('role','farmer');
+        $farmer=Farmer::all();
+        $products = Product::all();
+        return view('farmer-add-product.index',compact('user','farmer','products'));
     }
 
     /**

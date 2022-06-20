@@ -5,9 +5,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminProductController;
-use App\Http\Controllers\FarmerController;
-use App\Http\Controllers\FarmerMakeProductController;
-
+use App\Http\Controllers\VendorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +22,7 @@ Route::get('/f', function () {
     return view('index');
 });
 
+
 /*----  Home page Route  starts ---*/
 Route::get('/',[MainController::class,'homeDisplay']);
 Route::get('farmer',[MainController::class,'farmerDisplay']);
@@ -34,9 +33,14 @@ Route::get('vender',[MainController::class,'venderDisplay']);
 Route::get('homelogin',[MainController::class,'homeloginDisplay']);
 Route::get('adminprofile',[MainController::class,'adminprofileDisplay']);
 
+
+
 /*------ check login --- */
 Route::get('/checklogin',[UserController::class,'checklogin']);
 
+
+//Route::get('/vendorlogin',[UserController::class,'checklogin']);
+Route::get('/userprofile/{id}',[UserController::class,'userprofilelogin'])->name('/userprofile/{id}');
 
 
 
@@ -77,12 +81,4 @@ Route::get('/adminproduct',[AdminController::class,'productdisplay']);
 Route::get('/adminvender',[AdminController::class,'venderdisplay']);
 Route::get('/adminfarmer',[AdminController::class,'farmerdisplay']);
 
-/* Farmer Dashboard */
-Route::get('/farmer-base',[FarmerController::class,'index']);
-
-/* Farmer add product */
-Route::get('/add-product',[FarmerMakeProductController::class,'index']);
-Route::get('/create-product',[FarmerMakeProductController::class,'create']);
-Route::post('/store-product',[FarmerMakeProductController::class,'store']);
-Route::get('/edit-product',[FarmerMakeProductController::class,'edit']);
 

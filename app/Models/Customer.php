@@ -11,6 +11,7 @@ class Customer extends Model
     protected $table = "customers";
     protected $fillable = [
         'user_id',
+        'prophoto',
         'customerName',
         'customerAddressNo',
         'customerAddressStreet',
