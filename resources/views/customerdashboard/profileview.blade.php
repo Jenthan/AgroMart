@@ -741,48 +741,52 @@ body {
 				</a>   
 			
 			</div>
+			
 
 			<ul class="box-info">
+			@if ($message = Session::get('success'))
+			<div class="alert alert-success">
+				<p>{{ $message }}</p>
+			</div>
+         @endif
+			
 				
                <form class="border border-success rounded-3">
+			       @csrf
+                   @method('PUT')
 
                     <h2>Customer Details</h2> <br>
 
                     <div class="row mb-2">
-                        <label for="fname" class="col-sm-2 col-form-label-sm">First Name:</label>
+                        <label for="fname" class="col-sm-2 col-form-label-sm">Customer Name:</label>
                         <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-sm" id="fname">
+                        <input type="text" class="form-control form-control-sm" id="fname" disabled value="{{$customers->customerName}}">
                         </div>
                     </div>
 
-                    <div class="row mb-2">
-                        <label for="lname" class="col-sm-2 col-form-label-sm">Last Name:</label>
-                        <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-sm" id="lname">
-                        </div>
-                    </div>
+                    
 
                     <div class="row mb-2">
                         <label for="address" class="col-sm-2 col-form-label-sm">Address:</label>
                         <div class="col-sm-9">
-                        <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="No/Apartment/Village" id="address"></div>
-                        <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="Street(optional)" id="address"></div>
-                        <input type="text" class="form-control form-control-sm" placeholder="City" id="address">
+                        <div class="mb-2"><input type="text" disabled  class="form-control form-control-sm" placeholder="No/Apartment/Village" id="address" value="{{$customers->customerAddressNo}}"></div>
+                        <div class="mb-2"><input type="text" disabled class="form-control form-control-sm" placeholder="Street(optional)" id="address" value="{{$customers->customerAddressStreet}}"></div>
+                        <input type="text" disabled class="form-control form-control-sm" placeholder="City" id="address" value="{{$customers->customerAddressCity}}">
                         </div>
                     </div>
 
                     <div class="row mb-2">
                         <label for="phone" class="col-sm-2 col-form-label-sm">Phone:</label>
                         <div class="col-sm-9">
-                        <div class="mb-2"><input type="tel" class="form-control form-control-sm " patern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="phone" maxlength="10" placeholder="mobile"></div>
-                        <input type="tel" class="form-control form-control-sm" patern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="phone" maxlength="10" placeholder="office">
+                        <div class="mb-2"><input type="tel" disabled class="form-control form-control-sm " patern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="phone" maxlength="10" placeholder="mobile"></div>
+                        <input type="tel" disabled class="form-control form-control-sm" patern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="phone" maxlength="10" placeholder="office" value="{{$usersphone->phone}}" >
                         </div>
                     </div>
 
                     <div class="row mb-2">
-                        <label for="profilephoto" class="col-sm-2 col-form-label-sm">Profile Photo:</label>
+                        <label for="profilephoto"  class="col-sm-2 col-form-label-sm">Profile Photo:</label>
                         <div class="col-sm-9">
-                        <input class="form-control form-control-sm" id="profilephoto" type="file">
+                        <input class="form-control form-control-sm" id="profilephoto" type="file" disabled>
                         </div>
                     </div>
 
@@ -790,7 +794,7 @@ body {
                     <div class="row mb-2">
                         <label for="mail" class="col-sm-2 col-form-label-sm">Email:</label>
                         <div class="col-sm-9">
-                        <input type="email" class="form-control form-control-sm" id="mail">
+                        <input type="email" class="form-control form-control-sm" id="mail" value="{{$user->email}}" disabled>
                         </div>
                     </div>
                     

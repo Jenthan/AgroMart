@@ -42,6 +42,7 @@ Route::get('adminprofile',[MainController::class,'adminprofileDisplay']);
 /*------ check login --- */
 Route::get('/checklogin',[UserController::class,'checklogin']);
 
+
 //Route::get('/vendorlogin',[UserController::class,'checklogin']);
 Route::get('/userprofile/{id}',[UserController::class,'userprofilelogin'])->name('/userprofile/{id}');
 
@@ -94,8 +95,9 @@ Route::post('/store-product',[FarmerMakeProductController::class,'store']);
 
 
 /* customer Dashboard */
-Route::get('/customer/{id}',[CustomerController::class,'index'])->name('customer');
+Route::get('/customerlogin',[CustomerController::class,'index'])->name('customerlogin');
 
 Route::get('/customerorder/{id}',[OrderController::class,'customerOrderindex'])->name('customerorder');
 Route::get('/customerprofile/{id}',[CustomerController::class,'customerprofileview'])->name('customerprofile');
 Route::get('/customerprofileedit/{id}',[CustomerController::class,'customerprofileedit'])->name('customerprofileedit');
+Route::put('/customeredit/{id}',[CustomerController::class,'customereditupdate'])->name('customeredit');

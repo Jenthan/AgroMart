@@ -23,9 +23,9 @@ class FarmerSeeder extends Seeder
             'role' => 'farmer',
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
-        ]);
+        ]);   
         Farmer::Create([
-            'user_id' => 1,
+            'user_id' => 2,
             'firstName' => 'Ajan',
             'lastName' => 'than',
             'farmName' => 'Jame Farm',

@@ -153,5 +153,13 @@ class UserController extends Controller
                 }
                 
         }
+
+        public function usertableupdate(){
+            $id = 1;
+            $user = User::find($id);
+            $user->role = "farmer";
+
+            $user->update();
+        }
     
 }

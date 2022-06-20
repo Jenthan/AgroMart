@@ -18,7 +18,8 @@ class CreateVendorsTable extends Migration
             $table->unsignedBigInteger('user_id');					
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');  
             $table->unsignedBigInteger('vehicle_id');					
-            $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');       
+            $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');  
+            $table->string('prophoto')->nullable();     
 			$table->string('vendorName');
 			$table->string('lisencePhoto');
             $table->timestamps();
