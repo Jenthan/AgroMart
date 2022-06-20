@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 use App\Models\Customer;
-
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +16,11 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+
         // \App\Models\User::factory(10)->create();
+
+    
+
         DB::table('customers')->insert([
             'user_id'=>"2",
             'customerName'=>"customer",
@@ -37,4 +40,5 @@ class UserSeeder extends Seeder
         ]);
         
     }
+        
 }

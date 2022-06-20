@@ -6,6 +6,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\FarmerController;
+use App\Http\Controllers\FarmerMakeProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +25,7 @@ Route::get('/f', function () {
     return view('index');
 });
 
+
 /*----  Home page Route  starts ---*/
 Route::get('/',[MainController::class,'homeDisplay']);
 Route::get('farmer',[MainController::class,'farmerDisplay']);
@@ -32,9 +36,14 @@ Route::get('vender',[MainController::class,'venderDisplay']);
 Route::get('homelogin',[MainController::class,'homeloginDisplay']);
 Route::get('adminprofile',[MainController::class,'adminprofileDisplay']);
 
+
+
 /*------ check login --- */
 Route::get('/checklogin',[UserController::class,'checklogin']);
 
+
+//Route::get('/vendorlogin',[UserController::class,'checklogin']);
+Route::get('/userprofile/{id}',[UserController::class,'userprofilelogin'])->name('/userprofile/{id}');
 
 
 
@@ -58,7 +67,7 @@ Route::get('farmeraddproduct',[MainController::class,'addproduct']);
 
 /*------User Register form select -admincustomer----*/
 Route::get('user_select',[UserController::class,'index']);
-
+Route::get('register-customer',[UserController::class,'register_customer']);
 
 
 
@@ -74,6 +83,7 @@ Route::get('/admincustomerdisplay',[AdminController::class,'customerdisplay']);
 Route::get('/adminproduct',[AdminController::class,'productdisplay']);
 Route::get('/adminvender',[AdminController::class,'venderdisplay']);
 Route::get('/adminfarmer',[AdminController::class,'farmerdisplay']);
+
 
 // vendor routes starts
 Route::get('/vendorLogout',[VendorController::class,'logout']);

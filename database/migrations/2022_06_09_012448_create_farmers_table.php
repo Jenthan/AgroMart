@@ -17,9 +17,10 @@ class CreateFarmersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');					
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('prophoto')->nullable();
             $table->string('firstName');
             $table->string('lastName');
-			$table->string('gsCertificate');
+			$table->string('gsCertificate')->nullable();
 			$table->string('farmName');
 			$table->string('farmAddressNo');
 			$table->string('farmAddressStreet');

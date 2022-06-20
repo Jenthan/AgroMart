@@ -24,6 +24,13 @@ class CustomerSeeder extends Seeder
         'password' => Hash::make('cus123'),
         'remember_token' => Str::random(10),
     ]);
+  /*  DB::table('customers')->insert([ 
+        'user_id'=> 3,  
+        'customerName' => 'jenthan',
+        'customerAddressNo' => '12/B',
+        'customerAddressStreet' => '3rd cross road',
+        'customerAddressCity'=>'batticaloa',
+    ]);  */
         DB::table('users')->insert([   
             'email' => 'janith@gmail.com',
             'role'=>'vender',

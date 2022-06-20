@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Customer;
+use App\Models\Product;
+use App\Models\Vendor;
+use App\Models\CustomerOrderProduct;
+use App\Models\Farmer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -20,6 +24,10 @@ class UserController extends Controller
     public function index()
     {
         return view('register.userselect');
+    }
+    public function register_customer()
+    {
+        return view('register.CustomerRegistration');
     }
 
     /**
@@ -85,7 +93,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        Auth::logout();
+        return redirect('/');
     }
 
     
@@ -109,8 +118,11 @@ class UserController extends Controller
         }
         
         public function checklogin(Request $request){
-           
-            $user = User::all()->where('role','user');
+           $product = Product::all();
+           $order = CustomerOrderProduct::all();
+            $farmer = User::all()->where('role','farmer');
+            $vendor = User::all()->where('role','vender');
+            $customer = User::all()->where('role','customer');
 			// Validation
             $this->validate($request, [
                 'email' => 'required|email',
@@ -127,11 +139,12 @@ class UserController extends Controller
             if(Auth::attempt($user_data))
                 {
                     if(Auth::user()->role =='admin'){
-                        return view('admindashboard.index',compact('user'));
+                        return view('admindashboard.index',compact('customer','farmer',
+                    'vendor','product'));
                     }elseif(Auth::user()->role =='customer'){
-                        return view('emporder.empdash',compact('user'));
+                        return view('customerindex',compact('order','customer'));
                     }elseif(Auth::user()->role =='farmer'){
-                        return view('customers.dash');
+                        return view('farmer-dash.index',compact('farmer'));
                     }elseif(Auth::user()->role =='vender'){
                         return redirect('/vendorDashboard');
                     }
@@ -139,6 +152,14 @@ class UserController extends Controller
                     return back()->with('error','Wrong Login Details');
                 }
                 
+        }
+
+        public function usertableupdate(){
+            $id = 1;
+            $user = User::find($id);
+            $user->role = "farmer";
+
+            $user->update();
         }
     
 }
