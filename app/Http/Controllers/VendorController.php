@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Farmer;
+use App\Models\Vendor;
+use App\Models\User;
 use App\Models\Customer;
 use App\Models\DeliverDetail;
 use App\Models\DeliverProduct;
@@ -85,5 +87,13 @@ class VendorController extends Controller
         $order->deliverstatus = ('delivered');
         $order->save();
         return back();
+    }
+    public function editVendor()
+    {
+        
+        
+        
+        $vendor = DB::table('vendors')->where('user_id', Auth::user()->id)->first();
+        return view('vendorDashboard.editProfile',compact( 'vendor'));
     }
 }

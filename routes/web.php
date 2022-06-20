@@ -84,3 +84,4 @@ Route::get('/cancelledOrders',[VendorController::class,'cancelledOrders']);
 Route::get('/cancelledDeliverStatus/{id}',[VendorController::class,'cancelledDeliverStatus']);
 Route::get('/acceptDeliverStatus/{id}',[VendorController::class,'acceptDeliverStatus']);
 Route::get('/doneDeliverStatus/{id}',[VendorController::class,'doneDeliverStatus']);
+Route::get('/editVendor',[VendorController::class,'editVendor']);
