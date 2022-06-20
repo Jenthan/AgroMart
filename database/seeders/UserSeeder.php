@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class DatabaseSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -19,10 +19,19 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         DB::table('customers')->insert([
-            'customerName'=>"jenthan",
+            'user_id'=>"2",
+            'customerName'=>"customer",
             'customerAddressNo'=>"21",
             'customerAddressStreet'=>"brownsroad",
             'customerAddressCity'=>"batticaloa"
+           // 'email' => Str::random(10).'@gmail.com',
+           // 'password' => Hash::make('password'),
+        ]);
+        DB::table('vendors')->insert([
+            'user_id'=>"3",
+            'vehicle_id'=>"1",
+            'vendorName'=>"Janith",
+            'lisencePhoto'=>"------"
            // 'email' => Str::random(10).'@gmail.com',
            // 'password' => Hash::make('password'),
         ]);

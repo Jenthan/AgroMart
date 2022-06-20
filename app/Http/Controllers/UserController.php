@@ -133,7 +133,7 @@ class UserController extends Controller
                     }elseif(Auth::user()->role =='farmer'){
                         return view('customers.dash');
                     }elseif(Auth::user()->role =='vender'){
-                        return view();
+                        return redirect('/vendorDashboard');
                     }
                 }else{
                     return back()->with('error','Wrong Login Details');
