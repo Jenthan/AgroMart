@@ -84,3 +84,5 @@ Route::get('/farmer-base',[FarmerController::class,'index']);
 Route::get('/add-product',[FarmerMakeProductController::class,'index']);
 Route::get('/create-product',[FarmerMakeProductController::class,'create']);
 Route::post('/store-product',[FarmerMakeProductController::class,'store']);
+Route::get('/edit-product',[FarmerMakeProductController::class,'edit']);
+

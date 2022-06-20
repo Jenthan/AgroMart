@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Farmer;
+use App\Models\UserPhone;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -32,6 +33,10 @@ class FarmerSeeder extends Seeder
             'farmAddressNo' => '22/8',
             'farmAddressStreet' => 'Steal Road',
             'farmAddressCity' => 'Jaffna',
+        ]);
+        UserPhone::Create([
+            'user_id' => 1,
+            'phone' => '0777788888',
         ]);
     }
 }
