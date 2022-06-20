@@ -92,7 +92,7 @@ class FarmerMakeProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('farmer-add-product.edit');
+        return view('farmer-add-product.edit',compact('product'));
     }
 
     /**

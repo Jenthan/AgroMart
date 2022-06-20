@@ -1,12 +1,22 @@
 @extends('farmer-dash/base')
 @section('main')
 <main>
+        <div class="table-data">
+            <div class="order">
+                <div class="head">
+                    <h3>Update the Products</h3>
+                    <a href="create-product" class="btn-download">
+                        <i class='bx bxs-shopping-bag-alt' ></i>
+                        <span class="text">Add Product</span>
+                    </a>
+                </div>
+           
     <form method="post" action="#" enctype="multipart/form-data">
         @csrf
     <div class="form-group row">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Product Name</label>
         <div class="col-sm-10">
-        <input type="text" class="form-control" name="product_name" id="inputEmail3" placeholder="Product Name">
+        <input type="text" class="form-control" name="product_name" id="inputEmail3" placeholder="Product Name" />
         </div>
     </div>
     <div class="form-group row">
@@ -59,6 +69,8 @@
         </div>
     </div>
     </form>
+    </div>
+    </div>
 </main>
 
 @endsection
