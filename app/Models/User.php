@@ -49,6 +49,9 @@ class User extends Authenticatable
     public function farmer(){
         return $this->hasOne('App\Models\Farmer');
     }
+    public function vendor(){
+        return $this->hasOne('App\Models\Vendor');
+    }
 
     public function userphone(){
         return $this->hasMany(UserPhone::class);
