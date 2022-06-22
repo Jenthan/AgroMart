@@ -11,6 +11,7 @@ class Farmer extends Model
     protected $table = "farmers";
     protected $fillable = [
         'user_id',
+        'prophoto',
         'firstName',
         'lastName',
         'gsCertificate',
@@ -27,7 +28,7 @@ class Farmer extends Model
         return $this->hasMany(Product::class);
     }
 
-    public function vender(){
+    public function vendor(){
         return $this->belongsToMany(Vender::class,'farmer_request_vendors');
     }
 

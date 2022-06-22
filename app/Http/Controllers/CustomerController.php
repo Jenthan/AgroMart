@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Auth;
-use validator;
+use Validator;
 
 
 class CustomerController extends Controller
@@ -159,5 +159,77 @@ class CustomerController extends Controller
 
         return view('customerdashboard.profileview',compact('customers','user','usersphone'))->with('success','Product updated successfully');
 
+    }
+
+
+    public function customerregistrationview(){
+        return view('register.regcustomer');
+    }
+
+    public function customerregistration(Request $request){
+        
+
+        $this->validate($request, [
+            'name'=> 'required',
+            'no' => 'required',
+            'street' => 'required',
+            'city' => 'required',
+            'phoneno' => 'required',
+            'prophoto' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            
+        ]);
+
+        $customer = new Customer([
+            'customerName' => $request->get('name'),
+            'customerAddressNo' => $request->get('no'),
+            'customerAddressStreet' => $request->get('street'),
+            'customerAddressCity' => $request->get('city'),
+            //'productImg' => $request->file('proImg'),
+            //'farmer_id' => $request->get('farmerId'),
+        ]);
+
+        $userphone = new UserPhone([
+            'phone' => $request->get('phoneno'),
+        ]);
+
+        if (!$request->has('prophoto')) {
+            return response()->json(['message' => 'Missing file'], 422);
+        }
+
+        $image = $request->file('prophoto');
+        $imageName =date('YmdHi').'.' . $image->getClientOriginalExtension();
+        $image->move(public_path('customerImage'),$imageName);
+        $customer->image =$imageName ;
+
+
+        $customer = new Customer([
+            'customerName' => $request->get('name'),
+            'customerAddressNo' => $request->get('no'),
+            'customerAddressStreet' => $request->get('street'),
+            'customerAddressCity' => $request->get('city'),
+            //'farmer_id' => $request->get('farmerId'),
+        ]);
+       
+
+        
+
+        $user = new User([
+            'email' => $request->get('email'),
+            
+            'password' =>Hash::make( $request->get('password')),
+            
+            //'productImg' => $request->file('proImg'),
+            //'farmer_id' => $request->get('farmerId'),
+        ]);
+            $user->role ="customer";
+
+        $user->save();
+        $user->customer()->save($customer);
+        $user->userphone()->save($userphone);
+        return redirect('homelogin')->with('success','Customer added successfully.!');
+        
+            
     }
 }
