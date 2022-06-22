@@ -15,7 +15,7 @@ class Vehicle extends Model
         'vehicleType',
     ];
 
-    public function vender(){
-        return $this->belongsTO(Vender::class); 
+    public function vendor(){
+        return $this->belongsTO('App\Models\Vendor'); 
     }
 }
