@@ -7,11 +7,11 @@
 					<h1>Dashboard {{Auth::User()->id}}</h1>
 					<ul class="breadcrumb">
 						<li>
-							<a href="{{url('/admindash')}}">Dashboard</a>
+							<a href="#">Dashboard</a>
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="{{url('/admindash')}}">Home</a>
+							<a class="active" href="#">Home</a>
 						</li>
 					</ul>
 				</div>
