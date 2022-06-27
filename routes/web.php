@@ -103,6 +103,7 @@ Route::post('/vendorregistration',[VendorController::class,'vendorregistration']
 Route::get('/farmer-base',[FarmerController::class,'index']);
 Route::get('/farmerreg',[FarmerController::class,'farmerregistrationview']);
 Route::post('/farmerregistration',[FarmerController::class,'farmerregistration']);
+Route::get('/logout',[FarmerController::class,'logout']);
 
 
 // Farmer  add product 
@@ -110,7 +111,7 @@ Route::get('/add-product',[FarmerMakeProductController::class,'index']);
 Route::get('/create-product',[FarmerMakeProductController::class,'create']);
 Route::post('/store-product',[FarmerMakeProductController::class,'store']);
 
-Route::get('/edit-product/{id}',[FarmerMakeProductController::class,'edit_item']);
+Route::get('/edit-product/{product}',[FarmerMakeProductController::class,'edit_item']);
 Route::get('/edit-product',[FarmerMakeProductController::class,'edit']);
 
 

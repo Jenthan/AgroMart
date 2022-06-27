@@ -97,9 +97,8 @@ class FarmerController extends Controller
         return view('register.regfarmer');
     }
 
-    public function farmerregistration(Request $request){
-        
-
+    public function farmerregistration(Request $request)
+    {
         $this->validate($request, [
             'fname'=> 'required',
             'lname' => 'required',
@@ -111,7 +110,6 @@ class FarmerController extends Controller
             'email' => 'required|email',
             'gsphoto' => 'required',
             'password' => 'required',
-            
         ]);
 
         $farmer = new Farmer([
@@ -144,11 +142,7 @@ class FarmerController extends Controller
             $file-> move(public_path('GsImage'), $filename);
             $farmer['gsCertificate']= $filename;
         }
-
-       
-
         
-
         $user = new User([
             'email' => $request->get('email'),
             
@@ -165,5 +159,10 @@ class FarmerController extends Controller
         return redirect('homelogin')->with('success','Farmer User added successfully.!');
         
             
+    }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }
