@@ -43,7 +43,7 @@ class User extends Authenticatable
     ];
 
     public function customer(){
-        return $this->hasOne('App\Models\Customer');
+        return $this->hasOne(Customer::class);
     }
 
     public function farmer(){
