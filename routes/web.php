@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\FarmerController;
+use App\Http\Controllers\FarmerDashController;
 use App\Http\Controllers\FarmerMakeProductController;
 use App\Http\Controllers\CustomerController;
 
@@ -110,13 +111,12 @@ Route::get('/logout',[FarmerController::class,'logout']);
 Route::get('/add-product',[FarmerMakeProductController::class,'index']);
 Route::get('/create-product',[FarmerMakeProductController::class,'create']);
 Route::post('/store-product',[FarmerMakeProductController::class,'store']);
+Route::get('/edit-product/{product}',[FarmerMakeProductController::class,'edit']);
+Route::post('/update-product/{product}',[FarmerMakeProductController::class,'update']);
+Route::get('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
 
-Route::get('/edit-product/{product}',[FarmerMakeProductController::class,'edit_item']);
-Route::get('/edit-product',[FarmerMakeProductController::class,'edit']);
-
-
-
-
+// Farmer Password Change
+Route::get('/farmer-password',[FarmerDashController::class,'password']);
 
 Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
 Route::post('/customerregistration',[CustomerController::class,'customerregistration']);

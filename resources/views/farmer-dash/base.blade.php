@@ -32,7 +32,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="{{url('adminorders')}}">
+				<a href="#">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Profile</span>
 				</a>
@@ -44,21 +44,27 @@
 				</a>
 			</li>
             <li>
-				<a href="{{url('/adminvender')}}">
+				<a href="#">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Order Details</span>
 				</a>
 			</li>
             <li>
-				<a href="{{url('/adminfarmer')}}">
+				<a href="#">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Vendors</span>
 				</a>
 			</li>
 			<li>
-				<a href="{{url('adminproduct')}}">
+				<a href="#">
 					<i class='bx bxs-doughnut-chart' ></i>
-					<span class="text">Logout</span>
+					<span class="text">History</span>
+				</a>
+			</li>
+			<li>
+				<a href="{{url('farmer-password')}}">
+					<i class='bx bxs-lock-alt'></i>
+					<span class="text">Change Password</span>
 				</a>
 			</li>
 			<li>
