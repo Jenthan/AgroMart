@@ -17,10 +17,12 @@ class CreateVendorsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');					
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');  
-            $table->unsignedBigInteger('vehicle_id');					
-            $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');  
             $table->string('prophoto')->nullable();     
-			$table->string('vendorName');
+			$table->string('firstName');
+            $table->string('lastName');
+            $table->string('addressNo');
+            $table->string('addressStreet');
+            $table->string('addressCity');
 			$table->string('lisencePhoto');
             $table->timestamps();
         });
