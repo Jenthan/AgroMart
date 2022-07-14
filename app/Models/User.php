@@ -56,4 +56,7 @@ class User extends Authenticatable
     public function userphone(){
         return $this->hasMany(UserPhone::class);
     }
+    public function vehicle(){
+        return $this->hasMany(vehicle::class);
+    }
 }

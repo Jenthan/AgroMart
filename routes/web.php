@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\FarmerController;
+use App\Http\Controllers\FarmerDashController;
 use App\Http\Controllers\FarmerMakeProductController;
 use App\Http\Controllers\CustomerController;
 
@@ -103,12 +104,22 @@ Route::post('/vendorregistration',[VendorController::class,'vendorregistration']
 Route::get('/farmer-base',[FarmerController::class,'index']);
 Route::get('/farmerreg',[FarmerController::class,'farmerregistrationview']);
 Route::post('/farmerregistration',[FarmerController::class,'farmerregistration']);
+Route::get('/logout',[FarmerController::class,'logout']);
 
 
 // Farmer  add product 
 Route::get('/add-product',[FarmerMakeProductController::class,'index']);
 Route::get('/create-product',[FarmerMakeProductController::class,'create']);
 Route::post('/store-product',[FarmerMakeProductController::class,'store']);
+Route::get('/edit-product/{product}',[FarmerMakeProductController::class,'edit']);
+Route::post('/update-product/{product}',[FarmerMakeProductController::class,'update']);
+Route::get('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
+
+// Farmer Password Change
+Route::get('/farmer-password',[FarmerDashController::class,'password']);
+
+Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
+Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
 
 Route::get('/edit-product/{id}',[FarmerMakeProductController::class,'edit_item']);
 Route::get('/edit-product',[FarmerMakeProductController::class,'edit']);
@@ -121,4 +132,3 @@ Route::get('/customerorder/{id}',[OrderController::class,'customerOrderindex'])-
 Route::get('/customerprofile/{id}',[CustomerController::class,'customerprofileview'])->name('customerprofile');
 Route::get('/customerprofileedit/{id}',[CustomerController::class,'customerprofileedit'])->name('customerprofileedit');
 Route::put('/customeredit/{id}',[CustomerController::class,'customereditupdate'])->name('customeredit');
-

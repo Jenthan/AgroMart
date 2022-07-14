@@ -27,6 +27,13 @@
     padding-left:10px;
     color:black;
 }
+.proSize {
+    height:200px;
+    width:200px;
+}
+.lenPassword {
+    width:60%;
+}
 .rightupbox {
     width:75%;
     height:50px;

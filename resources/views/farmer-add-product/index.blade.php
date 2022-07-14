@@ -36,7 +36,11 @@
 						<td>{{$product->qty}} kg</td>
 						<td>
 							<a href="{{url('edit-product',$product->id)}}" class="status completed">Edit</a>
+
+							<a href="{{url('delete-product',$product->id)}}" class="status completed">Delete</a>
+
 							<a href="#" class="status completed">Delete</a>
+
 						</td>
 					</tr>
 					@endforeach
