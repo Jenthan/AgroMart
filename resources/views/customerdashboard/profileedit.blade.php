@@ -762,10 +762,12 @@ body {
                     <h2>Customer Details</h2> <br>
                
 
+                    @foreach($customers as $customer)
+
                     <div class="row mb-2">
                         <label for="fname" class="col-sm-2 col-form-label-sm">Customer Name:</label>
                         <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-sm" id="fname" value="{{$customers->customerName}}" name="customerName">
+                        <input type="text" class="form-control form-control-sm" id="fname"  value="{{$customer->customerName}}" name="customerName">
                         </div>
                     </div>
 
@@ -774,24 +776,24 @@ body {
                     <div class="row mb-2">
                         <label for="address" class="col-sm-2 col-form-label-sm">Address:</label>
                         <div class="col-sm-9">
-                        <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="No/Apartment/Village" id="address" value="{{$customers->customerAddressNo}}" name="customerAddressNo"></div>
-                        <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="Street(optional)" id="address" value="{{$customers->customerAddressStreet}}" name="customerAddressStreet"></div>
-                        <input type="text" class="form-control form-control-sm" placeholder="City" id="address" value="{{$customers->customerAddressCity}}"  name="customerAddressCity">
+                        <div class="mb-2"><input type="text"   class="form-control form-control-sm" placeholder="No/Apartment/Village" id="address" value="{{$customer->customerAddressNo}}" name="customerAddressNo"></div>
+                        <div class="mb-2"><input type="text"  class="form-control form-control-sm" placeholder="Street(optional)" id="address" value="{{$customer->customerAddressStreet}}" name="customerAddressStreet"></div>
+                        <input type="text"  class="form-control form-control-sm" placeholder="City" id="address" value="{{$customer->customerAddressCity}}" name="customerAddressCity">
                         </div>
                     </div>
-
+			
                     <div class="row mb-2">
                         <label for="phone" class="col-sm-2 col-form-label-sm">Phone:</label>
                         <div class="col-sm-9">
-                        <div class="mb-2"><input type="tel" class="form-control form-control-sm " patern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="phone" maxlength="10" placeholder="mobile"></div>
-                        <input type="tel" class="form-control form-control-sm" patern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="phone" maxlength="10" placeholder="office" value="{{$usersphone->phone}}" name="phone" >
+                        <div class="mb-2"><input type="tel"  class="form-control form-control-sm " patern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="phone" maxlength="10" placeholder="mobile" value="{{$usersphone->phone}}" name="phone"></div>
+                        
                         </div>
                     </div>
-
+				
                     <div class="row mb-2">
-                        <label for="profilephoto" class="col-sm-2 col-form-label-sm">Profile Photo:</label>
+                        <label for="profilephoto"  class="col-sm-2 col-form-label-sm">Profile Photo:</label>
                         <div class="col-sm-9">
-                        <input class="form-control form-control-sm" id="profilephoto" type="file">
+                        <input class="form-control form-control-sm" id="profilephoto" type="file" value="{{$customer->prophoto}}" name="photo">
                         </div>
                     </div>
 
@@ -804,13 +806,16 @@ body {
                     </div>
                     
                     <br>
+			
+                    
+                    <br>
 							
 					<div class="d-grid gap-2 col-6 mx-auto">
                         <button class="btn" type="submit">Update</button>
                         
                     </div>
                     </form>
-			
+			@endforeach
 			</ul>  
 
 
