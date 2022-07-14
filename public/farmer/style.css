@@ -48,3 +48,8 @@
 .left {
     float:left;
 }
+
+.right-side-farmerHub {
+    float:right;
+    width:60%;
+}

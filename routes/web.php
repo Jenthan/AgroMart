@@ -109,12 +109,9 @@ Route::post('/farmerregistration',[FarmerController::class,'farmerregistration']
 Route::get('/add-product',[FarmerMakeProductController::class,'index']);
 Route::get('/create-product',[FarmerMakeProductController::class,'create']);
 Route::post('/store-product',[FarmerMakeProductController::class,'store']);
+
+Route::get('/edit-product/{id}',[FarmerMakeProductController::class,'edit_item']);
 Route::get('/edit-product',[FarmerMakeProductController::class,'edit']);
-
-
-
-
-
 //customer
 Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
 Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
