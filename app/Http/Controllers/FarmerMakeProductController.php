@@ -72,17 +72,21 @@ class FarmerMakeProductController extends Controller
                 $item['productImg']= $filename;
             }
             $item->save();
-            return redirect('add-product');
+            return redirect('add-product')->with('success','Your product added successfully.!');
         }
     }
-
+    public function edit_item($id)
+    {
+        $product=Product::where('id',$id)->get();
+        return view('farmer-add-product.editpro',compact('product'));
+    }
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Product $product)
     {
         //
     }
@@ -93,9 +97,9 @@ class FarmerMakeProductController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Product $product)
     {
-        //
+        
     }
 
     /**
