@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Auth;
 use Validator;
+use DB;
 
 
 class CustomerController extends Controller
@@ -37,19 +38,25 @@ class CustomerController extends Controller
 
     public function customerprofileview($id)
     {
-        $customers = Customer::find($id);
-        $customer = "jenthan";
+        $customers = Customer::all()->where('user_id',$id);
+       // dd('customer');
+      // $customer = Customer::findOrFail($id);
+      //dd($customer);
+      // $customer = Customer::all()->where('role','customer');;
+     // $customer = DB::table('customers')->where('id',$id)->get();
          $user = User::find($id);
+         //dd($user);
          $usersphone = UserPhone::find($id);
+        // dd($usersphone);
+        // $usersphone = UserPhone::all();
 
          return view('customerdashboard.profileview',compact('customers','user','usersphone'));
     }
 
     public function customerprofileedit($id)
     {
-        $customers = Customer::find($id);
-        $customer = "jenthan";
-         $user = User::find($id);
+        $customers = Customer::all()->where('user_id',$id);
+        $user = User::find($id);
          $usersphone = UserPhone::find($id);
 
          return view('customerdashboard.profileedit',compact('customers','user','usersphone'));
@@ -141,13 +148,13 @@ class CustomerController extends Controller
       //  return redirect()->route('customerprofile',Auth::user()->id)->with('success','customer updated Successfully!');
       // return back()->with('error','Wrong Login Details');
 
-       $customers = Customer::find($id);
-        $customers->customerName = $request->input('customerName');;
-        $customers->customerAddressNo = $request->input('customerAddressNo');;
-        $customers->customerAddressStreet = $request->input('customerAddressStreet');;
-        $customers->customerAddressCity = $request->input('customerAddressCity');
-            $customers->update();
-
+       $customer = Customer::find($id);
+        $customer->customerName = $request->input('customerName');;
+        $customer->customerAddressNo = $request->input('customerAddressNo');;
+        $customer->customerAddressStreet = $request->input('customerAddressStreet');;
+        $customer->customerAddressCity = $request->input('customerAddressCity');
+            $customer->update();
+            //dd($customer);
         $user = User::find($id);
         $user->email = $request->input('email');
         $user->update();
@@ -157,7 +164,7 @@ class CustomerController extends Controller
         $usersphone->phone = $request->input('phone');
         $usersphone->update();   
 
-        return view('customerdashboard.profileview',compact('customers','user','usersphone'))->with('success','Product updated successfully');
+        return view('customerdashboard.index',compact('customer','user','usersphone'))->with('success','Product updated successfully');
 
     }
 
