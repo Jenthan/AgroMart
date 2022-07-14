@@ -113,10 +113,11 @@ class VendorController extends Controller
 
         $vendor = new Vendor([
             'vendorName' => $request->get('vname'),
-           
             //'productImg' => $request->file('proImg'),
             //'farmer_id' => $request->get('farmerId'),
         ]);
+
+        //$vendor->vehicle_id = 1;
 
         $image = $request->file('prophoto');
         $imageName =date('YmdHi').'.' . $image->getClientOriginalExtension();
@@ -159,11 +160,13 @@ class VendorController extends Controller
             $user->role ="vender";
 
         $user->save();
-        $vehicle->save();
+        //$vehicle->save();
        // $vehicle->vehicle()->save($vendor,$vehicle);
 //$user->vendor()->save($vendor);
-        $vendor->vehicle()->save($vehicle);
-       
+        $user->vendor()->save($vendor);
+        //$vendor->vehicle()->save($vehicle);
+        $user->vehicle()->save($vehicle);
+        $user->userphone()->save($userphone);
         return redirect('homelogin')->with('success','Your Vender Profile added successfully.!');        
             
     }

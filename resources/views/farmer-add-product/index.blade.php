@@ -10,6 +10,9 @@
 					<span class="text">Add Product</span>
 				</a>
             </div>
+			<div>
+				@yield('editpro')
+			</div>
 			<table>
 				<thead>
 					<tr>
@@ -22,19 +25,22 @@
 				</thead>
 				<tbody>
 					@foreach($products as $product)
-					<tr>
-						<td>
-							<img src="{{url('public/productImage/'.$product->productImg)}}" >
-							
-							<p>
-							<p>{{$product->productName}}</p>
-						</td>
-						<td>{{$product->productType}}</td>
-						<td>Rs. {{$product->unitPrice}}.00</td>
-						<td>{{$product->qty}} kg</td>
-						<td><a href="{{url('edit-product')}}" class="status completed">Edit</a>
-							<a href="" class="status completed">Delete</a></td>
-					</tr>
+						@if($product->farmer_id == Auth::User()->id)
+						<tr>
+							<td>
+								<img src="{{url('public/productImage/'.$product->productImg)}}" >
+								
+								<p>{{$product->productName}}</p>
+							</td>
+							<td>{{$product->productType}}</td>
+							<td>Rs. {{$product->unitPrice}}.00</td>
+							<td>{{$product->qty}} kg</td>
+							<td>
+								<a href="{{url('edit-product',$product->id)}}" class="status completed">Edit</a>
+								<a href="{{url('delete-product',$product->id)}}" class="status completed">Delete</a>
+							</td>
+						</tr>
+						@endif
 					@endforeach
 				</tbody>
 			</table>

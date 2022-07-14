@@ -75,7 +75,6 @@ class FarmerMakeProductController extends Controller
             return redirect('add-product')->with('success','Your product added successfully.!');
         }
     }
-
     /**
      * Display the specified resource.
      *
@@ -95,7 +94,7 @@ class FarmerMakeProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('farmer-add-product.edit',compact('product'));
+        return view('farmer-add-product.editpro',compact('product'));
     }
 
     /**
@@ -105,9 +104,28 @@ class FarmerMakeProductController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request,Product $product)
     {
-        //
+        $this->validate($request,[
+            'product_name' => 'required',
+            'unitp' => 'required',
+            'qty' => 'required',
+            'category' => 'required',
+        ]);
+        $product -> update([
+            'productName' => $request->get('product_name'),
+            'unitPrice' => $request->get('unitp'),
+            'qty' => $request->get('qty'),
+            'productType' => $request->get('category'),
+        ]);
+        if($request->file('proImg')){
+            $file= $request->file('proImg');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('public/productImage'), $filename);
+            $product->productImg = $filename;
+            $product->update();
+        }
+        return redirect('add-product')->with('success','Product updated successfully.!');
     }
 
     /**
@@ -116,8 +134,9 @@ class FarmerMakeProductController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect('add-product')->with('success','The product was deleted successfully.!');
     }
 }
