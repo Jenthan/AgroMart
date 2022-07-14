@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('register.userselect');
+        return view('register.user-select');
     }
     public function register_customer()
     {

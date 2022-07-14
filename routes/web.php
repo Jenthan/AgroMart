@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\FarmerController;
 use App\Http\Controllers\FarmerMakeProductController;
+use App\Http\Controllers\CustomerController;
 
 
 /*
@@ -33,7 +34,7 @@ Route::get('card',[MainController::class,'addtocardDisplay']);
 Route::get('product',[MainController::class,'productDisplay']);
 Route::get('profile',[MainController::class,'profileDisplay']);
 Route::get('vender',[MainController::class,'venderDisplay']);
-Route::get('homelogin',[MainController::class,'homeloginDisplay']);
+Route::get('homelogin',[MainController::class,'homeloginDisplay'])->name('homelogin');
 Route::get('adminprofile',[MainController::class,'adminprofileDisplay']);
 
 
@@ -94,13 +95,30 @@ Route::get('/cancelledOrders',[VendorController::class,'cancelledOrders']);
 Route::get('/cancelledDeliverStatus/{id}',[VendorController::class,'cancelledDeliverStatus']);
 Route::get('/acceptDeliverStatus/{id}',[VendorController::class,'acceptDeliverStatus']);
 Route::get('/doneDeliverStatus/{id}',[VendorController::class,'doneDeliverStatus']);
+Route::get('/venderreg',[VendorController::class,'vendorregistrationview']);
+Route::post('/vendorregistration',[VendorController::class,'vendorregistration']);
+
 
 // Farmer
 Route::get('/farmer-base',[FarmerController::class,'index']);
+Route::get('/farmerreg',[FarmerController::class,'farmerregistrationview']);
+Route::post('/farmerregistration',[FarmerController::class,'farmerregistration']);
 
 
 // Farmer  add product 
 Route::get('/add-product',[FarmerMakeProductController::class,'index']);
 Route::get('/create-product',[FarmerMakeProductController::class,'create']);
 Route::post('/store-product',[FarmerMakeProductController::class,'store']);
+
 Route::get('/edit-product/{id}',[FarmerMakeProductController::class,'edit_item']);
+Route::get('/edit-product',[FarmerMakeProductController::class,'edit']);
+//customer
+Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
+Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
+
+Route::get('/customerlogin',[CustomerController::class,'index'])->name('customerlogin');
+Route::get('/customerorder/{id}',[OrderController::class,'customerOrderindex'])->name('customerorder');
+Route::get('/customerprofile/{id}',[CustomerController::class,'customerprofileview'])->name('customerprofile');
+Route::get('/customerprofileedit/{id}',[CustomerController::class,'customerprofileedit'])->name('customerprofileedit');
+Route::put('/customeredit/{id}',[CustomerController::class,'customereditupdate'])->name('customeredit');
+
