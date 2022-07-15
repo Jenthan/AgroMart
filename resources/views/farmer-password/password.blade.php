@@ -6,7 +6,7 @@
             <div class="head">
                 <h3>Change the password for the Account</h3>
             </div>
-n
+
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success">
                         <p>{{ $message }}</p>

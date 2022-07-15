@@ -119,6 +119,7 @@ Route::get('/delete-product/{product}',[FarmerMakeProductController::class,'dest
 Route::get('/farmer-password',[FarmerDashController::class,'password']);
 Route::post('/farmer-changepassword/{user}',[FarmerDashController::class,'change_password']);
 
+//Customer
 Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
 Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
 
@@ -126,9 +127,8 @@ Route::get('/edit-product/{product}',[FarmerMakeProductController::class,'edit']
 Route::post('/update-product/{product}',[FarmerMakeProductController::class,'update']);
 Route::get('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
 
-// Farmer Password Change
-Route::get('/farmer-password',[FarmerDashController::class,'password']);
 
+//Customer
 Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
 
 Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
@@ -136,8 +136,7 @@ Route::post('/customerregistration',[CustomerController::class,'customerregistra
 
 
 
-Route::get('/edit-product/{id}',[FarmerMakeProductController::class,'edit_item']);
-Route::get('/edit-product',[FarmerMakeProductController::class,'edit']);
+
 //customer
 Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
 Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
