@@ -1,5 +1,5 @@
 @extends('farmer-dash.base')
-
+  
 @section('main')
 <main>
     <div class="head-title">
@@ -20,7 +20,7 @@
 					<span class="text">Download PDF</span>
 				</a>
 			</div>
-
+			hi i am farmer
 			<ul class="box-info">
 				<li>
 					<i class='bx bxs-calendar-check' ></i>
