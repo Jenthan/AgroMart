@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -21,7 +22,8 @@ class MainController extends Controller
 
      
     public function productDisplay(){
-        return view('product.index');
+        $products=Product::all();
+        return view('product.index',compact('products'));
     }
 
     public function venderDisplay(){

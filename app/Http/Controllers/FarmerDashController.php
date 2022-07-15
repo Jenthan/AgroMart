@@ -21,6 +21,25 @@ class FarmerDashController extends Controller
     {
         return view('farmer-password.password');
     }
+    public function change_password(Request $request,User $user)
+    {
+        $this->validate($request,[
+            'current_password' => 'required',
+            'password' => 'required',
+            'con_password' => 'required|same:password',
+        ]);
+        $data = $request->all();
+        if(Hash::check($data['current_password'],$user->password))
+        {
+            $user->password=Hash::make($data['password']);
+            $user->update();
+            return back()->with('success','Your password changed successfully!');
+        }
+        else
+        {
+            return back()->with('error','Your Current password is not matched!');
+        }
+    }
     /**
      * Display a listing of the resource.
      *
