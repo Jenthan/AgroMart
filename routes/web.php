@@ -120,4 +120,15 @@ Route::get('/farmer-password',[FarmerDashController::class,'password']);
 Route::post('/farmer-changepassword/{user}',[FarmerDashController::class,'change_password']);
 
 Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
+
 Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
+
+
+
+Route::get('/customerlogin',[CustomerController::class,'index'])->name('customerlogin');
+Route::get('/customerorder/{id}',[OrderController::class,'customerOrderindex'])->name('customerorder');
+Route::get('/customerprofile/{id}',[CustomerController::class,'customerprofileview'])->name('customerprofile');
+Route::get('/customerprofileedit/{id}',[CustomerController::class,'customerprofileedit'])->name('customerprofileedit');
+Route::put('/customeredit/{id}',[CustomerController::class,'customereditupdate'])->name('customeredit');
+
+
