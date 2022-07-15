@@ -1,6 +1,11 @@
 @extends('farmer-dash/base')
 @section('main')
 <main>
+    <div class="table-data">
+            <div class="order">
+                <div class="head">
+                    <h3>Add New Product</h3>
+                </div>
     <form method="post" action="{{url('store-product')}}" enctype="multipart/form-data">
         @csrf
     <div class="form-group row">
@@ -59,6 +64,8 @@
         </div>
     </div>
     </form>
+</div>
+</div>
 </main>
 
 @endsection

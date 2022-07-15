@@ -76,11 +76,13 @@ class FarmerMakeProductController extends Controller
         }
     }
 
+
     public function edit_item($id)
     {
         $product=Product::where('id',$id)->get();
         return view('farmer-add-product.editpro',compact('product'));
     }
+
     /**
      * Display the specified resource.
      *
@@ -100,9 +102,7 @@ class FarmerMakeProductController extends Controller
      */
     public function edit(Product $product)
     {
-
         return view('farmer-add-product.editpro',compact('product'));
-
     }
 
     /**
