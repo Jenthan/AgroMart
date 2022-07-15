@@ -75,6 +75,14 @@ class FarmerMakeProductController extends Controller
             return redirect('add-product')->with('success','Your product added successfully.!');
         }
     }
+
+
+    public function edit_item($id)
+    {
+        $product=Product::where('id',$id)->get();
+        return view('farmer-add-product.editpro',compact('product'));
+    }
+
     /**
      * Display the specified resource.
      *

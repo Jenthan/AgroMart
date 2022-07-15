@@ -1,3 +1,4 @@
+
 @extends('farmer-dash/base')
 @section('main')
 <main>
@@ -57,5 +58,7 @@
     </div>
 </div>
 </main>
+
+
 
 @endsection
