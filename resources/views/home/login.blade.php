@@ -29,8 +29,7 @@
                     @csrf
                     <p>User name</p>
 
-                    <input type="email" name="email" placeholder="Enter Username"/>
-                    
+                    <input type="email" name="email" placeholder="Enter Username" />
 
                     <p>Password</p>
                     <input type="password" name="password" placeholder="Enter Password">
