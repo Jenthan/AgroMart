@@ -5,12 +5,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Boxicons -->
-	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link href="{{ asset('https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css')}}" rel='stylesheet'>
 	<!-- My CSS -->
-	<link rel="stylesheet" href="admin/admincss.css">
+	<link rel="stylesheet" href="/admin/admincss.css">
 
     <!-- boortstrap --->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css')}}" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+	<link rel='stylesheet' href="{{ asset('/farmer/style.css')}}">
+	<link rel='stylesheet' href="{{ asset('farmer/style.css')}}">
 
 	<title>FarmerHub</title>
 </head>
@@ -31,7 +35,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="{{url('adminorders')}}">
+				<a href="#">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Profile</span>
 				</a>
@@ -43,21 +47,27 @@
 				</a>
 			</li>
             <li>
-				<a href="{{url('/adminvender')}}">
+				<a href="#">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Order Details</span>
 				</a>
 			</li>
             <li>
-				<a href="{{url('/adminfarmer')}}">
+				<a href="#">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Vendors</span>
 				</a>
 			</li>
 			<li>
-				<a href="{{url('adminproduct')}}">
+				<a href="#">
 					<i class='bx bxs-doughnut-chart' ></i>
-					<span class="text">Logout</span>
+					<span class="text">History</span>
+				</a>
+			</li>
+			<li>
+				<a href="{{url('farmer-password')}}">
+					<i class='bx bxs-lock-alt'></i>
+					<span class="text">Change Password</span>
 				</a>
 			</li>
 			<li>
@@ -76,7 +86,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#" class="logout">
+				<a href="{{url('logout')}}" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Logout</span>
 				</a>
