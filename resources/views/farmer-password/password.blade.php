@@ -6,6 +6,7 @@
             <div class="head">
                 <h3>Change the password for the Account</h3>
             </div>
+n
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success">
                         <p>{{ $message }}</p>
@@ -28,10 +29,12 @@
                     </div>
                 @endif
             <form method="post" action="{{url('farmer-changepassword',Auth::User()->id)}}">
+
                     @csrf
                 <table>
                     <tr>
                         <td><label for="inputEmail3" class="col-form-label">Current Password</label></td>
+
                         <td><input type="password" class="form-control" name="current_password" id="inputEmail3" placeholder="Enter your Old Password"></td>
                     </tr>
                     <tr>
@@ -48,6 +51,7 @@
                         <button type="submit" class="btn btn-primary">Change Password</button>
                     </div>
                 </div>
+
             </form>
         </div>
     </div>

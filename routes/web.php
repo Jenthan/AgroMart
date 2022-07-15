@@ -122,14 +122,30 @@ Route::post('/farmer-changepassword/{user}',[FarmerDashController::class,'change
 Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
 Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
 
+Route::get('/edit-product/{product}',[FarmerMakeProductController::class,'edit']);
+Route::post('/update-product/{product}',[FarmerMakeProductController::class,'update']);
+Route::get('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
+
+// Farmer Password Change
+Route::get('/farmer-password',[FarmerDashController::class,'password']);
+
+Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
+
+Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
+
+
+
+
 Route::get('/edit-product/{id}',[FarmerMakeProductController::class,'edit_item']);
 Route::get('/edit-product',[FarmerMakeProductController::class,'edit']);
 //customer
 Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
 Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
 
+
 Route::get('/customerlogin',[CustomerController::class,'index'])->name('customerlogin');
 Route::get('/customerorder/{id}',[OrderController::class,'customerOrderindex'])->name('customerorder');
 Route::get('/customerprofile/{id}',[CustomerController::class,'customerprofileview'])->name('customerprofile');
 Route::get('/customerprofileedit/{id}',[CustomerController::class,'customerprofileedit'])->name('customerprofileedit');
 Route::put('/customeredit/{id}',[CustomerController::class,'customereditupdate'])->name('customeredit');
+

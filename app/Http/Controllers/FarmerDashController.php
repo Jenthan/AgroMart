@@ -21,6 +21,7 @@ class FarmerDashController extends Controller
     {
         return view('farmer-password.password');
     }
+
     public function change_password(Request $request,User $user)
     {
         $this->validate($request,[
@@ -40,6 +41,7 @@ class FarmerDashController extends Controller
             return back()->with('error','Your Current password is not matched!');
         }
     }
+
     /**
      * Display a listing of the resource.
      *
