@@ -117,6 +117,7 @@ Route::get('/delete-product/{product}',[FarmerMakeProductController::class,'dest
 
 // Farmer Password Change
 Route::get('/farmer-password',[FarmerDashController::class,'password']);
+Route::post('/farmer-changepassword/{user}',[FarmerDashController::class,'change_password']);
 
 Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
 Route::post('/customerregistration',[CustomerController::class,'customerregistration']);

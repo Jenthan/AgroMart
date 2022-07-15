@@ -69,27 +69,26 @@
 @section('content-1')
 <div id="content1">
     
-    <div class="cardtotal ">
+    <div class="cardtotal">
+        @foreach($products as $product)
         <div class="card">
            <form action="#" method="post">
              <div class="image">
-                 <img class="avatar" src="images/mango.jpg" alt="description of "></br>
+                 <img class="avatar" src="{{url('public/productImage/'.$product->productImg)}}" alt="description of "></br>
             </div>
             
-                <input type="text" name="pname" id="pname" value="Mango" disabled></br><br/>
+                <input type="text" name="pname" id="pname" value="{{$product->productName}}" disabled></br><br/>
                 <label for="pprice" name="pprice"><span>Price</span></label>
-                <input type="text" name="pprice" value="Rs.30" disabled></br><br/>
+                <input type="text" name="pprice" value="Rs. {{$product->unitPrice}}.00" disabled></br><br/>
                 <label for="quantity" name="quantity">Quantity</label>
                 <input type="number" name="quantity" ></br></br>
                 <input type="submit" class="btn btn-success" value="Add to card">
 
             </form>
-           
-
-           
         </div>
+        @endforeach
 
-
+        <!--
         <div class="card">
         <form action="#" method="post">
              <div class="image">
@@ -105,6 +104,7 @@
 
             </form>
         </div>
+        
         <div class="card">
         <form action="#" method="post">
              <div class="image">
@@ -165,6 +165,7 @@
 
             </form>
         </div>
+        -->
     </div>         
 </div>
 @endsection
