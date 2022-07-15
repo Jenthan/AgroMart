@@ -15,8 +15,6 @@
 
 	<link rel='stylesheet' href="{{ asset('/farmer/style.css')}}">
 
-	<link rel='stylesheet' href="{{ asset('farmer/style.css')}}">
-
 	<title>FarmerHub</title>
 </head>
 <body>

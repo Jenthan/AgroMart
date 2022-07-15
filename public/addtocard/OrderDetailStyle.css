@@ -41,3 +41,10 @@
     background-color: rgb(64, 116, 211);
     color: ghostwhite;
 }
+
+#deal .card_w {
+    width:30%;
+}
+#deal .cards_t {
+    width:100%;
+}

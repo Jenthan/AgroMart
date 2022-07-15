@@ -43,6 +43,7 @@
 						</tr>
 						@endif
 
+
 					<tr>
 						<td>
 							<img src="{{url('public/productImage/'.$product->productImg)}}" >
