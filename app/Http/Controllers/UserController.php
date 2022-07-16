@@ -118,7 +118,7 @@ class UserController extends Controller
         }
         
         public function checklogin(Request $request){
-           $product = Product::all();
+           $products = Product::all();
            $order = CustomerOrderProduct::all();
             $farmer = User::all()->where('role','farmer');
             $vendor = User::all()->where('role','vender');
@@ -142,7 +142,7 @@ class UserController extends Controller
                         return view('admindashboard.index',compact('customer','farmer',
                     'vendor','product'));
                     }elseif(Auth::user()->role =='customer'){
-                        return view('customerindex',compact('order','customer'));
+                        return view('cusindex2',compact('order','customer','products'));
                     }elseif(Auth::user()->role =='farmer'){
                         return view('farmer-dash.index',compact('farmer'));
                     }elseif(Auth::user()->role =='vender'){
