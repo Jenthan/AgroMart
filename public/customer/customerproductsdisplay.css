@@ -1,0 +1,197 @@
+:root {
+    --main-radius: 5px;
+    --main-padding: 5px;
+  }
+  
+  body {
+    font-family: "Inter", sans-serif;
+  }
+  
+  .grid_2 {
+      display: grid;
+      height: 100vh;
+      grid-template-columns: 1fr 3fr;
+     
+      grid-template-areas:
+          "logo n "
+          "header header "
+          "c search"
+          "content1 content1 "
+          /*"sidebar content2"  */
+          "deal deal"
+          "footer footer ";
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: #004d40;
+      text-align: center;
+      grid-gap: 30px;
+    } 
+  
+  @media only screen and (max-width: 750px) {
+    .grid_2 {
+          grid-template-columns: 1fr;
+     /* grid-template-rows: 0.4fr 0.4fr 2.2fr 1.2fr 1.2fr 1.2fr 1fr;  */
+      grid-template-areas:
+          "logo"
+          "header"
+          "search"
+          "content1"
+          "deal"
+          "footer";
+    }
+}
+
+
+#search .search2{
+    margin: center;
+}
+#search{
+    grid-area: search;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+  
+  }
+  .search2{
+    position: relative;
+    width:50%;
+    height:87%;
+    background: #fff;
+    border-radius: 60px;
+    transition: 0.5s;
+    box-shadow: 0 0 0 5px #2573ef;
+    overflow: hidden ; 
+    
+}
+
+
+.search2 .icon{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+   
+}
+
+.search2 .icon::before{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 3px solid #287dfc;
+    border-radius: 50%;
+    transform: translate(-4px,-4px);
+}
+
+
+.search2 .icon::after{
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 12px;
+    background: #287dfc;
+    transform: translate(6px,6px) rotate(315deg);
+}
+
+.search2 .input{
+    position: relative;
+    width: 300px;
+    height: 60px;
+    left: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search2 .input input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    padding: 10px 0;
+}
+
+.clear{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    right: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clear::before{
+    position: absolute;
+    content: '';
+    width: 1px;
+    height: 15px;
+    background:#999;
+    transform: rotate(45deg);
+
+}
+
+.clear::after{
+    position: absolute;
+    content: '';
+    width: 1px;
+    height: 15px;
+    background: #999;
+    transform: rotate(315deg);
+}
+  
+.productsdisplay {
+    grid-area: content1;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+    margin-top: -50px;
+    display:inline-flex;
+    align-items: center;
+  justify-content: space-between;  
+  
+
+  }
+  
+  .productsdisplay .cardtotal{
+    width: 10%;
+    display: inline-block;
+    box-shadow: 2px 2px 20px black;
+    border-radius: 5px; 
+    margin: 2%;
+   }
+   .productsdisplay .cardtotal .card{
+    padding: 0px;
+    overflow: hidden;
+    margin:2px;
+   }
+
+.productsdisplay .cardtotal .card .image img{
+ width: 50%;
+ align-items: center;
+ border-top-right-radius: 5px;
+ border-top-left-radius: 5px;
+
+}
+.productsdisplay .cardtotal .card input{
+    width: 75%;
+    overflow: hidden;
+
+}
+  

@@ -39,11 +39,11 @@
 
     <!--- bootstrap css --->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+<link rel="stylesheet" href="customer/customerproductsdisplay.css">
 </head>
 <body>
 
-<div class="grid_1">
+<div class="grid_2">
     <div id="logo">
          
             <img src="images/logo.png" alt="logo">
@@ -72,7 +72,8 @@
  </header>
  @yield('searchbar')
 @yield('sidebar')
-@yield('content-1')
+
+@yield('content1')
 @yield('pagination')
 @yield('deal')
  
