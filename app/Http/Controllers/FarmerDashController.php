@@ -41,6 +41,10 @@ class FarmerDashController extends Controller
             return back()->with('error','Your Current password is not matched!');
         }
     }
+    public function profile()
+    {
+        return view('farmer-profile.profile');
+    }
 
     /**
      * Display a listing of the resource.
