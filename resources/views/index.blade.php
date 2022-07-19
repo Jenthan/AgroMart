@@ -55,9 +55,9 @@
 
     <nav class="navbar">
         <a href="{{url('/')}}">Home</a>
-        <a href="{{url('farmer')}}">Farmer</a>
+       <!-- <a href="{{url('farmer')}}">Farmer</a> -->
         <a href="{{url('product')}}">Product</a>
-        <a href="{{url('vender')}}">Vender</a>
+      <!--  <a href="{{url('vender')}}">Vender</a>  -->
         <a href="#">Contact</a>
     </nav>
 

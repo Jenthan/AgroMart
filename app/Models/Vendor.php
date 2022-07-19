@@ -11,16 +11,29 @@ class Vendor extends Model
     protected $table="vendors";
     protected $fillable = [
         'user_id',
+
         'prophoto',
         'firstName',
         'lastName',
         'addressNo',
         'addressStreet',
         'addressCity',
+        //'vehicle_id',
+        'prophoto',
+        'vendorName',
+
         'lisencePhoto',
     ];
+    /*
     public function vehicle(){
-        return $this->hasMany(vehicle::class);
+        return $this->hasMany('App\Models\Vehicle','vehicle_id','id');
+    }
+    */
+    public function vehicle(){
+        return $this->hasMany('App\Models\Vehicle');
+    }
+    public function user(){
+        return $this->belongsTo('App\Models\User');
     }
 
     public function farmer(){

@@ -10,13 +10,14 @@ class Vehicle extends Model
     use HasFactory;
     protected $table = "vehicles";
     protected $fillable = [
+
         'user_id',
         'vehicleNo',
         'vehiclePhoto',
         'vehicleType',
     ];
 
-    public function vender(){
-        return $this->belongsTO(Vender::class); 
+    public function vendor(){
+        return $this->belongsTO('App\Models\Vendor'); 
     }
 }

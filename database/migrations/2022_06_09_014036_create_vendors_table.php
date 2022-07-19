@@ -18,7 +18,7 @@ class CreateVendorsTable extends Migration
             $table->unsignedBigInteger('user_id');					
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');  
             $table->string('prophoto')->nullable();     
-			$table->string('firstName');
+			      $table->string('firstName');
             $table->string('lastName');
             $table->string('addressNo');
             $table->string('addressStreet');

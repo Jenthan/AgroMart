@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('register.userselect');
+        return view('register.user-select');
     }
     public function register_customer()
     {
@@ -118,7 +118,7 @@ class UserController extends Controller
         }
         
         public function checklogin(Request $request){
-           $product = Product::all();
+           $products = Product::all();
            $order = CustomerOrderProduct::all();
             $farmer = User::all()->where('role','farmer');
             $vendor = User::all()->where('role','vender');
@@ -136,13 +136,16 @@ class UserController extends Controller
                 'email' => $request->get('email'),
                 'password' => $request->get('password')
             );
+          //  $id = Auth::User()->id;
+          // $ncustomer = Customer::all()->where('user_id',$id);
+
             if(Auth::attempt($user_data))
                 {
                     if(Auth::user()->role =='admin'){
                         return view('admindashboard.index',compact('customer','farmer',
                     'vendor','product'));
                     }elseif(Auth::user()->role =='customer'){
-                        return view('customerindex',compact('order','customer'));
+                        return view('cusindex2',compact('order','customer','products'));
                     }elseif(Auth::user()->role =='farmer'){
                         return view('farmer-dash.index',compact('farmer'));
                     }elseif(Auth::user()->role =='vender'){

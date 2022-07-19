@@ -8,10 +8,15 @@ use App\Models\Vehicle;
 use App\Models\Customer;
 use App\Models\DeliverDetail;
 use App\Models\DeliverProduct;
+use App\Models\Vehicle;
+use App\Models\Vendor;
+use App\Models\User;
+use App\Models\UserPhone;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Validator;
 
 class VendorController extends Controller
 {
@@ -96,6 +101,7 @@ class VendorController extends Controller
         $order->save();
         return back();
     }
+
     public function editVendor()
     {
     
@@ -211,6 +217,87 @@ class VendorController extends Controller
 
         $vehicle->delete();
         return redirect('/vehicleIndex')->with('alert', 'Vehicle is Deleted!');
+    }
+
+
+
+    public function vendorregistrationview(){
+        return view('register.regvendor');
+    }
+
+    public function vendorregistration(Request $request){
+        
+
+        $this->validate($request, [
+            'vname'=> 'required',
+            'phoneno' => 'required',
+            'prophoto' => 'required',
+            'lisence' => 'required',
+            'vtype' => 'required',
+            'vphoto' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'vnumber' => 'required',
+        ]);
+
+        $vendor = new Vendor([
+            'vendorName' => $request->get('vname'),
+            //'productImg' => $request->file('proImg'),
+            //'farmer_id' => $request->get('farmerId'),
+        ]);
+
+        //$vendor->vehicle_id = 1;
+
+        $image = $request->file('prophoto');
+        $imageName =date('YmdHi').'.' . $image->getClientOriginalExtension();
+        $image->move(public_path('VendorImage'),$imageName);
+        $vendor->prophoto =$imageName ;
+
+
+        $limage = $request->file('lisence');
+        $limageName =date('YmdHi').'.' . $limage->getClientOriginalExtension();
+        $limage->move(public_path('LisenceImage'),$limageName);
+        $vendor->lisencePhoto =$limageName ;
+
+        $userphone = new UserPhone([
+            'phone' => $request->get('phoneno'),
+        ]);
+
+        if (!$request->has('prophoto')) {
+            return response()->json(['message' => 'Missing file'], 422);
+        }
+
+        $vehicle = new Vehicle([
+            'vehicleType' => $request->get('vtype'),
+            'vehicleNo' => $request->get('vnumber'),
+        ]);
+
+        $veimage = $request->file('vphoto');
+        $veimageName =date('YmdHi').'.' . $veimage->getClientOriginalExtension();
+        $veimage->move(public_path('VehicleImage'),$veimageName);
+        $vehicle->vehiclePhoto =$veimageName ;
+
+    
+        $user = new User([
+            'email' => $request->get('email'),
+            
+            'password' =>Hash::make( $request->get('password')),
+            
+            //'productImg' => $request->file('proImg'),
+            //'farmer_id' => $request->get('farmerId'),
+        ]);
+            $user->role ="vender";
+
+        $user->save();
+        //$vehicle->save();
+       // $vehicle->vehicle()->save($vendor,$vehicle);
+//$user->vendor()->save($vendor);
+        $user->vendor()->save($vendor);
+        //$vendor->vehicle()->save($vehicle);
+        $user->vehicle()->save($vehicle);
+        $user->userphone()->save($userphone);
+        return redirect('homelogin')->with('success','Your Vender Profile added successfully.!');        
+            
     }
 
 }

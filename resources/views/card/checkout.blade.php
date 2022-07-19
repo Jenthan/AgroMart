@@ -1,20 +1,17 @@
-@extends('index')
+@extends('customerindex')
 
 @section('deal')
 <div id="deal">
     <div class="container">
     <div class="row mb-3">
-        <div class="col input-group">
-            <span class="input-group-text">From</span>
-            <input type="date" class="form-control">
-        </div>
+        
         
         <div class="col input-group">
-            <span class="input-group-text">To</span>
+            <span class="input-group-text">date</span>
             <input type="date" class="form-control">
         </div>
         <div class="col">
-            <button type="submit" class="btn">Ok</button>
+           <a href="{{url('/searchdate')}}"><button type="submit" class="btn">Ok</button></a> 
         </div>
         
     </div>
@@ -34,63 +31,47 @@
         </thead>
 
         <tbody>
+        @php
+        $idn = 1;
+        $ta = 0;
+        @endphp
+        <tbody>
+           
+                @foreach($ordert as $ordertp)
+                
             <tr>
-                <td>1</td>
-                <td>Carrot</td>
-                <td>Ajenthan</td>
-                <td>Nallur</td>
-                <td>10kg</td>
-                <td>600</td>
-                <td>2022/03/04</td>
-                <td>10.15 min</td>
-                    
+               
+                <td>{{$idn++}}</td>
+                <td>{{$ordertp->productName}}</td>
+                <td>{{$ordertp->firstName}}</td>
+                <td>{{$ordertp->farmAddressCity}}</td>
+                <td>{{$ordertp->qty}}</td>
+                <td>
+                    @php
+                    $qty = $ordertp->qty;
+                    $up =  $ordertp->unitPrice;
+                    $a = $qty*$up;
+
+                    $ta = $ta +$a;
+                    @endphp
+
+                    {{$a}}
+                </td> 
+               
+                <td>
+                   {{$ordertp->updated_at}}
+                </td>
+               
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Banana</td>
-                <td>Jenith</td>
-                <td>Jaffna</td>
-                <td>2kg</td>
-                <td>300</td>
-                <td>2022/03/04</td>
-                <td>05.03 min</td> 
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Milk</td>
-                <td>Dulmi</td>
-                <td>Jaffna</td>
-                <td>2kg</td>
-                <td>300</td>
-                <td>2022/03/03</td> 
-                <td class="cancel">Cancelled</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Mango</td>
-                <td>Dulmi</td>
-                <td>Jaffna</td>
-                <td>2kg</td>
-                <td>150</td>
-                <td>2022/03/03</td> 
-                <td class="accept">Accepted</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td> 
-            </tr>
+            @endforeach
+            
         </tbody>
         <tfoot>
-            <tr>
+        <tr>
                 <td colspan="5" style="text-align: center;">Total</td>
-                    
-                <td>1050</td>
-                <td></td>
+                
+                <td>{{$ta}}</td>
+                
             </tr>
         </tfoot>
     </table>

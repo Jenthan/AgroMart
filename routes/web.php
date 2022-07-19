@@ -3,12 +3,19 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\FarmerController;
+
 use App\Http\Controllers\UserPhoneController;
+
+use App\Http\Controllers\FarmerDashController;
+
 use App\Http\Controllers\FarmerMakeProductController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerMakeOrderController;
 
 
 /*
@@ -27,13 +34,19 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         return view('index');
     });
 
-    /*----  Home page Route  starts ---*/
-    Route::get('/',[MainController::class,'homeDisplay']);
-    Route::get('farmer',[MainController::class,'farmerDisplay']);
-    Route::get('card',[MainController::class,'addtocardDisplay']);
-    Route::get('product',[MainController::class,'productDisplay']);
-    Route::get('profile',[MainController::class,'profileDisplay']);
-    Route::get('vender',[MainController::class,'venderDisplay']);
+   
+
+
+
+/*----  Home page Route  starts ---*/
+Route::get('/',[MainController::class,'homeDisplay']);
+Route::get('farmer',[MainController::class,'farmerDisplay']);
+Route::get('card',[MainController::class,'addtocardDisplay']);
+Route::get('product',[MainController::class,'productDisplay']);
+Route::get('profile',[MainController::class,'profileDisplay']);
+Route::get('vender',[MainController::class,'venderDisplay']);
+
+
 
 
     Route::get('homelogin',[MainController::class,'homeloginDisplay'])->name('logHome');
@@ -88,6 +101,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     Route::get('/adminfarmer',[AdminController::class,'farmerdisplay']);
 
 
+
     // vendor routes starts
     Route::get('/vendorLogout',[VendorController::class,'logout']);
     Route::get('/vendorDashboard',[VendorController::class,'vendorDashboard']);
@@ -106,4 +120,68 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     Route::post('/storeVehicle',[VendorController::class,'storeVehicle']);
     Route::delete('/vehicleDelete/{id}',[VendorController::class,'vehicleDelete']);
 
-});
+
+
+// vendor routes starts
+Route::get('/venderreg',[VendorController::class,'vendorregistrationview']);
+Route::post('/vendorregistration',[VendorController::class,'vendorregistration']);
+
+
+// Farmer
+Route::get('/farmer-base',[FarmerController::class,'index']);
+Route::get('/farmerreg',[FarmerController::class,'farmerregistrationview']);
+Route::post('/farmerregistration',[FarmerController::class,'farmerregistration']);
+Route::get('/logout',[FarmerController::class,'logout']);
+
+
+// Farmer  add product 
+Route::get('/add-product',[FarmerMakeProductController::class,'index']);
+Route::get('/create-product',[FarmerMakeProductController::class,'create']);
+Route::post('/store-product',[FarmerMakeProductController::class,'store']);
+Route::get('/edit-product/{product}',[FarmerMakeProductController::class,'edit']);
+Route::post('/update-product/{product}',[FarmerMakeProductController::class,'update']);
+Route::get('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
+
+// Farmer Password Change
+Route::get('/farmer-password',[FarmerDashController::class,'password']);
+Route::post('/farmer-changepassword/{user}',[FarmerDashController::class,'change_password']);
+// Farmer Profile page 
+Route::get('farmer-profile-display',[FarmerDashController::class,'profile']);
+
+//Customer
+Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
+Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
+
+Route::get('/edit-product/{product}',[FarmerMakeProductController::class,'edit']);
+Route::post('/update-product/{product}',[FarmerMakeProductController::class,'update']);
+Route::get('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
+
+
+//Customer
+Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
+
+Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
+
+
+
+
+
+
+//customer
+Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
+Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
+
+
+Route::get('/customerlogin',[CustomerController::class,'index'])->name('customerlogin');
+Route::get('/customerorder/{id}',[OrderController::class,'customerOrderindex'])->name('customerorder');
+Route::get('/customerprofile/{id}',[CustomerController::class,'customerprofileview'])->name('customerprofile');
+Route::get('/customerprofileedit/{id}',[CustomerController::class,'customerprofileedit'])->name('customerprofileedit');
+Route::put('/customeredit/{id}',[CustomerController::class,'customereditupdate'])->name('customeredit');
+
+Route::post('card',[CustomerMakeOrderController::class,'addtocardOrder']);
+Route::get('carddisplay',[CustomerMakeOrderController::class,'addtocarddisplay']);
+Route::get('/done/{id}',[CustomerMakeOrderController::class,'doneorder'])->name('done');
+Route::get('/cardcheckout',[CustomerMakeOrderController::class,'cardcheckoutdisplay']);
+Route::get('/searchdate',[CustomerMakeOrderController::class,'searchdatedisplay']);
+  });
+

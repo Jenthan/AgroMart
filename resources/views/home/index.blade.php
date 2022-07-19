@@ -39,15 +39,7 @@
                </a>
                 <a href="#"><img src="images/category-2.png" alt=""></a>
             </div>
-            <div class="box">
-            <a href="#">
-                   <h3>meat</h3>
-               </a>
-                
-                  <a href="#" class="btn">
-                       <img src="images/category-3.png" alt="">
-                  </a>
-            </div>
+            
             <div class="box">
             <a href="#">
                    <h3>fruit</h3>

@@ -14,11 +14,13 @@ class CreateVehiclesTable extends Migration
     public function up()
     {
         Schema::create('vehicles', function (Blueprint $table) {
+
             $table->id();	
             $table->unsignedBigInteger('user_id');					
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');  				
+
             $table->string('vehicleNo');
-			$table->string('vehiclePhoto');
+			$table->string('vehiclePhoto')->nullable();
 			$table->string('vehicleType');
             $table->timestamps();
         });

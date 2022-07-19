@@ -39,5 +39,9 @@ class FarmerSeeder extends Seeder
             'user_id' => 1,
             'phone' => '0777788888',
         ]);
+        UserPhone::Create([
+            'user_id' => 1,
+            'phone' => '0717171718',
+        ]);
     }
 }
