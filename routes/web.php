@@ -122,7 +122,7 @@ Route::get('vender',[MainController::class,'venderDisplay']);
 
 
 
-// vendor routes starts
+// vendor routes reg starts
 Route::get('/venderreg',[VendorController::class,'vendorregistrationview']);
 Route::post('/vendorregistration',[VendorController::class,'vendorregistration']);
 
