@@ -11,9 +11,17 @@ class Vendor extends Model
     protected $table="vendors";
     protected $fillable = [
         'user_id',
+
+        'prophoto',
+        'firstName',
+        'lastName',
+        'addressNo',
+        'addressStreet',
+        'addressCity',
         //'vehicle_id',
         'prophoto',
         'vendorName',
+
         'lisencePhoto',
     ];
     /*

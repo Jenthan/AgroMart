@@ -19,6 +19,7 @@ class VehicleSeeder extends Seeder
     public function run()
     {
         DB::table('vehicles')->insert([
+            'user_id' => '3',
             'vehicleNo'=>"BCZ3988",
             'vehiclePhoto'=>"*****",
             'vehicleType'=>"Motor Bike",

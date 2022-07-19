@@ -1,16 +1,19 @@
 @extends('vendorDashboard.home')
-
 @section('main')
 <main>
     <div class="head-title">
 				<div class="left">
-					<h1>Orders</h1>
+					<h1>Deliver Details</h1>
 					<ul class="breadcrumb">
 							<a class="active" href="{{url('/vendorDashboard')}}">Home</a>
 						</li>
                         <li><i class='bx bx-chevron-right' ></i></li>
+                <li>
+                    <a class="active" href="{{route('userPhones.index')}}">Telephones</a>
+                </li>
+                        <li><i class='bx bx-chevron-right' ></i></li>
                         <li>
-							<a  href="#">Orders</a>
+							<a  href="#">Add Telephone</a>
 						</li>
 					</ul>
 				</div>
@@ -18,9 +21,8 @@
 					<i class='bx bxs-cloud-download' ></i>
 					<span class="text">Download PDF</span>
 				</a>   -->
-			</div>
-
-			<ul class="box-info">
+            </div>
+            <ul class="box-info">
 				<!--<li>
                     <form class="form-inline">
                         <div class="form-group mb-1">
@@ -58,69 +60,16 @@
 					</span>
 				</li>  -->
 			</ul>  
-
-
-			<div class="table-data">
-				<div class="order">
-					<div class="head">
-						<h3> Orders</h3>
-					</div>
-					<table>
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Customer Name</th>
-                                <th>Product Name</th>
-								<th>Farmer Name</th>
-                                <th>Quantity</th>
-								<th>Order Date</th>
-								<th>Order Address</th>
-								<th>Status</th>
-							</tr>
-						</thead>
-						<tbody>
-							@php
-							$i=0;
-							@endphp
-							@foreach($orders as $order)
-								@if($order->user_id == Auth::user()->id)
-									<tr>
-										<td>{{++$i}}</td>
-										<td>{{$order->customerName}}</td>
-										<td>{{$order->productName}}</td>
-										<td>
-											@foreach($farmers as $farmer)
-												@if($order->farmer_id == $farmer->id)
-													{{$farmer->firstName}} {{$farmer->lastName}}
-												@endif
-											@endforeach
-										</td>
-										<td>{{$order->orderQuantity}}</td>
-										<td>{{$order->productName}}</td>
-										<td>{{$order->orderAddressNo}}, {{$order->orderAddressStreet}}, {{$order->orderAddressCity}}</td>
-										<td>
-											@if($order->deliverstatus=="pending")
-													<a href="{{url('/acceptDeliverStatus',$order->id)}}" class="status pending">Accept ?</a>
-													<a href="{{url('/cancelledDeliverStatus',$order->id)}}" class="status cancelling">Cancel ?</a>
-											@endif											
-											@if($order->deliverstatus=="delivered")
-												<span class="status completed">Delivered</span>
-											@endif
-											@if($order->deliverstatus=="cancelled")
-												<span class="status cancell">Cancelled</span>
-											@endif
-											@if($order->deliverstatus=="processing")
-												<a href="{{url('/doneDeliverStatus',$order->id)}}" class="status process">Delivered ?</a>
-											@endif
-										</td>
-									</tr>
-								@endif
-							@endforeach	
-						</tbody>
-					</table>
-				</div>
-				
-			</div>    
-
+            <div class="card-body">
+                <form action = "{{route('userPhones.store')}}" method="POST">
+                    @csrf    
+                    
+                        <div class="mb-3">
+                            <label class="small mb-1" for="mobile">Mobile </label>
+                            <input class="form-control" id="mobile" name="mobile" type="text" placeholder="Type Your mobile Number Here...">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Add Mobile</button>
+                </form>
+            </div>
 		</main>
 @endsection

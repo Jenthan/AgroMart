@@ -6,16 +6,11 @@
 				<div class="left">
 					<h1>Deliver Details</h1>
 					<ul class="breadcrumb">
-						<li>
-							<a href="{{url('/vendorDashboard')}}">Dashboard</a>
-						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
 							<a class="active" href="{{url('/vendorDashboard')}}">Home</a>
 						</li>
                         <li><i class='bx bx-chevron-right' ></i></li>
                         <li>
-							<a class="active" href="#">Orders</a>
+							<a  href="#">Deliver Details</a>
 						</li>
 					</ul>
 				</div>

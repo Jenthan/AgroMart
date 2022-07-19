@@ -19,6 +19,7 @@ class ProductSeeder extends Seeder
         DB::table('products')->insert([
             'farmer_id'=>"1",
             'productName'=>"Tomato",
+            'productImg'=>'*****',
             'qty'=>"21",
             'productType'=>"vegetable",
             'unitPrice'=>"100"
