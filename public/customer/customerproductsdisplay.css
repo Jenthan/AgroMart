@@ -162,7 +162,7 @@
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
     margin-top: -50px;
-    display:inline-flex;
+    
     align-items: center;
   justify-content: space-between;  
   
@@ -170,23 +170,38 @@
   }
   
   .productsdisplay .cardtotal{
-    width: 10%;
-    display: inline-block;
-    box-shadow: 2px 2px 20px black;
-    border-radius: 5px; 
+    
+   
+   
     margin: 2%;
+    display:flex;
+   
+    
+    
+   
    }
    .productsdisplay .cardtotal .card{
     padding: 0px;
     overflow: hidden;
-    margin:2px;
+    box-sizing: border-box;
+    justify-content: center;
+    width: 25%;
+    height: auto;
+    display: inline-block;
+    box-shadow: 2px 2px 20px black;
+    border-radius: 5px;
+    margin: 2% 4% 2% 4%;
+    z-index: 2;
    }
 
-.productsdisplay .cardtotal .card .image img{
- width: 50%;
- align-items: center;
- border-top-right-radius: 5px;
- border-top-left-radius: 5px;
+.productsdisplay .cardtotal .card .image Img{
+    width: 50%;
+    height: 8rem;
+    padding: 0.9rem;
+    border: skyblue;
+    align-items: center;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
 
 }
 .productsdisplay .cardtotal .card input{

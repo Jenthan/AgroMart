@@ -63,7 +63,7 @@
     </nav>
 
     <div class="icons">
-        <a href="{{url('card')}}" class="fas fa-shopping-cart"></a>
+        <a href="{{url('carddisplay')}}" class="fas fa-shopping-cart"></a>
     <!--  <a href="#" class="fas fa-heart"></a>  -->
         <a href="{{route('customerlogin')}}" class="fas fa-user-circle"></a>
     </div>

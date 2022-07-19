@@ -18,7 +18,7 @@ class CreateCustomerOrderProductsAddtocardsTable extends Migration
             $table->unsignedBigInteger('product_id');					
             $table->unsignedBigInteger('customer_id');					    
 			$table->string('qty');
-            $table->time('ordertime');
+            $table->time('ordertime')->nullable();
             $table->timestamps();
         });
     }
