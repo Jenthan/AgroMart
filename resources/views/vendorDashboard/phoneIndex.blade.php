@@ -1,17 +1,32 @@
 @extends('vendorDashboard.home')
-
 @section('main')
+<html>
+	<head>
+	<script>
+		var msg = '{{Session::get('alert')}}';
+		var exist = '{{Session::has('alert')}}';
+		if(exist){
+		alert(msg);
+    }
+  </script>
+	</head>
 <main>
+
     <div class="head-title">
 				<div class="left">
-					<h1>Orders</h1>
+					<h1>Deliver Details</h1>
 					<ul class="breadcrumb">
 							<a class="active" href="{{url('/vendorDashboard')}}">Home</a>
 						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="{{url('/vehicleIndex')}}">Vehicles</a>
+						</li>
                         <li><i class='bx bx-chevron-right' ></i></li>
                         <li>
-							<a  href="#">Orders</a>
+							<a  href="#">Telephones</a>
 						</li>
+						
 					</ul>
 				</div>
 			<!--	<a href="#" class="btn-download">
@@ -19,8 +34,9 @@
 					<span class="text">Download PDF</span>
 				</a>   -->
 			</div>
-
-			<ul class="box-info">
+            <a class="btn btn-primary" href="{{url('/showVendor')}}"><i class='bx bx-chevron-left' ></i>Back</a>
+            <a class="btn btn-success" href="{{url('/createPhone')}}">Add Mobile</a>
+            <ul class="box-info">
 				<!--<li>
                     <form class="form-inline">
                         <div class="form-group mb-1">
@@ -63,58 +79,32 @@
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3> Orders</h3>
+						<h3> Phones</h3>
 					</div>
 					<table>
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Customer Name</th>
-                                <th>Product Name</th>
-								<th>Farmer Name</th>
-                                <th>Quantity</th>
-								<th>Order Date</th>
-								<th>Order Address</th>
-								<th>Status</th>
+								<th>Phone Number</th>
+                                <th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
-							@php
+						@php
 							$i=0;
 							@endphp
-							@foreach($orders as $order)
-								@if($order->user_id == Auth::user()->id)
-									<tr>
-										<td>{{++$i}}</td>
-										<td>{{$order->customerName}}</td>
-										<td>{{$order->productName}}</td>
-										<td>
-											@foreach($farmers as $farmer)
-												@if($order->farmer_id == $farmer->id)
-													{{$farmer->firstName}} {{$farmer->lastName}}
-												@endif
-											@endforeach
-										</td>
-										<td>{{$order->orderQuantity}}</td>
-										<td>{{$order->productName}}</td>
-										<td>{{$order->orderAddressNo}}, {{$order->orderAddressStreet}}, {{$order->orderAddressCity}}</td>
-										<td>
-											@if($order->deliverstatus=="pending")
-													<a href="{{url('/acceptDeliverStatus',$order->id)}}" class="status pending">Accept ?</a>
-													<a href="{{url('/cancelledDeliverStatus',$order->id)}}" class="status cancelling">Cancel ?</a>
-											@endif											
-											@if($order->deliverstatus=="delivered")
-												<span class="status completed">Delivered</span>
-											@endif
-											@if($order->deliverstatus=="cancelled")
-												<span class="status cancell">Cancelled</span>
-											@endif
-											@if($order->deliverstatus=="processing")
-												<a href="{{url('/doneDeliverStatus',$order->id)}}" class="status process">Delivered ?</a>
-											@endif
-										</td>
-									</tr>
-								@endif
+							@foreach($phones as $phone)
+                            <tr>
+                                <td>{{++$i}}</td>
+                                <td>{{$phone->phone}}</td>
+                                <td>
+                                  <form method="post" action="{{route('userPhones.destroy',$phone->id)}}" >
+                                  @method('DELETE') 
+                                  @csrf 
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>    
+                            </tr>
 							@endforeach	
 						</tbody>
 					</table>
@@ -123,4 +113,5 @@
 			</div>    
 
 		</main>
+</html>
 @endsection

@@ -18,30 +18,15 @@ class CustomerSeeder extends Seeder
     public function run()
     {
        
-        DB::table('users')->insert([   
-        'email' => 'customer@gmail.com',
-        'role'=>'customer',
-        'password' => Hash::make('cus123'),
-        'remember_token' => Str::random(10),
-    ]);
-  /*  DB::table('customers')->insert([ 
-        'user_id'=> 3,  
-        'customerName' => 'jenthan',
+       
+   DB::table('customers')->insert([ 
+        'user_id'=> 2,
+        'prophoto' => '-----',  
+        'customerName' => 'Jenthan',
         'customerAddressNo' => '12/B',
         'customerAddressStreet' => '3rd cross road',
         'customerAddressCity'=>'batticaloa',
-    ]);  */
-        DB::table('users')->insert([   
-            'email' => 'janith@gmail.com',
-            'role'=>'vender',
-            'password' => Hash::make('janith123'),
-            'remember_token' => Str::random(10),
-        ]);
-        DB::table('users')->insert([   
-            'email' => 'ajanthan@gmail.com',
-            'role'=>'farmer',
-            'password' => Hash::make('aji123'),
-            'remember_token' => Str::random(10),
-        ]);
+    ]);  
+       
     }
 }
