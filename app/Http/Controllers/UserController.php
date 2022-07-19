@@ -136,6 +136,9 @@ class UserController extends Controller
                 'email' => $request->get('email'),
                 'password' => $request->get('password')
             );
+          //  $id = Auth::User()->id;
+          // $ncustomer = Customer::all()->where('user_id',$id);
+
             if(Auth::attempt($user_data))
                 {
                     if(Auth::user()->role =='admin'){

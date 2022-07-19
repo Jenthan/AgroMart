@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\VendorController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\FarmerController;
 use App\Http\Controllers\FarmerDashController;
 use App\Http\Controllers\FarmerMakeProductController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerMakeOrderController;
 
 
 /*
@@ -31,7 +33,7 @@ Route::get('/f', function () {
 /*----  Home page Route  starts ---*/
 Route::get('/',[MainController::class,'homeDisplay']);
 Route::get('farmer',[MainController::class,'farmerDisplay']);
-Route::get('card',[MainController::class,'addtocardDisplay']);
+//Route::get('card',[MainController::class,'addtocardDisplay']);
 Route::get('product',[MainController::class,'productDisplay']);
 Route::get('profile',[MainController::class,'profileDisplay']);
 Route::get('vender',[MainController::class,'venderDisplay']);
@@ -137,6 +139,7 @@ Route::post('/customerregistration',[CustomerController::class,'customerregistra
 
 
 
+
 //customer
 Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
 Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
@@ -148,3 +151,8 @@ Route::get('/customerprofile/{id}',[CustomerController::class,'customerprofilevi
 Route::get('/customerprofileedit/{id}',[CustomerController::class,'customerprofileedit'])->name('customerprofileedit');
 Route::put('/customeredit/{id}',[CustomerController::class,'customereditupdate'])->name('customeredit');
 
+Route::post('card',[CustomerMakeOrderController::class,'addtocardOrder']);
+Route::get('carddisplay',[CustomerMakeOrderController::class,'addtocarddisplay']);
+Route::get('/done/{id}',[CustomerMakeOrderController::class,'doneorder'])->name('done');
+Route::get('/cardcheckout',[CustomerMakeOrderController::class,'cardcheckoutdisplay']);
+Route::get('/searchdate',[CustomerMakeOrderController::class,'searchdatedisplay']);
