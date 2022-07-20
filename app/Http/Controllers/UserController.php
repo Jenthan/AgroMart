@@ -23,7 +23,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('register.user-select');
+        $products=Product::all();
+        return view('register.user-select',compact('products'));
     }
     public function register_customer()
     {
