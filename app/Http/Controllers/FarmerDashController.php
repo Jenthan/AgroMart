@@ -43,7 +43,13 @@ class FarmerDashController extends Controller
     }
     public function profile()
     {
-        return view('farmer-profile.profile');
+        $farmer=Farmer::where('user_id',Auth::User()->id)->first();
+        $userphone=UserPhone::where('user_id',Auth::User()->id)->first();
+        return view('farmer-profile.profile',compact('farmer','userphone'));
+    }
+    public function profile_update(Request $request,$id)
+    {
+
     }
 
     /**
