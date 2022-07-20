@@ -335,6 +335,7 @@ footer .box-container{
     height: 100%;
     border: none;
     outline: none;
+    margin-left: 15px;
     font-size: 18px;
     padding: 10px 0;
 }
@@ -513,80 +514,30 @@ footer .box-container{
     gap: 20px;
   }
 
-  #deal .product .box-container .box h3{
-      margin-top: 45px;
-  }
+  
   
   #deal .product .box-container .box img{
-    height: 13rem;
-    margin: -45px;
+    height: 10rem;
+    margin-top: -20px;
+    width: 12rem;
+    border-radius: 1rem;
+
   }
   
-  #deal .product .box-container .box .discount{
-    position: absolute;
-    top:1rem; left: 1rem;
-    background:rgba(0,255,0,.1);
-    color:var(--green);
-    padding:.7rem 1rem;
-    font-size: 2rem;
-  }
-  
-  #deal .product .box-container .box .icons{
-    position: absolute;
-    top:.5rem; right:-6rem;
-  }
-  
-  #deal .product .box-container .box:hover .icons{
-    right:1rem;
-  }
-  
-  #deal .product .box-container .box .icons a{
-    display: block;
-    height:4.5rem;
-    width:4.5rem;
-    line-height: 4.5rem;
-    font-size: 1.7rem;
-    color:var(--black);
-    background:rgba(0,0,0,.05);
-    border-radius: 50%;
-    margin-top: .7rem;
-  }
-  
-  #deal .product .box-container .box .icons a:hover{
-    background:var(--green);
-    color:rgb(238, 115, 217);
-  }
-  
-  
-  #deal .product .box-container .box .price{
-    font-size: 2rem;
-    color:#333;
-    padding:.5rem 0;
-  }
-  
-  #deal .product .box-container .box .quantity{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 1rem;
-    padding-bottom: .5rem;
-  }
-  
-  #deal .product .box-container .box .quantity span{
-    padding:0 .7rem;
-    font-size: 1.7rem;
-  }
-  
-  #deal .product .box-container .box .quantity input{
-    border:.1rem solid rgba(0,0,0,.3);
-    font-size: 1.5rem;
+  #deal .product .box-container .box  input{
+    border: 0.1rem solid rgba(0,0,0,.3);
     font-weight: bolder;
-    color:var(--black);
-    padding:.5rem;
-    background:rgba(0,0,0,.05);
+    text-align: center;
+    color: var(--black);
+    padding: 0.5rem;
+    background: rgba(0,0,0,.05);
+    overflow: hidden;
+    margin-left: 11px;
+    width: 150px;
   }
   
-  #deal .product .box-container .box .btn{
+  #deal .product .box-container .box .btnn{
     display: block;
+    color: #59ee60;
   } 
   

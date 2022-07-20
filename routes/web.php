@@ -45,8 +45,10 @@ Route::get('card',[MainController::class,'addtocardDisplay']);
 Route::get('product',[MainController::class,'productDisplay']);
 Route::get('profile',[MainController::class,'profileDisplay']);
 Route::get('vender',[MainController::class,'venderDisplay']);
-
-
+Route::post('checkhomesearch',[MainController::class,'checkhomesearchDisplay']);
+Route::get('/searchVeg',[MainController::class,'vegDisplay']);
+Route::get('/searchfruit',[MainController::class,'fruitDisplay']);
+Route::get('/searchmilk',[MainController::class,'milkDisplay']);
 
 
     Route::get('homelogin',[MainController::class,'homeloginDisplay'])->name('logHome');
