@@ -43,19 +43,20 @@
 			<span class="text">Farmer_Hub</span>
 		</a>
 		<ul class="side-menu top">
-			<li class="active">
+			<!--<li class="active">-->
+			<li class="{{ (request()->is('farmer-base')) ? 'active' : '' }}">  
 				<a href="{{url('farmer-base')}}">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
-			<li>
+			<li class="{{ (request()->is('farmer-profile-display')) ? 'active' : '' }}">  
 				<a href="{{url('farmer-profile-display')}}">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Profile</span>
 				</a>
 			</li>
-            <li>
+            <li class="{{ (request()->is('add-product')) ? 'active' : '' }}">  
 				<a href="{{url('add-product')}}">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">My Items</span>
@@ -79,7 +80,7 @@
 					<span class="text">History</span>
 				</a>
 			</li>
-			<li>
+			<li class="{{ (request()->is('farmer-password')) ? 'active' : '' }}">  
 				<a href="{{url('farmer-password')}}">
 					<i class='bx bxs-lock-alt'></i>
 					<span class="text">Change Password</span>
