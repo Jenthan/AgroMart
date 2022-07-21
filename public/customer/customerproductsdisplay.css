@@ -74,9 +74,10 @@
     top: 0;
     left: 0;
     width: 60px;
-    height: 60px;
+    height: 53px;
     background: #fff;
     border-radius: 60px;
+    border: none;
     display: flex;
     justify-content: center;
     align-items: center;

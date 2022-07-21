@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use auth;
+use Auth;
 use validator;
 
 class MainController extends Controller
@@ -90,7 +90,7 @@ class MainController extends Controller
 
     public function vegDisplay(){
         $products=Product::all()->where('productType','=','vegetable');
-       dd($products);
+      
         return view('product.index',compact('products'));
     }
 
@@ -104,6 +104,11 @@ class MainController extends Controller
         $products=Product::all()->where('productType','=','milk');
        //dd($products);
         return view('product.index',compact('products'));
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect(url('/'));
     }
 
 }
