@@ -60,7 +60,6 @@
       <!--  <a href="{{url('vender')}}">Vender</a>  -->
         <a href="#">Contact</a>
     </nav>
-
     <div class="icons">
         <a onclick="ordersalert()" class="fas fa-shopping-cart"></a>
     <!--  <a href="#" class="fas fa-heart"></a>  -->

@@ -55,17 +55,18 @@
        <div id="menu-bar" class="fas fa-bars"></div>
 
     <nav class="navbar">
-        <a href="{{url('/')}}">Home</a>
-      <!--  <a href="{{url('farmer')}}">Farmer</a>  -->
-        <a href="{{url('product')}}">Product</a>
-      <!--  <a href="{{url('vender')}}">Vender</a> -->
-        <a href="#">Contact</a>
+      <!--  <a href="{{url('/')}}">Home</a> 
+        <a href="{{url('farmer')}}">Farmer</a>  
+       <a href="{{url('product')}}">Product</a> 
+       <a href="{{url('vender')}}">Vender</a> 
+        <a href="#">Contact</a>  -->
     </nav>
 
     <div class="icons">
         <a href="{{url('carddisplay')}}" class="fas fa-shopping-cart"></a>
     <!--  <a href="#" class="fas fa-heart"></a>  -->
         <a href="{{route('customerlogin')}}" class="fas fa-user-circle"></a>
+        <a href="{{url('/cuslogout')}}">logout</a>
     </div>
 
     </div>

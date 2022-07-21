@@ -2,13 +2,17 @@
 @section('searchbar')
 <div id="search">
     <div class="search2">
-        <a href="#">
-        <div class="icon"></div>
-        </a>
-            <div class="input">
-                    <input type="text" placeholder="Search" id="mysearch">
-            </div>
-        <span class="clear" onclick="document.getElementById('mysearch').value =''"></span>
+    <form method="get" action="{{url('searchproduct')}}">
+        @csrf
+        <div class="search">
+            <button type="submit" class="icon"></button>
+                <div class="input">
+                        <input type="text" placeholder="Search product Here...." id="mysearch" name="searchvalue">
+                </div>
+            <span class="clear" onclick="document.getElementById('mysearch').value =''"></span>
+        </div>
+        
+    </form> 
     </div>
 
     
@@ -16,7 +20,17 @@
     
 @endsection
 @section('content1')
+
 <div class="productsdisplay">
+@if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div><br />
+        @endif
 <div class="cardtotal">
         @foreach($products as $product)
         <div class="card">
