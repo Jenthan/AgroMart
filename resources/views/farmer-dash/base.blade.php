@@ -9,12 +9,27 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="/admin/admincss.css">
 
+	<!-- farmer profile design  -->
+	<link rel="stylesheet" href="/farmer/profile.css">
     <!-- boortstrap --->
     <link rel="stylesheet" href="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css')}}" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
 	<link rel='stylesheet' href="{{ asset('/farmer/style.css')}}">
-	<link rel='stylesheet' href="{{ asset('farmer/style.css')}}">
+
+	<script src="farmer.profile.js"></script>
+	
+	<script>
+        function showPreview(event){
+                if(event.target.files.length > 0){
+                    var src = URL.createObjectURL(event.target.files[0]);
+                    var preview = document.getElementById("file-ip-1-preview");
+                    preview.src = src;
+                    preview.style.display = "block";
+                }
+           }
+    </script>
+
 
 	<title>FarmerHub</title>
 </head>
@@ -28,32 +43,33 @@
 			<span class="text">Farmer_Hub</span>
 		</a>
 		<ul class="side-menu top">
-			<li class="active">
+			<!--<li class="active">-->
+			<li class="{{ (request()->is('farmer-base')) ? 'active' : '' }}">  
 				<a href="{{url('farmer-base')}}">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
-			<li>
-				<a href="#">
+			<li class="{{ (request()->is('farmer-profile-display')) ? 'active' : '' }}">  
+				<a href="{{url('farmer-profile-display')}}">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Profile</span>
 				</a>
 			</li>
-            <li>
+            <li class="{{ (request()->is('add-product')) ? 'active' : '' }}">  
 				<a href="{{url('add-product')}}">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">My Items</span>
 				</a>
 			</li>
-            <li>
-				<a href="#">
+            <li class="{{ (request()->is('farmer-order-display')) ? 'active' : '' }}">
+				<a href="{{url('farmer-order-display')}}">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Order Details</span>
 				</a>
 			</li>
-            <li>
-				<a href="#">
+            <li class="{{ (request()->is('farmer-vendor-display')) ? 'active' : '' }}">
+				<a href="{{url('farmer-vendor-display')}}">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Vendors</span>
 				</a>
@@ -64,7 +80,7 @@
 					<span class="text">History</span>
 				</a>
 			</li>
-			<li>
+			<li class="{{ (request()->is('farmer-password')) ? 'active' : '' }}">  
 				<a href="{{url('farmer-password')}}">
 					<i class='bx bxs-lock-alt'></i>
 					<span class="text">Change Password</span>

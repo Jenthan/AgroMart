@@ -1,4 +1,4 @@
-hi<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -63,11 +63,11 @@ hi<!DOCTYPE html>
 				<div class="form-input">
 				</div>
 			</form>
-			<a href="#">
-					<i class='bx bxs-cog' ></i>
+			<a href="{{url('/showVendor')}}">
+			<i class="fa-solid fa-car-side"></i>
 				</a>
-			<a href="#" class="profile">
-				<img src="admin/images/people.png">
+			<a href="{{url('/showVendor')}}" class="profile">
+				Profile
 			</a>
             <a href="{{url('/vendorLogout')}}" class="logout">
                 <i class='bx bxs-log-out-circle' ></i>

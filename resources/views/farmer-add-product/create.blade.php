@@ -53,7 +53,11 @@
             </div>
         </div>
     </fieldset>
-    <input type="hidden" name="farmerId" value="{{Auth::User()->id}}" />
+   
+    @foreach($farmer as $farm)
+    
+    <input type="hidden" name="farmerId" value="{{$farm->id}}" />
+    @endforeach
     <div class="form-group">
         <label for="exampleFormControlFile1">Photo of Product</label>
         <input type="file" name="proImg" class="form-control-file" id="exampleFormControlFile1">

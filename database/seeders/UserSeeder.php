@@ -20,20 +20,14 @@ class UserSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
     
-
-        DB::table('customers')->insert([
-            'user_id'=>"2",
-            'customerName'=>"customer",
-            'customerAddressNo'=>"21",
-            'customerAddressStreet'=>"brownsroad",
-            'customerAddressCity'=>"batticaloa"
-           // 'email' => Str::random(10).'@gmail.com',
-           // 'password' => Hash::make('password'),
-        ]);
         DB::table('vendors')->insert([
             'user_id'=>"3",
-            'vehicle_id'=>"1",
-            'vendorName'=>"Janith",
+            'prophoto'=>"****",
+            'firstName'=>"Janith",
+            'lastName'=>"Gihan",
+            'addressNo'=>"32 A",
+            'addressStreet'=>"First Cross Street",
+            'addressCity'=>"Kegalle",
             'lisencePhoto'=>"------"
            // 'email' => Str::random(10).'@gmail.com',
            // 'password' => Hash::make('password'),

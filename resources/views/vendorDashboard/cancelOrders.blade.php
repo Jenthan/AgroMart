@@ -4,18 +4,13 @@
 <main>
     <div class="head-title">
 				<div class="left">
-					<h1>Order</h1>
+					<h1>Cancelled Orders</h1>
 					<ul class="breadcrumb">
-						<li>
-							<a href="{{url('/vendorDashboard')}}">Dashboard</a>
-						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
 							<a class="active" href="{{url('/vendorDashboard')}}">Home</a>
 						</li>
                         <li><i class='bx bx-chevron-right' ></i></li>
                         <li>
-							<a class="active" href="#">Orders</a>
+							<a  href="#">Cancelled Orders</a>
 						</li>
 					</ul>
 				</div>

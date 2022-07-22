@@ -12,8 +12,11 @@ class CustomerOrderProduct extends Model
     protected $fillable = [
         'product_id',
         'customer_id',
+        'farmer_id',
         'qty',
         'ordertime',
+        'orderstatus',
+        'updated_at',
     ];
     
 }

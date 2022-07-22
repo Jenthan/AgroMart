@@ -24,8 +24,11 @@
 					</tr>
 				</thead>
 				<tbody>
+				@foreach($farmer as $farmers)
 					@foreach($products as $product)
-						@if($product->farmer_id == Auth::User()->id)
+					
+						@if($product->farmer_id == $farmers->id)
+						
 						<tr>
 							<td>
 								<img src="{{url('public/productImage/'.$product->productImg)}}" >
@@ -42,6 +45,7 @@
 						</tr>
 						@endif
 					@endforeach
+				@endforeach
 				</tbody>
 			</table>
 		</div>

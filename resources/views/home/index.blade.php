@@ -2,17 +2,17 @@
 
 @section('searchbar')
 <div id="search">
-    <div class="search">
-        <a href="#">
-        <div class="icon"></div>
-        </a>
-            <div class="input">
-                    <input type="text" placeholder="Search" id="mysearch">
-            </div>
-        <span class="clear" onclick="document.getElementById('mysearch').value =''"></span>
-    </div>
-
-    
+    <form method="post" action="{{url('checkhomesearch')}}">
+        @csrf
+        <div class="search">
+            <button type="submit" class="icon"></button>
+                <div class="input">
+                        <input type="text" placeholder="Search product Here...." id="mysearch" name="searchvalue">
+                </div>
+            <span class="clear" onclick="document.getElementById('mysearch').value =''"></span>
+        </div>
+        
+    </form>   
 </div>
     
 @endsection
@@ -26,33 +26,25 @@
         <div class="box-container">
 
             <div class="box">
-                <a href="#">
+                <a href="{{url('/searchVeg')}}">
                      <h3>vegitables</h3>
                 </a>
-                   <a href="#" class="btn">
+                   <a href="{{url('/searchVeg')}}" class="btn">
                       <img src="images/category-1.png" alt="">
                    </a>
             </div>
             <div class="box">
-            <a href="#">
+            <a href="{{url('/searchmilk')}}">
                    <h3>juice</h3>
                </a>
-                <a href="#"><img src="images/category-2.png" alt=""></a>
+                <a href="{{url('/searchmilk')}}"><img src="images/category-2.png" alt=""></a>
             </div>
+            
             <div class="box">
-            <a href="#">
-                   <h3>meat</h3>
-               </a>
-                
-                  <a href="#" class="btn">
-                       <img src="images/category-3.png" alt="">
-                  </a>
-            </div>
-            <div class="box">
-            <a href="#">
+            <a href="{{url('/searchfruit')}}">
                    <h3>fruit</h3>
                </a>
-                    <a href="#" class="btn">
+                    <a href="{{url('/searchfruit')}}" class="btn">
                     <img src="images/category-4.png" alt="">
                     </a>
             </div>
@@ -82,8 +74,8 @@
             <div class="banner">
                 <img src="images/banner-1.jpg" alt="">
                 <div class="content">
-                    <h3>special offer</h3>
-                    <p>upto 45% off</p>
+                    <h3>Least Unit Price</h3>
+                    <p>Vegitables</p>
                     <a href="#" class="btnno">check out</a>
                 </div>
             </div>
@@ -91,8 +83,8 @@
             <div class="banner">
                 <img src="images/banner-2.jpg" alt="">
                 <div class="content">
-                    <h3>limited offer</h3>
-                    <p>upto 50% off</p>
+                <h3>Least Unit Price</h3>
+                    <p>Fruits</p>
                     <a href="#" class="btnno">check out</a>
                 </div>
             </div>
@@ -117,119 +109,29 @@
 <h1 class="heading">latest <span>products</span></h1>
 
 <div class="box-container">
+@foreach($products as $product)
 
     <div class="box">
-        <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-share"></a>
-            <a href="#" class="fas fa-eye"></a>
-        </div>
-        <img src="images/product-1.png" alt="">
-        <h3>organic banana</h3>
-        <div class="price"> Rs10.50</div>
-        <div class="quantity">
-            <span>quantity : </span>
-            <input type="number" min="1" max="1000" value="1">
-            <span> /kg </span>
-        </div>
-       <button><a href="#" class="btn">add to cart</a></button> 
-    </div>
-
-    <div class="box">
-        <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-share"></a>
-            <a href="#" class="fas fa-eye"></a>
-        </div>
-        <img src="images/product-2.png" alt="">
-        <h3>organic tomato</h3>
-        <div class="price"> Rs10.50</div>
-        <div class="quantity">
-            <span>quantity : </span>
-            <input type="number" min="1" max="1000" value="1">
-            <span> /kg </span>
-        </div>
-        <button><a href="#" class="btn">add to cart</a></button>
         
-    </div>
-
-    <div class="box">
-        <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-share"></a>
-            <a href="#" class="fas fa-eye"></a>
-        </div>
-        <img src="images/product-3.png" alt="">
-        <h3>organic orange</h3>
-        <div class="price"> Rs10.50</div>
-        <div class="quantity">
-            <span>quantity : </span>
-            <input type="number" min="1" max="1000" value="1">
-            <span> /kg </span>
-        </div>
-        <button>
-        <a href="#" class="btn">add to cart</a>
-        </button>
         
-    </div>
+           <form method="get">
+             <div class="image">
+                 <img class="avatar" src="{{url('public/productImage/'.$product->productImg)}}" alt="description of ">
+            </div></br>
+            
+                <input type="text" name="pname" id="pname" value="{{$product->productName}}" disabled></br><br/>
+                <label for="pprice" name="pprice"><span>Price</span></label>
+                <input type="text" name="pprice" value="Rs. {{$product->unitPrice}}.00" disabled></br><br/>
+                <label for="quantity" name="quantity">Quantity</label>
+                <input type="number"></br>
+                <input type="hidden" name="fid" value="{{$product->farmer_id}}" disabled></br>
+                <a href="{{url('homelogin')}}" > <button onclick="logincusalert()" class="btn btn-success">Add to card </button></a>
+                
 
-    <div class="box">
-        <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-share"></a>
-            <a href="#" class="fas fa-eye"></a>
-        </div>
-        <img src="images/product-4.png" alt="">
-        <h3>natural mild</h3>
-        <div class="price"> Rs10.50</div>
-        <div class="quantity">
-            <span>quantity : </span>
-            <input type="number" min="1" max="1000" value="1">
-            <span> /kg </span>
-        </div>
-        <button>
-        <a href="#" class="btn">add to cart</a>
-        </button>
-        
+            </form>
     </div>
-
-    <div class="box">
-        <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-share"></a>
-            <a href="#" class="fas fa-eye"></a>
-        </div>
-        <img src="images/product-5.png" alt="">
-        <h3>organic grapes</h3>
-        <div class="price"> Rs10.50  </div>
-        <div class="quantity">
-            <span>quantity : </span>
-            <input type="number" min="1" max="1000" value="1">
-            <span> /kg </span>
-        </div>
-        <button><a href="#" class="btn">add to cart</a></button>
-        
-    </div>
-
-    <div class="box">
-        <div class="icons">
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-share"></a>
-            <a href="#" class="fas fa-eye"></a>
-        </div>
-        <img src="images/product-7.png" alt="">
-        <h3>organic apple</h3>
-        
-        <div class="price"> Rs10.50</div>
-        <div class="quantity">
-            <span>quantity : </span>
-            <input type="number" min="1" max="1000" value="1">
-            <span> /kg </span>
-        </div>
-        <button> <a href="#" class="btn">add to cart</a></button>
-       
-    </div>
-
+    @endforeach
+  </div>
 </section>
 
 <!-- product section ends -->
