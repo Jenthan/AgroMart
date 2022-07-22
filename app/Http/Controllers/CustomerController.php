@@ -39,16 +39,9 @@ class CustomerController extends Controller
     public function customerprofileview($id)
     {
         $customers = Customer::all()->where('user_id',$id);
-       // dd('customer');
-      // $customer = Customer::findOrFail($id);
-      //dd($customer);
-      // $customer = Customer::all()->where('role','customer');;
-     // $customer = DB::table('customers')->where('id',$id)->get();
          $user = User::find($id);
          //dd($user);
          $usersphone = UserPhone::find($id);
-        // dd($usersphone);
-        // $usersphone = UserPhone::all();
 
          return view('customerdashboard.profileview',compact('customers','user','usersphone'));
     }
