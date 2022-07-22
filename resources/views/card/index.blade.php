@@ -1,6 +1,6 @@
-@extends('index')
+@extends('customerindex')
 
-@section('content-1')
+@section('content1')
 <div id="deal">
     <div class="container">
     <table class="table table-bordered">
@@ -11,72 +11,62 @@
                 <th>Farmer Name</th>
                 <th>Product Area</th>
                 <th>Quantity</th>
+                <th>unitPrice</th>
                 <th>Amount</th>
-                <th></th>
+                <th>Action</th>
             </tr>
         </thead>
 
+        @php
+        $idn = 1;
+        $ta = 0;
+        @endphp
         <tbody>
+           
+                @foreach($ordertemp as $ordertp)
+                @if($ordertp->orderstatus == 'notconfirmed')
             <tr>
-                <td>1</td>
-                <td>Carrot</td>
-                <td>Ajenthan</td>
-                <td>Nallur</td>
-                <td>10kg</td>
-                <td>600</td>
-                <td><button type="button" class="btn btn-primary btn-sm">#</button></td>
+               
+                <td>{{$idn++}}</td>
+                <td>{{$ordertp->productName}}</td>
+                <td>{{$ordertp->firstName}}</td>
+                <td>{{$ordertp->farmAddressCity}}</td>
+                <td>{{$ordertp->qty}}</td>
+                <td>{{$ordertp->unitPrice}}</td>
+                <td>
+                    @php
+                    $qty = $ordertp->qty;
+                    $up =  $ordertp->unitPrice;
+                    $a = $qty*$up;
+
+                    $ta = $ta +$a;
+                    @endphp
+
+                    {{$a}}
+                </td> 
+                <td>
+                    <a href="#"><button type="button" class="btn btn-primary btn-sm">Remove</button></a>
+                    <a href="{{route('done',$ordertp->id)}}"><button type="button" class="btn btn-primary btn-sm">Done</button></a>
+            </td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Banana</td>
-                <td>Jenith</td>
-                <td>Jaffna</td>
-                <td>2kg</td>
-                <td>300</td>
-                <td><button type="button" class="btn btn-primary btn-sm">#</button></td> 
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td> 
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td> 
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td> 
-            </tr>
+            @endif
+            @endforeach
+       
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="5" style="text-align: center;">Total</td>
+                <td colspan="6" style="text-align: center;">Total</td>
                 
-                <td>900</td>
-                <td></td>
+                <td>{{$ta}}</td>
+                
             </tr>
         </tfoot>
+
     </table>
     <br>
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-       <a href="{{url('checkout')}}"> <button class="btn btn-warning me-md-5" type="button">Checkout Orders</button></a>
-        <a href="#"><button class="btn me-md-2" type="button">Done</button></a>
+       <a href="{{url('/cardcheckout')}}"> <button class="btn btn-warning me-md-5" type="button">Checkout Orders</button></a>
     </div>
     
     <br>

@@ -647,7 +647,7 @@ body {
 				</a>
 			</li>
 			<li>
-				<a href="#" class="logout">
+				<a href="{{url('/cuslogout')}}" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Logout</span>
 				</a>
@@ -705,10 +705,6 @@ body {
                         <div class="form-group mb-1">
                             <label for="startdate" class="sr-only">startdate</label>
                             <input type="text" readonly class="form-control-plaintext" id="startdate" value="StartDate">
-                        </div>
-                        <div class="form-group mx-sm-5 mb-1">
-                            <label for="startdate" class="sr-only">startdate</label>
-                            <input type="date" class="form-control" id="startdate" name="startdate" placeholder="Startdate">
                         </div>
                         
                         <button type="submit" class="btn btn-primary mx-sm-5 mb-2">Search</button>

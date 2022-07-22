@@ -24,9 +24,11 @@
 					</tr>
 				</thead>
 				<tbody>
+				@foreach($farmer as $farmers)
 					@foreach($products as $product)
-
-						@if($product->farmer_id == Auth::User()->id)
+					
+						@if($product->farmer_id == $farmers->id)
+						
 						<tr>
 							<td>
 								<img src="{{url('public/productImage/'.$product->productImg)}}" >
@@ -42,24 +44,8 @@
 							</td>
 						</tr>
 						@endif
-
-
-					<tr>
-						<td>
-							<img src="{{url('public/productImage/'.$product->productImg)}}" >
-							
-							<p>{{$product->productName}}</p>
-						</td>
-						<td>{{$product->productType}}</td>
-						<td>Rs. {{$product->unitPrice}}.00</td>
-						<td>{{$product->qty}} kg</td>
-						<td>
-							<a href="{{url('edit-product',$product->id)}}" class="status completed">Edit</a>
-							<a href="#" class="status completed">Delete</a>
-						</td>
-					</tr>
-
 					@endforeach
+				@endforeach
 				</tbody>
 			</table>
 		</div>

@@ -41,6 +41,16 @@ class FarmerDashController extends Controller
             return back()->with('error','Your Current password is not matched!');
         }
     }
+    public function profile()
+    {
+        $farmer=Farmer::where('user_id',Auth::User()->id)->first();
+        $userphone=UserPhone::where('user_id',Auth::User()->id)->first();
+        return view('farmer-profile.profile',compact('farmer','userphone'));
+    }
+    public function profile_update(Request $request,$id)
+    {
+
+    }
 
     /**
      * Display a listing of the resource.

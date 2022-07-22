@@ -22,7 +22,12 @@ class FarmerMakeProductController extends Controller
     {
         $user=User::all()->where('role','farmer');
         $farmer=Farmer::all();
+        $id = Auth::User()->id;
         $products = Product::all();
+        $farmer = Farmer::all()->where('user_id',$id);
+       // dd($fa_rmer);
+       // $products = Product::all()->where('farmer_id',$fa_rmer->id);
+       // dd($products);
         return view('farmer-add-product.index',compact('user','farmer','products'));
     }
 
@@ -33,7 +38,10 @@ class FarmerMakeProductController extends Controller
      */
     public function create()
     {
-        return view('farmer-add-product.create');
+        $id = Auth::User()->id;
+        $farmer=Farmer::all()->where('user_id',$id);
+       // dd($farmer);
+        return view('farmer-add-product.create',compact('farmer'));
     }
 
     /**
@@ -77,12 +85,7 @@ class FarmerMakeProductController extends Controller
     }
 
 
-    public function edit_item($id)
-    {
-        $product=Product::where('id',$id)->get();
-        return view('farmer-add-product.editpro',compact('product'));
-    }
-
+    
     /**
      * Display the specified resource.
      *

@@ -23,6 +23,24 @@ class Adminseeder extends Seeder
             'password' => Hash::make('admin123'),
             'remember_token' => Str::random(10),
         ]);
+        DB::table('users')->insert([   
+            'email' => 'customer@gmail.com',
+            'role'=>'customer',
+            'password' => Hash::make('cus123'),
+            'remember_token' => Str::random(10),
+        ]);
+        DB::table('users')->insert([   
+            'email' => 'janith@gmail.com',
+            'role'=>'vender',
+            'password' => Hash::make('janith123'),
+            'remember_token' => Str::random(10),
+        ]);
+        DB::table('users')->insert([   
+            'email' => 'ajanthan@gmail.com',
+            'role'=>'farmer',
+            'password' => Hash::make('aji123'),
+            'remember_token' => Str::random(10),
+        ]);
         
     }
 }
