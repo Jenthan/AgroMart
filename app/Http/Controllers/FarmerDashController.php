@@ -10,6 +10,7 @@ use App\Models\UserPhone;
 use App\Models\CustomerOrderProduct;
 use App\Models\Farmer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Validator;
@@ -50,6 +51,20 @@ class FarmerDashController extends Controller
     public function profile_update(Request $request,$id)
     {
 
+    }
+    public function order_view()
+    {
+        return view('farmer-order.order');
+    }
+
+    public function vendor_view()
+    {
+        $vendors = DB::table('users')
+        ->join('vendors','vendors.user_id','=','users.id')
+        ->join('vehicles','vehicles.user_id','=','users.id')
+        ->join('user_phones','user_phones.user_id','=','users.id')
+        ->get();
+        return view('farmer-vendor.vendor',compact('vendors'));
     }
 
     /**

@@ -62,14 +62,14 @@
 					<span class="text">My Items</span>
 				</a>
 			</li>
-            <li>
-				<a href="#">
+            <li class="{{ (request()->is('farmer-order-display')) ? 'active' : '' }}">
+				<a href="{{url('farmer-order-display')}}">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Order Details</span>
 				</a>
 			</li>
-            <li>
-				<a href="#">
+            <li class="{{ (request()->is('farmer-vendor-display')) ? 'active' : '' }}">
+				<a href="{{url('farmer-vendor-display')}}">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Vendors</span>
 				</a>
