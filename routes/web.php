@@ -164,7 +164,7 @@ Route::get('/delete-product/{product}',[FarmerMakeProductController::class,'dest
 Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
 
 Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
-
+Route::post('/searchdate',[OrderController::class,'searchdate']);
 
 
 
