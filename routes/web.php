@@ -150,14 +150,19 @@ Route::get('/farmer-password',[FarmerDashController::class,'password']);
 Route::post('/farmer-changepassword/{user}',[FarmerDashController::class,'change_password']);
 // Farmer Profile page 
 Route::get('farmer-profile-display',[FarmerDashController::class,'profile']);
+// Farmer Order Details view
+Route::get('farmer-order-display',[FarmerDashController::class,'order_view']);
+
+//Farmer view Vendor details
+Route::get('farmer-vendor-display',[FarmerDashController::class,'vendor_view']);
+
+
 
 //Customer
 Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
 Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
 
-Route::get('/edit-product/{product}',[FarmerMakeProductController::class,'edit']);
-Route::post('/update-product/{product}',[FarmerMakeProductController::class,'update']);
-Route::get('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
+
 
 
 //Customer
