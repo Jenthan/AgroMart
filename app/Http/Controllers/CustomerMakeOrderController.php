@@ -146,5 +146,10 @@ class CustomerMakeOrderController extends Controller
     return redirect()->back();
    }
 
+   public function searchproduct(Request $request){
+    $data = $request->get('searchvalue');
+    $products=Product::all()->where('productName','=',$data);
+    return view('cusindex2',compact('products'));
+   }
 
 }

@@ -39,14 +39,17 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
 
 /*----  Home page Route  starts ---*/
-Route::get('/',[MainController::class,'homeDisplay']);
+Route::get('/',[MainController::class,'homeDisplay'])->name('home');
 Route::get('farmer',[MainController::class,'farmerDisplay']);
-Route::get('card',[MainController::class,'addtocardDisplay']);
 Route::get('product',[MainController::class,'productDisplay']);
 Route::get('profile',[MainController::class,'profileDisplay']);
 Route::get('vender',[MainController::class,'venderDisplay']);
-
-
+Route::post('checkhomesearch',[MainController::class,'checkhomesearchDisplay']);
+Route::get('/searchVeg',[MainController::class,'vegDisplay']);
+Route::get('/searchfruit',[MainController::class,'fruitDisplay']);
+Route::get('/searchmilk',[MainController::class,'milkDisplay']);
+Route::get('/cuslogout',[MainController::class,'logout']);
+Route::post('/cusprosearch',[MainController::class,'cusproductsearch']);
 
 
     Route::get('homelogin',[MainController::class,'homeloginDisplay'])->name('logHome');
@@ -122,9 +125,9 @@ Route::get('vender',[MainController::class,'venderDisplay']);
 
 
 
-// vendor routes starts
-Route::get('/venderreg',[VendorController::class,'vendorregistrationview']);
-Route::post('/vendorregistration',[VendorController::class,'vendorregistration']);
+// vendor routes reg starts
+Route::get('/venderreg',[UserController::class,'vendorregistrationview'])->name('vendorregview');
+Route::post('/vendorregistration',[UserController::class,'vendorregistration']);
 
 
 // Farmer
@@ -147,14 +150,19 @@ Route::get('/farmer-password',[FarmerDashController::class,'password']);
 Route::post('/farmer-changepassword/{user}',[FarmerDashController::class,'change_password']);
 // Farmer Profile page 
 Route::get('farmer-profile-display',[FarmerDashController::class,'profile']);
+// Farmer Order Details view
+Route::get('farmer-order-display',[FarmerDashController::class,'order_view']);
+
+//Farmer view Vendor details
+Route::get('farmer-vendor-display',[FarmerDashController::class,'vendor_view']);
+
+
 
 //Customer
 Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
 Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
 
-Route::get('/edit-product/{product}',[FarmerMakeProductController::class,'edit']);
-Route::post('/update-product/{product}',[FarmerMakeProductController::class,'update']);
-Route::get('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
+
 
 
 //Customer
@@ -183,5 +191,6 @@ Route::get('carddisplay',[CustomerMakeOrderController::class,'addtocarddisplay']
 Route::get('/done/{id}',[CustomerMakeOrderController::class,'doneorder'])->name('done');
 Route::get('/cardcheckout',[CustomerMakeOrderController::class,'cardcheckoutdisplay']);
 Route::get('/searchdate',[CustomerMakeOrderController::class,'searchdatedisplay']);
+Route::get('/searchproduct',[CustomerMakeOrderController::class,'searchproduct']);
   });
 

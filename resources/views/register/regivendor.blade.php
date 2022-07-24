@@ -34,7 +34,7 @@
         </div><br />
         @endif
 
-    <form class="border border-success rounded-3" method="post" action="{{url('/vendorregistration')}}" enctype="multipart/form-data">
+    <form class="border border-success rounded-3" method="post" action="{{url('vendorregistration')}}" enctype="multipart/form-data">
         @csrf
 
         <h2>Vendor Registration Form</h2> <br>
@@ -44,7 +44,7 @@
                 <div class="preview">
                     <img id="file-ip-1-preview">
                 </div>
-                <label for="file-ip-1">Upload Profile</label>
+                <label for="file-ip-1">Upload Image</label>
                 <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);" name="prophoto">
 
             </div>
@@ -52,57 +52,69 @@
        
 
         <div class="row mb-2">
-            <label for="vname" class="col-sm-2 col-form-label-sm">Vender Name:</label>
+            <label for="fname" class="col-sm-2 col-form-label-sm">First Name:</label>
             <div class="col-sm-9">
-            <input type="text" class="form-control form-control-sm" id="vname" name="vname">
+            <input type="text" class="form-control form-control-sm" id="fname" name="fname">
             </div>
         </div>
 
-<!--
+        <div class="row mb-2">
+            <label for="lname" class="col-sm-2 col-form-label-sm">Last Name:</label>
+            <div class="col-sm-9">
+            <input type="text" class="form-control form-control-sm" id="lname" name="lname">
+            </div>
+        </div>
+
         <div class="row mb-2">
             <label for="address" class="col-sm-2 col-form-label-sm">Address:</label>
             <div class="col-sm-9">
-            <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="No/Apartment/Village" id="address" name="no"></div>
-            <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="Street(optional)" id="address" name="street"></div>
+            <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="street" id="address" name="street"></div>
+            <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="village" id="address" name="village"></div>
             <input type="text" class="form-control form-control-sm" placeholder="City" id="address" name="city">
             </div>
-        </div>  -->
+        </div>
 
         <div class="row mb-2">
             <label for="phone" class="col-sm-2 col-form-label-sm">Phone:</label>
             <div class="col-sm-9">
-            <div class="mb-2"><input type="tel" class="form-control form-control-sm " patern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="phone" maxlength="10" placeholder="mobile" name="phoneno"></div>
+            <div class="mb-2"><input type="tel" class="form-control form-control-sm " patern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="phone" maxlength="10" placeholder="Mobile" name="phoneno"></div>
             </div>
         </div>
-
+<!--
         <div class="row mb-2">
-            <label for="lisence" class="col-sm-2 col-form-label-sm">Lisence:</label>
+            <label for="vname" class="col-sm-2 col-form-label-sm">Vehicle Name:</label>
             <div class="col-sm-9">
-            <input class="form-control form-control-sm" id="lisence" type="file" name="lisence">
+            <input type="text" class="form-control form-control-sm" id="vname" name="vname">
             </div>
-        </div>
+        </div>   -->
 
         <div class="row mb-2">
-            <label for="vtype" class="col-sm-2 col-form-label-sm">Vechile Type:</label>
+            <label for="vtype" class="col-sm-2 col-form-label-sm">Vehicle Type:</label>
             <div class="col-sm-9">
             <input type="text" class="form-control form-control-sm" id="vtype" name="vtype">
             </div>
         </div>
 
         <div class="row mb-2">
-            <label for="vnumber" class="col-sm-2 col-form-label-sm">Vechile Number:</label>
+            <label for="vnumber" class="col-sm-2 col-form-label-sm">Vehicle No:</label>
             <div class="col-sm-9">
             <input type="text" class="form-control form-control-sm" id="vnumber" name="vnumber">
             </div>
         </div>
 
         <div class="row mb-2">
-            <label for="vphoto" class="col-sm-2 col-form-label-sm">Vechile Photo:</label>
+            <label for="vphoto" class="col-sm-2 col-form-label-sm">Vehicle Photo:</label>
             <div class="col-sm-9">
             <input class="form-control form-control-sm" id="vphoto" type="file" name="vphoto">
             </div>
         </div>
 
+        <div class="row mb-2">
+            <label for="lphoto" class="col-sm-2 col-form-label-sm">Lisence Photo:</label>
+            <div class="col-sm-9">
+            <input class="form-control form-control-sm" id="lphoto" type="file" name="lisence">
+            </div>
+        </div>
    
         <div class="row mb-2">
             <label for="mail" class="col-sm-2 col-form-label-sm">Email:</label>
@@ -120,10 +132,9 @@
         <div class="row mb-2">
             <label for="confirmpword" class="col-sm-2 col-form-label-sm">Confirm Password:</label>
             <div class="col-sm-9">
-            <input type="password" class="form-control form-control-sm" id="confirmpword" name="cpassword">
+            <input type="password" class="form-control form-control-sm" id="confirmpword">
             </div>
         </div>
-       
         <br>
 
         <div class="d-grid gap-2 col-6 mx-auto">

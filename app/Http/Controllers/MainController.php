@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Auth;
+use validator;
 
 class MainController extends Controller
 {
     public function homeDisplay(){
-        return view('home.index');
+        $products = Product::all();
+        return view('home.index',compact('products'));
     }
 
     public function addtocardDisplay(){
@@ -23,6 +26,8 @@ class MainController extends Controller
      
     public function productDisplay(){
         $products=Product::all();
+       // $data = Auth::user()->all();
+       // dd($data);
         return view('product.index',compact('products'));
     }
 
@@ -39,7 +44,8 @@ class MainController extends Controller
     }
 
     public function homeloginDisplay(){
-        return view('home.login');
+        $products = Product::all();
+        return view('home.login',compact('products'));
     }
 
     public function farmerprofiledisplay(){
@@ -68,6 +74,41 @@ class MainController extends Controller
 
     public function addproduct(){
         return view('profile/farmer.addproduct');
+    }
+
+    public function checkhomesearchDisplay(Request $request){
+       /* $request->validate([
+            'searchvalue'=>'required',
+
+        ]);*/
+        $data = $request->get('searchvalue');
+        
+        $products=Product::all()->where('productName','=',$data);
+       //dd($products);
+        return view('product.index',compact('products'));
+    }
+
+    public function vegDisplay(){
+        $products=Product::all()->where('productType','=','vegetable');
+      
+        return view('product.index',compact('products'));
+    }
+
+    public function fruitDisplay(){
+        $products=Product::all()->where('productType','=','fruit');
+       //dd($products);
+        return view('product.index',compact('products'));
+    }
+
+    public function milkDisplay(){
+        $products=Product::all()->where('productType','=','milk');
+       //dd($products);
+        return view('product.index',compact('products'));
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect(url('/'));
     }
 
 }

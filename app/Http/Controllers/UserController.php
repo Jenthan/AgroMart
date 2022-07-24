@@ -7,6 +7,8 @@ use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Vendor;
 use App\Models\CustomerOrderProduct;
+use App\Models\UserPhone;
+use App\Models\Vehicle;
 use App\Models\Farmer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -23,7 +25,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('register.user-select');
+        $products=Product::all();
+        return view('register.user-select',compact('products'));
     }
     public function register_customer()
     {
@@ -163,6 +166,82 @@ class UserController extends Controller
             $user->role = "farmer";
 
             $user->update();
+        }
+
+        public function vendorregistrationview(){
+            return view('register.regivendor');
+        }
+
+        public function vendorregistration(Request $request){
+        
+
+            $this->validate($request, [
+                'fname'=> 'required',
+                'lname'=> 'required',
+                'street'=> 'required',
+                'village'=> 'required',
+                'city'=> 'required',
+                'phoneno' => 'required',
+                'prophoto' => 'required',
+                'lisence' => 'required',
+                'vtype' => 'required',
+                'vphoto' => 'required',
+                'email' => 'required|email',
+                'password' => 'required',
+                'vnumber' => 'required',
+            ]);
+
+            $vendor = new Vendor([
+                'firstName' => $request->get('fname'),
+                'lastName' => $request->get('lname'),
+                'addressNo' => $request->get('street'),
+                'addressStreet' => $request->get('village'),
+                'addressCity' => $request->get('city'),
+            ]);
+    
+    
+            $image = $request->file('prophoto');
+            $imageName =date('YmdHi').'.' . $image->getClientOriginalExtension();
+            $image->move(public_path('VendorImage'),$imageName);
+            $vendor->prophoto =$imageName ;
+    
+    
+            $limage = $request->file('lisence');
+            $limageName =date('YmdHi').'.' . $limage->getClientOriginalExtension();
+            $limage->move(public_path('LisenceImage'),$limageName);
+            $vendor->lisencePhoto =$limageName ;
+    
+            $userphone = new UserPhone([
+                'phone' => $request->get('phoneno'),
+            ]);
+    
+            if (!$request->has('prophoto')) {
+                return response()->json(['message' => 'Missing file'], 422);
+            }
+    
+            $vehicle = new Vehicle([
+                'vehicleType' => $request->get('vtype'),
+                'vehicleNo' => $request->get('vnumber'),
+            ]);
+    
+            $veimage = $request->file('vphoto');
+            $veimageName =date('YmdHi').'.' . $veimage->getClientOriginalExtension();
+            $veimage->move(public_path('VehicleImage'),$veimageName);
+            $vehicle->vehiclePhoto =$veimageName ;
+    
+        
+            $user = new User([
+                'email' => $request->get('email'),
+                'password' =>Hash::make( $request->get('password')),
+            ]);
+                $user->role ="vender";
+    
+            $user->save();
+            $user->vendor()->save($vendor);
+            $user->vehicle()->save($vehicle);
+            $user->userphone()->save($userphone);
+            return redirect('homelogin')->with('success','Your Vender Profile added successfully.!'); 
+                
         }
     
 }
