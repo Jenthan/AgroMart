@@ -35,9 +35,9 @@ class OrderController extends Controller
          ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
          ->join('products','products.id','=','farmer_request_vendors.product_id')
          ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
-         ->select('customer_order_products.qty','customer_order_products.updated_at','farmer_request_vendors.customer_order_id',
+         ->select('customer_order_products.qty','customer_order_products.updated_at as oupdated_at' ,'farmer_request_vendors.customer_order_id',
          'vendors.firstName','vendors.lastName','farmer_request_vendors.requeststatus','products.productName','products.unitPrice',
-         'customer_order_products.orderstatus')
+         'customer_order_products.orderstatus','farmer_request_vendors.updated_at')
          ->where('customer_order_products.customer_id','=', $cid)
          ->where('customer_order_products.orderstatus','=', "confirmed")
          ->orderBy('customer_order_products.updated_at', 'desc')

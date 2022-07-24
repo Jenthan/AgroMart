@@ -138,7 +138,7 @@
 								<th>ProductName</th>
                                 <th>VenderName</th>
                                 <th>quantity</th>
-                                <th>price</th>
+                                <th>Total price</th>
 								<th>OrderDate</th>
 								<th>Status</th>
 							</tr>
@@ -152,13 +152,20 @@
 								<td>{{$order->productName}}</td>
 						        <td>{{$order->firstName}} {{$order->lastName}}</td>
 								<td>{{$order->qty}}</td>
-								<td>{{$order->unitPrice}}</td>
 								<td>
 									@php
-									$da = $order->updated_at;
-									$date_arr= explode(" ", $da);
-                                    $ndate= $date_arr[0];
-                                    $ntime= $date_arr[1];
+									$a=$order->qty;
+									$b=$order->unitPrice;
+									$c=$a*$b;
+									@endphp
+									
+								{{$c}}</td>
+								<td>
+									@php
+										$da = $order->oupdated_at;
+										$date_arr= explode(" ", $da);
+										$ndate= $date_arr[0];
+										$ntime= $date_arr[1];
 									@endphp
 
 									{{$ndate}}

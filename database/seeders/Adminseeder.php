@@ -30,6 +30,7 @@ class Adminseeder extends Seeder
             'product_id'=>1,  
             'customer_order_id' => 2,
             'requeststatus' => 'cancelled',
+            
         ]);  
         DB::table('farmer_request_vendors')->insert([ 
             'farmer_id'=> 1,
@@ -37,6 +38,7 @@ class Adminseeder extends Seeder
             'product_id'=>2,  
             'customer_order_id' => 4,
             'requeststatus' => 'accepted',
+
         ]);  
         
     }
