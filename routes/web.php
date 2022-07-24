@@ -169,7 +169,7 @@ Route::post('/customerregistration',[CustomerController::class,'customerregistra
 Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
 
 Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
-
+Route::post('/searchdate',[OrderController::class,'searchdate']);
 
 
 
