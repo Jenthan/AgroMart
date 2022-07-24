@@ -147,8 +147,11 @@ class CustomerController extends Controller
 
       //  return redirect()->route('customerprofile',Auth::user()->id)->with('success','customer updated Successfully!');
       // return back()->with('error','Wrong Login Details');
-
-       $customer = Customer::find($id);
+      $cus = Customer::all()->where('user_id','=',$id)->first();
+        $cusid=$cus->id;
+       // dd($cusid);
+       $customer = Customer::find($cusid);
+       
         $customer->customerName = $request->input('customerName');;
         $customer->customerAddressNo = $request->input('customerAddressNo');;
         $customer->customerAddressStreet = $request->input('customerAddressStreet');;
@@ -159,8 +162,9 @@ class CustomerController extends Controller
         $user->email = $request->input('email');
         $user->update();
 
-        
-        $usersphone = UserPhone::find($id);
+        $pno = UserPhone::all()->where('user_id','=',$id)->first();
+        $pid=$pno->id;
+        $usersphone = UserPhone::find($pid);
         $usersphone->phone = $request->input('phone');
         $usersphone->update();   
 
