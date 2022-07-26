@@ -1,6 +1,5 @@
 function pleaselogin() {  
   
-  
     alert ("Please Login the System");  
  } 
  
