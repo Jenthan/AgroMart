@@ -77,53 +77,29 @@
 								<th>No</th>
                                 <th>ProductName</th>
                                 <th>Manufactured FarmerName</th>
+								
                                 <th>ProductType</th>
                                 <th>quantity</th>
 								<th>UnitPrice</th>
-								<th>Action</th>
+								
 							</tr>
 						</thead>
 						<tbody>
+							@php
+							$id=1;
+							@endphp
+							@foreach($products as $product)
 							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
+								<td>{{$id++}}</td>
+								<td>{{$product->productName}}</td>
+								<td>{{$product->firstName}} {{$product->lastName}}</td>
+								
+								<td>{{$product->productType}}</td>
+								<td>{{$product->qty}}</td>
+								<td>{{$product->unitPrice}}</td>
+								
 							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status process">Process</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
+							@endforeach
 						</tbody>
 					</table>
 				</div>

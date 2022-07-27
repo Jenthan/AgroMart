@@ -77,51 +77,25 @@
                                 <th>No</th>
 								<th>CustomerName</th>
                                 <th>CustomerAddress</th>
-                                <th>PhoneNo</th>
 								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
+							@php
+							$id=1;
+							@endphp
+							@foreach($customers as $customer)
 							<tr>
+								<td>{{$id++}}</td>
+								<td>{{$customer->customerName}}</td>
+								<td>{{$customer->customerAddressNo}} {{ $customer->customerAddressStreet}} {{$customer->customerAddressCity}}</td>
+								
 								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
+								<a href="{{route('cusprofile',$customer->id)}}"><button class="btn btn-success">More..</button></a>
+								<a href="{{route('deletecustomer',$customer->id)}}"><button class="btn btn-primary">Delete</button></a>
 								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">delete</span></td>
 							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status process">Process</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
+							@endforeach
 						</tbody>
 					</table>
 				</div>

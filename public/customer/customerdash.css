@@ -592,3 +592,11 @@ body {
 		min-width: 420px;
 	}
 }
+.indextable li{
+	display: inline-block;
+}
+.pdform{
+	margin-top: 100px;
+	width: 100px;
+}
+
