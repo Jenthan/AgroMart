@@ -1,0 +1,80 @@
+body{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: auto;
+    height: auto;
+}
+
+body form h2{
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(7, 150, 95);
+    font-style: oblique;
+   
+}
+
+.btn{
+    background-color: rgb(45, 182, 45);
+    color: rgb(243, 234, 234);
+    font-weight: bold;
+    
+}
+
+form{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color:rgb(222, 246, 216);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 60px;
+    padding-right: 20px;
+    
+}
+
+ 
+form .center {
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  
+  }
+  form .form-input {
+    width:350px;
+    padding:20px;
+    background:#fff;
+    box-shadow: -3px -3px 7px rgba(94, 104, 121, 0.377),
+                3px 3px 7px rgba(94, 104, 121, 0.377);
+  }
+
+  form .form-input img {
+    width:100%;
+    display:none;
+    margin-bottom:30px;
+  }
+
+  form .form-input input {
+    display:none;
+  }
+  
+  form .form-input label {
+    display:block;
+    width:45%;
+    height:45px;
+    margin-left: 25%;
+    line-height:50px;
+    text-align:center;
+    background:#1172c2;
+    color:#fff;
+    font-size:15px;
+    font-family:"Open Sans",sans-serif;
+    text-transform:Uppercase;
+    font-weight:600;
+    border-radius:5px;
+    cursor:pointer;
+  }
+

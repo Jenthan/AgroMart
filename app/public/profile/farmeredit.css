@@ -1,0 +1,29 @@
+
+
+#content1 .btn{
+    background-color: rgb(45, 182, 45);
+    color: rgb(243, 234, 234);
+    font-weight: bold;
+    
+}
+#content1 .bg1{
+    background: url(https://previews.123rf.com/images/romastudio/romastudio1603/romastudio160300225/54088694-healthy-food-background-studio-photo-of-different-fruits-and-vegetables-on-white-wooden-table-high-r.jpg) no-repeat;
+    overflow: hidden;
+}
+
+#content1 form{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 60px;
+    padding-right: 20px;
+    
+}
+
+#content1 .bg1 label{
+    color:rgb(243, 234, 234);;
+    font-size: 1.2rem;
+}
