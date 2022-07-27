@@ -163,14 +163,12 @@ Route::get('farmer-profile-display',[FarmerDashController::class,'profile']);
 // Farmer Order Details view
 Route::get('farmer-order-display',[FarmerDashController::class,'order_view']);
 
+
 //Farmer view Vendor details
 Route::get('farmer-vendor-display',[FarmerDashController::class,'vendor_view']);
 
 
 
-//Customer
-Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
-Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
 
 
 
@@ -184,17 +182,12 @@ Route::post('/searchdate',[OrderController::class,'searchdate']);
 
 
 
-
-//customer
-Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
-Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
-
-
 Route::get('/customerlogin',[CustomerController::class,'index'])->name('customerlogin');
 Route::get('/customerorder/{id}',[OrderController::class,'customerOrderindex'])->name('customerorder');
 Route::get('/customerprofile/{id}',[CustomerController::class,'customerprofileview'])->name('customerprofile');
 Route::get('/customerprofileedit/{id}',[CustomerController::class,'customerprofileedit'])->name('customerprofileedit');
 Route::put('/customeredit/{id}',[CustomerController::class,'customereditupdate'])->name('customeredit');
+
 
 Route::post('card',[CustomerMakeOrderController::class,'addtocardOrder']);
 Route::get('carddisplay',[CustomerMakeOrderController::class,'addtocarddisplay']);
@@ -203,4 +196,3 @@ Route::get('/cardcheckout',[CustomerMakeOrderController::class,'cardcheckoutdisp
 Route::get('/searchdate',[CustomerMakeOrderController::class,'searchdatedisplay']);
 Route::get('/searchproduct',[CustomerMakeOrderController::class,'searchproduct']);
   });
-
