@@ -26,8 +26,10 @@ class FarmerSeeder extends Seeder
         ]);
         Farmer::Create([
             'user_id'=> 1,
-            'firstname' => 'Ajan',
-            'lastname' => 'Than',
+            'prophoto' => '*****',
+            'firstName' => 'Ajan',
+            'lastName' => 'Than',
+            'gsCertificate'=>'****',
             'farmName' => 'Fresh Fruits',
             'farmAddressNo' => '23/5',
             'farmAddressStreet' => 'Yarl road',

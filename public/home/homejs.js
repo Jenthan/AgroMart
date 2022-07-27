@@ -1,13 +1,15 @@
 function pleaselogin() {  
   
-  
     alert ("Please Login the System");  
  } 
  
  function ordersalert() {  
   
   
-    alert ("Only Registered customers can check his/her order by the system");  
+    alert ("Only Registered customers can check his/her card details");  
+ }
+ function logincusalert(){
+    alert("Only Registered customers can order");
  }
 
 

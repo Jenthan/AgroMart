@@ -21,5 +21,15 @@ class UserPhone extends Seeder
             'phone' => '0776655432',
             
         ]);
+        DB::table('user_phones')->insert([ 
+            'user_id'=> 3,  
+            'phone' => '0776555432',
+            
+        ]);
+        DB::table('user_phones')->insert([ 
+            'user_id'=> 3,  
+            'phone' => '0776675432',
+            
+        ]);
     }
 }
