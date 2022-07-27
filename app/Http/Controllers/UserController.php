@@ -12,6 +12,7 @@ use App\Models\Vehicle;
 use App\Models\Farmer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Auth;
 use validator;
@@ -175,70 +176,74 @@ class UserController extends Controller
         
 
             $this->validate($request, [
-                'fname'=> 'required',
-                'lname'=> 'required',
-                'street'=> 'required',
-                'village'=> 'required',
-                'city'=> 'required',
-                'phoneno' => 'required',
+                'firstName'=> 'required',
+                'lastName'=> 'required',
+                'addressNo'=> 'required',
+                'addressStreet'=> 'required',
+                'addressCity'=> 'required',
+                'phone' => 'required',
                 'prophoto' => 'required',
-                'lisence' => 'required',
-                'vtype' => 'required',
-                'vphoto' => 'required',
-                'email' => 'required|email',
+                'lisencePhoto' => 'required',
+                'vehicleType' => 'required',
+                'vehiclePhoto' => 'required',
+                'email'=> 'required|email',
                 'password' => 'required',
-                'vnumber' => 'required',
+                'vehicleNo' => 'required',
+                'password' => 'min:6|required_with:confirmpassword|same:confirmpassword',
+                'confirmpassword' => 'min:6'
             ]);
+            $user = new User([
+                'email' => $request->get('email'),
+                'role' => ('vender'),
+                'password' => Hash::make($request->get('password'))
+            ]);
+            $user->save();
 
             $vendor = new Vendor([
-                'firstName' => $request->get('fname'),
-                'lastName' => $request->get('lname'),
-                'addressNo' => $request->get('street'),
-                'addressStreet' => $request->get('village'),
-                'addressCity' => $request->get('city'),
+                'user_id' => DB::table('users')->where('email', $request->get('email'))->value('id'),
+                'firstName' => $request->get('firstName'),
+                'lastName' => $request->get('lastName'),
+                'addressNo' => $request->get('addressNo'),
+                'addressStreet' => $request->get('addressStreet'),
+                'addressCity' => $request->get('addressCity'),
             ]);
-    
+            
     
             $image = $request->file('prophoto');
             $imageName =date('YmdHi').'.' . $image->getClientOriginalExtension();
-            $image->move(public_path('VendorImage'),$imageName);
+            $image->move(public_path('public/vendorImages'),$imageName);
             $vendor->prophoto =$imageName ;
+
+            $image2 = $request->file('lisencePhoto');
+            $imageName2 =date('YmdHi').'.' . $image2->getClientOriginalExtension();
+            $image2->move(public_path('public/vendorImages'),$imageName2);
+            $vendor->lisencePhoto =$imageName2 ;
     
-    
-            $limage = $request->file('lisence');
-            $limageName =date('YmdHi').'.' . $limage->getClientOriginalExtension();
-            $limage->move(public_path('LisenceImage'),$limageName);
-            $vendor->lisencePhoto =$limageName ;
+            $vendor->save(); 
     
             $userphone = new UserPhone([
-                'phone' => $request->get('phoneno'),
+                'user_id' => DB::table('users')->where('email', $request->get('email'))->value('id'),
+                'phone' => $request->get('phone'),
             ]);
+
+            $userphone->save(); 
     
-            if (!$request->has('prophoto')) {
-                return response()->json(['message' => 'Missing file'], 422);
-            }
+            // if (!$request->has('prophoto')) {
+            //     return response()->json(['message' => 'Missing file'], 422);
+            // }
     
             $vehicle = new Vehicle([
-                'vehicleType' => $request->get('vtype'),
-                'vehicleNo' => $request->get('vnumber'),
+                'user_id' => DB::table('users')->where('email', $request->get('email'))->value('id'),
+                'vehicleType' => $request->get('vehicleType'),
+                'vehicleNo' => $request->get('vehicleNo')
             ]);
     
-            $veimage = $request->file('vphoto');
+            $veimage = $request->file('vehiclePhoto');
             $veimageName =date('YmdHi').'.' . $veimage->getClientOriginalExtension();
-            $veimage->move(public_path('VehicleImage'),$veimageName);
+            $veimage->move(public_path('public/vehicleImages'),$veimageName);
             $vehicle->vehiclePhoto =$veimageName ;
-    
-        
-            $user = new User([
-                'email' => $request->get('email'),
-                'password' =>Hash::make( $request->get('password')),
-            ]);
-                $user->role ="vender";
-    
-            $user->save();
-            $user->vendor()->save($vendor);
-            $user->vehicle()->save($vehicle);
-            $user->userphone()->save($userphone);
+            
+            $vehicle->save();
             return redirect('homelogin')->with('success','Your Vender Profile added successfully.!'); 
                 
         }
