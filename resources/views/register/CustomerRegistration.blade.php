@@ -1,1 +1,0 @@
-Register as a customer
