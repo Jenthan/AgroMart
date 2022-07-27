@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Vendor;
 use App\Models\UserPhone;
 use App\Models\CustomerOrderProduct;
+use App\Models\FarmerRequestVendor;
 use App\Models\Farmer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +16,7 @@ use Illuminate\Support\Str;
 use Auth;
 use Validator;
 use DB;
-
+use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
@@ -26,29 +27,65 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        //get current date
+        $cdate = Carbon::now();       
+        $date_arr= explode(" ", $cdate);
+        $ndate= $date_arr[0];
+        $ntime= $date_arr[1];
+       
        
         $vendor = Vendor::all();
         $customer = Customer::all();
          $user = User::all()->where('role','customer');
          $order = CustomerOrderProduct::all();
+         $cid;
+         $c1 =0;$c2=0;
+         $c3; $c4=0;
+         $id = Auth::User()->id;
+         $ncustomer = Customer::all()->where('user_id',$id)->first();
+         $cid = $ncustomer->id;
+     
+              $orderte = DB::table('farmer_request_vendors')
+              ->join('farmers','farmers.id','=','farmer_request_vendors.farmer_id')
+              ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
+              ->join('products','products.id','=','farmer_request_vendors.product_id')
+              ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
+              ->select('customer_order_products.qty','customer_order_products.updated_at','farmer_request_vendors.customer_order_id',
+              'vendors.firstName','vendors.lastName','farmer_request_vendors.requeststatus','products.productName','products.unitPrice','products.*',
+              'customer_order_products.orderstatus')
+              ->where('customer_order_products.customer_id','=', $cid)
+              ->where('customer_order_products.orderstatus','=', "confirmed")
+              ->get();
+              
+              foreach($orderte as $ordert){
+                $da = $ordert->updated_at;
+                $date_arr= explode(" ", $da);
+                $tdate= $date_arr[0];
+                $ttime= $date_arr[1];
+                if($tdate =$ndate){
+                    $c4 =$c4+1;
+                }
+
+                if($ordert->requeststatus =="cancelled"){
+                    $c1 =$c1+1;
+                }else{
+                    $c2 =$c2+1;
+                }
+            }
+
+              $c3=$c1+$c2;
+              
 
          return view('customerdashboard.index',compact('vendor','customer',
-        'user','order'));
+        'user','order','orderte','c1','c2','c3','c4' ,'ndate',));
     }
 
     public function customerprofileview($id)
     {
         $customers = Customer::all()->where('user_id',$id);
-       // dd('customer');
-      // $customer = Customer::findOrFail($id);
-      //dd($customer);
-      // $customer = Customer::all()->where('role','customer');;
-     // $customer = DB::table('customers')->where('id',$id)->get();
          $user = User::find($id);
          //dd($user);
          $usersphone = UserPhone::find($id);
-        // dd($usersphone);
-        // $usersphone = UserPhone::all();
 
          return view('customerdashboard.profileview',compact('customers','user','usersphone'));
     }
@@ -147,20 +184,26 @@ class CustomerController extends Controller
 
       //  return redirect()->route('customerprofile',Auth::user()->id)->with('success','customer updated Successfully!');
       // return back()->with('error','Wrong Login Details');
-
-       $customer = Customer::find($id);
-        $customer->customerName = $request->input('customerName');;
-        $customer->customerAddressNo = $request->input('customerAddressNo');;
-        $customer->customerAddressStreet = $request->input('customerAddressStreet');;
+      
+      $cus = Customer::all()->where('user_id','=',$id)->first();
+        $cusid=$cus->id;
+       // dd($cusid);
+       $customer = Customer::find($cusid);
+       
+        $customer->customerName = $request->input('customerName');
+        $customer->customerAddressNo = $request->input('customerAddressNo');
+        $customer->customerAddressStreet = $request->input('customerAddressStreet');
         $customer->customerAddressCity = $request->input('customerAddressCity');
+        
             $customer->update();
             //dd($customer);
         $user = User::find($id);
         $user->email = $request->input('email');
         $user->update();
 
-        
-        $usersphone = UserPhone::find($id);
+        $pno = UserPhone::all()->where('user_id','=',$id)->first();
+        $pid=$pno->id;
+        $usersphone = UserPhone::find($pid);
         $usersphone->phone = $request->input('phone');
         $usersphone->update();   
 
@@ -208,7 +251,7 @@ class CustomerController extends Controller
         $image = $request->file('prophoto');
         $imageName =date('YmdHi').'.' . $image->getClientOriginalExtension();
         $image->move(public_path('customerImage'),$imageName);
-        $customer->image =$imageName ;
+        $customer->prophoto =$imageName ;
 
 
         $customer = new Customer([

@@ -146,8 +146,7 @@ class UserController extends Controller
             if(Auth::attempt($user_data))
                 {
                     if(Auth::user()->role =='admin'){
-                        return view('admindashboard.index',compact('customer','farmer',
-                    'vendor','product'));
+                        return redirect()->route('admindash');
                     }elseif(Auth::user()->role =='customer'){
                         return view('cusindex2',compact('order','customer','products'));
                     }elseif(Auth::user()->role =='farmer'){
