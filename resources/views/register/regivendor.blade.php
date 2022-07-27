@@ -44,40 +44,40 @@
                 <div class="preview">
                     <img id="file-ip-1-preview">
                 </div>
-                <label for="file-ip-1">Upload Image</label>
-                <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);" name="prophoto">
+                <label for="prophoto">Upload Image</label>
+                <input type="file" id="prophoto" accept="image/*" onchange="showPreview(event);" name="prophoto">
 
             </div>
         </div> 
        
 
         <div class="row mb-2">
-            <label for="fname" class="col-sm-2 col-form-label-sm">First Name:</label>
+            <label for="firstName" class="col-sm-2 col-form-label-sm">First Name:</label>
             <div class="col-sm-9">
-            <input type="text" class="form-control form-control-sm" id="fname" name="fname">
+            <input type="text" class="form-control form-control-sm" id="firstName" name="firstName">
             </div>
         </div>
 
         <div class="row mb-2">
-            <label for="lname" class="col-sm-2 col-form-label-sm">Last Name:</label>
+            <label for="lastName" class="col-sm-2 col-form-label-sm">Last Name:</label>
             <div class="col-sm-9">
-            <input type="text" class="form-control form-control-sm" id="lname" name="lname">
+            <input type="text" class="form-control form-control-sm" id="lastName" name="lastName">
             </div>
         </div>
 
         <div class="row mb-2">
             <label for="address" class="col-sm-2 col-form-label-sm">Address:</label>
             <div class="col-sm-9">
-            <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="street" id="address" name="street"></div>
-            <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="village" id="address" name="village"></div>
-            <input type="text" class="form-control form-control-sm" placeholder="City" id="address" name="city">
+            <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="No" id="addressNo" name="addressNo"></div>
+            <div class="mb-2"><input type="text" class="form-control form-control-sm" placeholder="Street" id="addressStreet" name="addressStreet"></div>
+            <input type="text" class="form-control form-control-sm" placeholder="City" id="addressCity" name="addressCity">
             </div>
         </div>
 
         <div class="row mb-2">
             <label for="phone" class="col-sm-2 col-form-label-sm">Phone:</label>
             <div class="col-sm-9">
-            <div class="mb-2"><input type="tel" class="form-control form-control-sm " patern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="phone" maxlength="10" placeholder="Mobile" name="phoneno"></div>
+            <div class="mb-2"><input type="tel" class="form-control form-control-sm " patern="[0-9]{3}-[0-9]{2}-[0-9]{3}" id="phone" maxlength="10" placeholder="Mobile" name="phone"></div>
             </div>
         </div>
 <!--
@@ -89,50 +89,50 @@
         </div>   -->
 
         <div class="row mb-2">
-            <label for="vtype" class="col-sm-2 col-form-label-sm">Vehicle Type:</label>
+            <label for="vehicleType" class="col-sm-2 col-form-label-sm">Vehicle Type:</label>
             <div class="col-sm-9">
-            <input type="text" class="form-control form-control-sm" id="vtype" name="vtype">
+            <input type="text" class="form-control form-control-sm" id="vehicleType" name="vehicleType">
             </div>
         </div>
 
         <div class="row mb-2">
-            <label for="vnumber" class="col-sm-2 col-form-label-sm">Vehicle No:</label>
+            <label for="vehicleNo" class="col-sm-2 col-form-label-sm">Vehicle No:</label>
             <div class="col-sm-9">
-            <input type="text" class="form-control form-control-sm" id="vnumber" name="vnumber">
+            <input type="text" class="form-control form-control-sm" id="vehicleNo" name="vehicleNo">
             </div>
         </div>
 
         <div class="row mb-2">
-            <label for="vphoto" class="col-sm-2 col-form-label-sm">Vehicle Photo:</label>
+            <label for="vehiclePhoto" class="col-sm-2 col-form-label-sm">Vehicle Photo:</label>
             <div class="col-sm-9">
-            <input class="form-control form-control-sm" id="vphoto" type="file" name="vphoto">
+            <input class="form-control form-control-sm" id="vehiclePhoto" type="file" name="vehiclePhoto">
             </div>
         </div>
 
         <div class="row mb-2">
             <label for="lphoto" class="col-sm-2 col-form-label-sm">Lisence Photo:</label>
             <div class="col-sm-9">
-            <input class="form-control form-control-sm" id="lphoto" type="file" name="lisence">
+            <input class="form-control form-control-sm" id="lisencePhoto" type="file" name="lisencePhoto">
             </div>
         </div>
    
         <div class="row mb-2">
-            <label for="mail" class="col-sm-2 col-form-label-sm">Email:</label>
+            <label for="email" class="col-sm-2 col-form-label-sm">Email:</label>
             <div class="col-sm-9">
-            <input type="email" class="form-control form-control-sm" id="mail" name="email">
+            <input type="email" class="form-control form-control-sm" id="email" name="email">
             </div>
         </div>
         <div class="row mb-2">
-            <label for="pword" class="col-sm-2 col-form-label-sm">Password:</label>
+            <label for="password" class="col-sm-2 col-form-label-sm">Password:</label>
             <div class="col-sm-9">
-            <input type="password" class="form-control form-control-sm" id="pword" name="password">
+            <input type="password" class="form-control form-control-sm" id="password" name="password">
             </div>
         </div>
 
         <div class="row mb-2">
-            <label for="confirmpword" class="col-sm-2 col-form-label-sm">Confirm Password:</label>
+            <label for="confirmpassword" class="col-sm-2 col-form-label-sm">Confirm Password:</label>
             <div class="col-sm-9">
-            <input type="password" class="form-control form-control-sm" id="confirmpword">
+            <input type="password" class="form-control form-control-sm" id="confirmpassword" name="confirmpassword">
             </div>
         </div>
         <br>

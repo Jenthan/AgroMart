@@ -1,7 +1,6 @@
 @extends('vendorDashboard.home')
 
 @section('main')
-
 <main>
     <div class="head-title">
 				<div class="left">

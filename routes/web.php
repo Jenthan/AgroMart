@@ -97,12 +97,22 @@ Route::post('/cusprosearch',[MainController::class,'cusproductsearch']);
 
     Route::get('/adminorders',[AdminController::class,'admindashorders']);
     Route::resource('admin',AdminController::class);
-    Route::get('/admindash',[AdminController::class,'index']);
-    Route::get('/admincustomerdisplay',[AdminController::class,'customerdisplay']);
+    Route::get('/admindash',[AdminController::class,'index'])->name('admindash');
+    Route::get('/admincustomerdisplay',[AdminController::class,'customerdisplay'])->name('admincustomer');
     Route::get('/adminproduct',[AdminController::class,'productdisplay']);
-    Route::get('/adminvender',[AdminController::class,'venderdisplay']);
-    Route::get('/adminfarmer',[AdminController::class,'farmerdisplay']);
-
+    Route::get('/adminvender',[AdminController::class,'venderdisplay'])->name('adminvendor');
+    Route::get('/adminfarmer',[AdminController::class,'farmerdisplay'])->name('adminfarmer');
+    Route::get('/adminfarmerprofile/{id}',[AdminController::class,'farmerProfiledisplay'])->name('farprofile');
+    Route::get('/back',[AdminController::class,'back'])->name('back_farmer');
+    Route::get('/deletefarmer/{id}',[AdminController::class,'deletefarmer'])->name('deletefarmer');
+    Route::get('/admincustomerprofile/{id}',[AdminController::class,'customerProfiledisplay'])->name('cusprofile');
+    Route::get('/backcus',[AdminController::class,'backcus'])->name('back_customer');
+    Route::get('/deletecustomer/{id}',[AdminController::class,'deletecustomer'])->name('deletecustomer');
+    Route::get('/adminvendorprofile/{id}',[AdminController::class,'vendorProfiledisplay'])->name('venprofile');
+    Route::get('/backven',[AdminController::class,'backven'])->name('back_vendor');
+    Route::get('/deletevendor/{id}',[AdminController::class,'deletevendor'])->name('deletevendor');
+    Route::get('/adprofile',[AdminController::class,'adminprofile'])->name('adprofile');
+    Route::post('/adprofile/{id}',[AdminController::class,'passwordresert'])->name('passwordset');
 
 
     // vendor routes starts
@@ -163,9 +173,13 @@ Route::get('farmer-vendor-display',[FarmerDashController::class,'vendor_view']);
 
 
 
-//customer
+//Customer
 Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
+
 Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
+Route::post('/searchdate',[OrderController::class,'searchdate']);
+
+
 
 
 Route::get('/customerlogin',[CustomerController::class,'index'])->name('customerlogin');
