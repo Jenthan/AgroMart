@@ -25,10 +25,16 @@
 					<span class="text">Download PDF</span>
 				</a>   -->
 			</div>
- <!--
+ 
 			<ul class="box-info">
 				<li>
-                    <form class="form-inline">
+					@if ($message = Session::get('success'))
+			           <div class="alert alert-success">
+				          <p>{{ $message }}</p>
+			          </div>
+                    @endif   
+                </li>
+                  <!--  <form class="form-inline">
                         <div class="form-group mb-1">
                             <label for="startdate" class="sr-only">startdate</label>
                             <input type="text" readonly class="form-control-plaintext" id="startdate" value="StartDate">
@@ -62,8 +68,8 @@
 						<h3>$2543</h3>
 						<p>Total Sales</p>
 					</span>
-				</li>  
-			</ul>   -->
+				</li>   -->
+			</ul>   
 
 
 			<div class="table-data">
@@ -77,54 +83,26 @@
                                 <th>No</th>
 								<th>FarmerName</th>
                                 <th>FarmerAddress</th>
-                                <th>PhoneNo</th>
                                 <th>FarmName</th>
-                                <th>FarmAddress</th>
-                                <th>GsCertificate</th>
 								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
+							@php
+							$i=1;
+							@endphp
+							@foreach($farmers as $farmer)
 							<tr>
+								<td>{{$i++}}</td>
+								<td>{{$farmer->firstName}} {{$farmer->lastName}}</td>
+								<td>{{$farmer->farmAddressNo}} {{ $farmer->farmAddressStreet}} {{$farmer->farmAddressCity}}</td>
+								<td>{{$farmer->farmName}}</td>
 								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
+									<a href="{{route('farprofile',$farmer->id)}}"><button class="btn btn-success">More..</button></a>
+									<a href="{{route('deletefarmer',$farmer->id)}}"><button class="btn btn-primary">Delete</button></a>
 								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">delete</span></td>
 							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status process">Process</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
+							@endforeach
 						</tbody>
 					</table>
 				</div>

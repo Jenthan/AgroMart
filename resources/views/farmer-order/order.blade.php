@@ -22,7 +22,7 @@
                     $i=1;
                 @endphp
 				<tbody>
-                   
+
                     @foreach($orders as $order)
                     <tr>
                         <td>{{$i++}}</td>
