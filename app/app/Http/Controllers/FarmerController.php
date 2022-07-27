@@ -29,6 +29,7 @@ class FarmerController extends Controller
 
     public function farmerregistrationview(){
         return view('register.regfarmer');
+        
     }
 
     public function farmerregistration(Request $request)
