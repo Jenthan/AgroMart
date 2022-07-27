@@ -251,7 +251,7 @@ class CustomerController extends Controller
         $image = $request->file('prophoto');
         $imageName =date('YmdHi').'.' . $image->getClientOriginalExtension();
         $image->move(public_path('customerImage'),$imageName);
-        $customer->image =$imageName ;
+        $customer->prophoto =$imageName ;
 
 
         $customer = new Customer([
