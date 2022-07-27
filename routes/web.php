@@ -184,12 +184,6 @@ Route::post('/searchdate',[OrderController::class,'searchdate']);
 
 
 
-
-//customer
-Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
-Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
-
-
 Route::get('/customerlogin',[CustomerController::class,'index'])->name('customerlogin');
 Route::get('/customerorder/{id}',[OrderController::class,'customerOrderindex'])->name('customerorder');
 Route::get('/customerprofile/{id}',[CustomerController::class,'customerprofileview'])->name('customerprofile');
