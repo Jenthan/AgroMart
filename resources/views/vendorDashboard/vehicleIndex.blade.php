@@ -71,11 +71,14 @@
                                 </td>    
                             </tr>
 							@endforeach	
+							
 						</tbody>
+						
 					</table>
+					
 				</div>
 				
 			</div>    
-
 		</main>
+		{{ $vehicles->Links()}}
 @endsection

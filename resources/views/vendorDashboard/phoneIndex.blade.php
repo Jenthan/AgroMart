@@ -114,4 +114,5 @@
 
 		</main>
 </html>
+{{ $phones->Links()}}
 @endsection
