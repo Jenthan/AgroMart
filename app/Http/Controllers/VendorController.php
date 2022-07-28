@@ -172,8 +172,8 @@ class VendorController extends Controller
     } 
     public function vehicleIndex(){
 
-        $vehicles = DB::table('vehicles')->where('user_id', Auth::user()->id)->get();
-        return view('vendorDashboard.vehicleIndex',compact( 'vehicles'));
+        $vehicles = Vehicle::where('user_id', Auth::user()->id)->latest()->paginate(5);
+        return view('vendorDashboard.vehicleIndex',compact( 'vehicles'))->with('1',(request()->input('page',1)-1)*5);
     }
     public function createVehicle(){
         
