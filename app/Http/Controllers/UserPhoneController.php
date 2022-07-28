@@ -21,8 +21,8 @@ class UserPhoneController extends Controller
      */
     public function index()
     {
-        $phones = DB::table('user_phones')->where('user_id', Auth::user()->id)->get();
-        return view('vendorDashboard.phoneIndex',compact('phones'));
+        $phones = UserPhone::where('user_id', Auth::user()->id)->latest()->paginate(5);
+        return view('vendorDashboard.phoneIndex',compact( 'phones'))->with('1',(request()->input('page',1)-1)*5);
     }
 
     /**
