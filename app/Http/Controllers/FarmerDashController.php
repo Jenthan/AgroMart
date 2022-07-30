@@ -9,6 +9,7 @@ use App\Models\Vendor;
 use App\Models\UserPhone;
 use App\Models\CustomerOrderProduct;
 use App\Models\Farmer;
+use App\Models\FarmerRequestVendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -59,11 +60,32 @@ class FarmerDashController extends Controller
         ->join('customers','customers.id','=','customer_order_products.customer_id')
         ->join('farmers','farmers.id','=','customer_order_products.farmer_id')
         ->join('products','products.id','=','customer_order_products.product_id')
-        ->select('customers.customerName','customers.customerAddressNo','customers.customerAddressStreet','products.productName','products.unitPrice','customerAddressCity','customer_order_products.qty as qty')
+        ->select('customers.customerName','customers.customerAddressNo','customers.customerAddressStreet',
+        'products.productName','products.unitPrice','customerAddressCity','customer_order_products.id as orderid',
+        'farmers.id as farmid','products.id as proid',
+        'customer_order_products.qty as qty')
         ->where('farmers.id',$fid->id)
         ->get();
         $vendors = Vendor::all();
         return view('farmer-order.order',compact('orders','vendors'));
+    }
+
+    public function vendor_req(Request $request)
+    {
+        $this->validate($request,[
+            'vendor_id' => 'required',
+            'order_id' => 'required',
+            'product_id' => 'required',
+            'farmer_id' => 'required',
+        ]);
+        $req = new FarmerRequestVendor([
+            'farmer_id' => $request->get('farmer_id'), 
+            'vendor_id' => $request->get('vendor_id'),
+            'product_id' => $request->get('product_id'),
+            'customer_order_id' => $request->get('order_id'),
+        ]);
+        $req->save();
+        return back()->with('success','Vendor request is successfully.!');
     }
 
     public function vendor_view()

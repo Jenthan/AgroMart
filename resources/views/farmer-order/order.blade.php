@@ -39,16 +39,23 @@
                             {{$am}}
                         </td>
                         <td>
-                            <div class="form-group row">
-                                <div class="col-sm-10">
-                                    <select name="vendor_id" class="form-control">
-                                        <option value="">Select Vendor</option>
-                                        @foreach($vendors as $vendor)
-                                            <option value="">{{$vendor->firstName}}</option>
-                                        @endforeach
-                                    </select>
+                            <form method="post" action="{{url('farmer-req-vendor')}}">
+                                @csrf
+                                <div class="form-group row">
+                                    <div class="col-sm-10">
+                                        <select name="vendor_id" class="form-control">
+                                            <option value="">Select Vendor</option>
+                                            @foreach($vendors as $vendor)
+                                                <option value="{{$vendor->id}}">{{$vendor->firstName}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <input type="hidden" name="order_id" value="{{$order->orderid}}">
+                                    <input type="hidden" name="farmer_id" value="{{$order->farmid}}">
+                                    <input type="hidden" name="product_id" value="{{$order->proid}}">
+                                    <button type="submit" class="status completed">REQ</button>
                                 </div>
-                            </div>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
