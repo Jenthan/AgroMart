@@ -150,7 +150,7 @@ class UserController extends Controller
                     }elseif(Auth::user()->role =='customer'){
                         return view('cusindex2',compact('order','customer','products'));
                     }elseif(Auth::user()->role =='farmer'){
-                        return view('farmer-dash.index',compact('farmer'));
+                        return redirect('/farmer-base');
                     }elseif(Auth::user()->role =='vender'){
                         return redirect('/vendorDashboard');
                     }

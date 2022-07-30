@@ -39,16 +39,7 @@
                             {{$am}}
                         </td>
                         <td>
-                            <div class="form-group row">
-                                <div class="col-sm-10">
-                                    <select name="vendor_id" class="form-control">
-                                        <option value="">Select Vendor</option>
-                                        @foreach($vendors as $vendor)
-                                            <option value="">{{$vendor->firstName}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+                            <a href="farmer-request-view/{{$order->id}}" class="">Select</a>
                         </td>
                     </tr>
                     @endforeach

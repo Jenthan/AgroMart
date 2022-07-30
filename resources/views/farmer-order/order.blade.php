@@ -19,13 +19,16 @@
 					</tr>
 				</thead>
                 @php
-                    $i=1;
+                    $i=0;
                 @endphp
 				<tbody>
 
                     @foreach($orders as $order)
                     <tr>
-                        <td>{{$i++}}</td>
+                        <td>
+                            @php $i++ @endphp
+                            {{$i}}
+                        </td>
                         <td>{{$order->customerName}}</td>
                         <td>{{$order->customerAddressNo}}, {{$order->customerAddressStreet}}, {{$order->customerAddressCity}}</td>
                         <td>{{$order->productName}}</td>
@@ -39,16 +42,20 @@
                             {{$am}}
                         </td>
                         <td>
-                            <div class="form-group row">
-                                <div class="col-sm-10">
-                                    <select name="vendor_id" class="form-control">
-                                        <option value="">Select Vendor</option>
-                                        @foreach($vendors as $vendor)
-                                            <option value="">{{$vendor->firstName}}</option>
-                                        @endforeach
-                                    </select>
+                            <form method="post" action="{{url('farmer-request-ven',$order->id)}}">
+                                @csrf
+                                <div class="form-group row">
+                                    <div class="col-sm-10">
+                                        <select name="vendor_id" class="form-control">
+                                            <option value="">Select Vendor</option>
+                                            @foreach($vendors as $vendor)
+                                                <option value="{{$vendor->id}}">{{$vendor->firstName}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="status completed">REQ</button>
                                 </div>
-                            </div>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
