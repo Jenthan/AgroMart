@@ -40,7 +40,7 @@ class CustomerController extends Controller
          $order = CustomerOrderProduct::all();
          $cid;
          $c1 =0;$c2=0;
-         $c3; $c4=0;
+         $c3=0; $c4=0;
          $id = Auth::User()->id;
          $ncustomer = Customer::all()->where('user_id',$id)->first();
          $cid = $ncustomer->id;
@@ -56,25 +56,38 @@ class CustomerController extends Controller
               ->where('customer_order_products.customer_id','=', $cid)
               ->where('customer_order_products.orderstatus','=', "confirmed")
               ->get();
+
+              $order = DB::table('customer_order_products')
+              ->join('products','products.id','=','customer_order_products.product_id')
+              ->join('customers','customers.id','=','customer_order_products.customer_id')
+              ->join('farmers','farmers.id','=','customer_order_products.farmer_id')
+              ->select('products.productName','customer_order_products.qty','customer_order_products.id',
+              'farmers.firstName','farmers.lastName','products.unitPrice','farmers.farmAddressCity',
+              'customer_order_products.orderstatus','customer_order_products.updated_at')
+              ->where('customer_order_products.customer_id','=', $cid)
+              ->where('customer_order_products.orderstatus','=', "confirmed")
+              ->get();
               
               foreach($orderte as $ordert){
-                $da = $ordert->updated_at;
-                $date_arr= explode(" ", $da);
-                $tdate= $date_arr[0];
-                $ttime= $date_arr[1];
-                if($tdate =$ndate){
-                    $c4 =$c4+1;
-                }
-
                 if($ordert->requeststatus =="cancelled"){
                     $c1 =$c1+1;
                 }else{
                     $c2 =$c2+1;
                 }
             }
+           // dd($order);
+            foreach($order as $or){
+                
+                $c3 = $c3+1;
+                $da = $or->updated_at;
+                $date_arr= explode(" ", $da);
+                $tdate= $date_arr[0];
+                $ttime= $date_arr[1];
 
-              $c3=$c1+$c2;
-              
+                if($tdate =$ndate){
+                    $c4 =$c4+1;
+                }
+            }              
 
          return view('customerdashboard.index',compact('vendor','customer',
         'user','order','orderte','c1','c2','c3','c4' ,'ndate',));
