@@ -42,20 +42,7 @@
                             {{$am}}
                         </td>
                         <td>
-                            <form method="post" action="{{url('farmer-request-ven',$order->id)}}">
-                                @csrf
-                                <div class="form-group row">
-                                    <div class="col-sm-10">
-                                        <select name="vendor_id" class="form-control">
-                                            <option value="">Select Vendor</option>
-                                            @foreach($vendors as $vendor)
-                                                <option value="{{$vendor->id}}">{{$vendor->firstName}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="status completed">REQ</button>
-                                </div>
-                            </form>
+                            <a href="{{url('farmerselect')}}" class="status completed">Select</a>
                         </td>
                     </tr>
                     @endforeach
