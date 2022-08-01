@@ -62,7 +62,7 @@ class FarmerDashController extends Controller
         ->join('products','products.id','=','customer_order_products.product_id')
         ->select('customers.customerName','customers.customerAddressNo','customers.customerAddressStreet',
         'products.productName','products.unitPrice','customerAddressCity','customer_order_products.id as orderid',
-        'farmers.id as farmid','products.id as proid',
+        'farmers.id as farmid','products.id as proid','customer_order_products.orderstatus',
         'customer_order_products.qty as qty')
         ->where('farmers.id',$fid->id)
         ->get();

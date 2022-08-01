@@ -24,8 +24,9 @@
 				<tbody>
 
                     @foreach($orders as $order)
+                    @if($order->orderstatus == "confirmed")
                     <tr>
-                        <td>{{$i++}}</td>
+                        <th>{{$i++}}</th>
                         <td>{{$order->customerName}}</td>
                         <td>{{$order->customerAddressNo}}, {{$order->customerAddressStreet}}, {{$order->customerAddressCity}}</td>
                         <td>{{$order->productName}}</td>
@@ -58,6 +59,24 @@
                             </form>
                         </td>
                     </tr>
+                    @elseif($order->orderstatus == "notconfirmed")
+                    <tr>
+                        <td>{{$i++}}</td>
+                        <td>{{$order->customerName}}</td>
+                        <td>{{$order->customerAddressNo}}, {{$order->customerAddressStreet}}, {{$order->customerAddressCity}}</td>
+                        <td>{{$order->productName}}</td>
+                        <td>{{$order->qty}}</td>
+                        <td>
+                            @php
+                                $up = $order->unitPrice;
+                                $t = $order->qty;
+                                $am = $up * $t;
+                            @endphp 
+                            {{$am}}
+                        </td>
+                        <td>Wait for Order</td>
+                    </tr>
+                    @endif
                     @endforeach
                 </tbody>
             </table>
