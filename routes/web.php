@@ -166,8 +166,8 @@ Route::post('farmer-req-vendor',[FarmerDashController::class,'vendor_req']);
 
 //Farmer view Vendor details
 Route::get('farmer-vendor-display',[FarmerDashController::class,'vendor_view']);
-
-
+//Farmer History for translation of vendor
+Route::get('farmer-hist-display',[FarmerDashController::class,'histo']);
 
 
 

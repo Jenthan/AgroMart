@@ -74,7 +74,7 @@
                             @endphp 
                             {{$am}}
                         </td>
-                        <td>Wait for Order</td>
+                        <td>Wait for Confirmation</td>
                     </tr>
                     @endif
                     @endforeach

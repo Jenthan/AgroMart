@@ -98,6 +98,11 @@ class FarmerDashController extends Controller
         return view('farmer-vendor.vendor',compact('vendors'));
     }
 
+    public function histo()
+    {
+        return view('farmer-history.history');
+    }
+
     /**
      * Display a listing of the resource.
      *
