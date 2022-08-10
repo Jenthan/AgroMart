@@ -6,6 +6,11 @@
             <div class="head">
                 <h3>Orders from Customers Details </h3>
             </div>
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
             <table>
 				<thead>
 					<tr>

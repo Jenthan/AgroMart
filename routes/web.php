@@ -153,7 +153,9 @@ Route::get('/create-product',[FarmerMakeProductController::class,'create']);
 Route::post('/store-product',[FarmerMakeProductController::class,'store']);
 Route::get('/edit-product/{product}',[FarmerMakeProductController::class,'edit']);
 Route::post('/update-product/{product}',[FarmerMakeProductController::class,'update']);
-Route::get('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
+Route::get('/show-product/{product}',[FarmerMakeProductController::class,'show']);
+Route::get('/deleteview-product/{product}',[FarmerMakeProductController::class,'delete']);
+Route::post('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
 
 // Farmer Password Change
 Route::get('/farmer-password',[FarmerDashController::class,'password']);
