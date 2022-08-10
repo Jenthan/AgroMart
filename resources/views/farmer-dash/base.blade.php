@@ -74,8 +74,8 @@
 					<span class="text">Vendors</span>
 				</a>
 			</li>
-			<li>
-				<a href="#">
+			<li class="{{ (request()->is('farmer-hist-display')) ? 'active' : '' }}">
+				<a href="{{url('farmer-hist-display')}}">
 					<i class='bx bxs-doughnut-chart' ></i>
 					<span class="text">History</span>
 				</a>
@@ -86,21 +86,10 @@
 					<span class="text">Change Password</span>
 				</a>
 			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-message-dots' ></i>
-					<span class="text">Message</span>
-				</a>
-			</li>
 			
 		</ul>
 		<ul class="side-menu">
-			<li>
-				<a href="#">
-					<i class='bx bxs-cog' ></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
+			
 			<li>
 				<a href="{{url('logout')}}" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
