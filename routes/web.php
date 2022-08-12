@@ -153,7 +153,9 @@ Route::get('/create-product',[FarmerMakeProductController::class,'create']);
 Route::post('/store-product',[FarmerMakeProductController::class,'store']);
 Route::get('/edit-product/{product}',[FarmerMakeProductController::class,'edit']);
 Route::post('/update-product/{product}',[FarmerMakeProductController::class,'update']);
-Route::get('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
+Route::get('/show-product/{product}',[FarmerMakeProductController::class,'show']);
+Route::get('/deleteview-product/{product}',[FarmerMakeProductController::class,'delete']);
+Route::post('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
 
 // Farmer Password Change
 Route::get('/farmer-password',[FarmerDashController::class,'password']);
@@ -162,12 +164,12 @@ Route::post('/farmer-changepassword/{user}',[FarmerDashController::class,'change
 Route::get('farmer-profile-display',[FarmerDashController::class,'profile']);
 // Farmer Order Details view
 Route::get('farmer-order-display',[FarmerDashController::class,'order_view']);
-
+Route::post('farmer-req-vendor',[FarmerDashController::class,'vendor_req']);
 
 //Farmer view Vendor details
 Route::get('farmer-vendor-display',[FarmerDashController::class,'vendor_view']);
-
-
+//Farmer History for translation of vendor
+Route::get('farmer-hist-display',[FarmerDashController::class,'histo']);
 
 
 

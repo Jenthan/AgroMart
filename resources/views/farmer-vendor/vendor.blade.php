@@ -20,7 +20,7 @@
                     @foreach($vendors as $vendor)
                         <tr>
                             <td>
-                                <img src="{{url('VendorImage/'.$vendor->prophoto)}}" >
+                                <img src="{{url('public/vendorImages/'.$vendor->prophoto)}}" >
                                 
                                 <p>{{$vendor->firstName}}</p>
                             </td>
