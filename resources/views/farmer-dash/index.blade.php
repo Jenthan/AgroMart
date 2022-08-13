@@ -4,7 +4,7 @@
 <main>
     <div class="head-title">
 				<div class="left">
-					<h1>Dashboard {{Auth::User()->id}}</h1>
+					<h1>Dashboard</h1>
 					<ul class="breadcrumb">
 						<li>
 							<a href="#">Dashboard</a>
@@ -15,17 +15,12 @@
 						</li>
 					</ul>
 				</div>
-				<a href="#" class="btn-download">
-					<i class='bx bxs-cloud-download' ></i>
-					<span class="text">Download PDF</span>
-				</a>
 			</div>
-			hi i am farmer
 			<ul class="box-info">
 				<li>
 					<i class='bx bxs-calendar-check' ></i>
 					<span class="text">
-						<h3>1020</h3>
+						<h3>0</h3>
 						<p>New Order</p>
 					</span>
 				</li>
@@ -33,7 +28,14 @@
 					<i class='bx bxs-group' ></i>
 					<span class="text">
 						<h3>2834</h3>
-						<p>Visitors</p>
+						<p>Customers</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-group' ></i>
+					<span class="text">
+						<h3>2834</h3>
+						<p>Vendors</p>
 					</span>
 				</li>
 				<li>
@@ -50,8 +52,7 @@
 				<div class="order">
 					<div class="head">
 						<h3>Recent Orders</h3>
-						<i class='bx bx-search' ></i>
-						<i class='bx bx-filter' ></i>
+						
 					</div>
 					<table>
 						<thead>
@@ -107,9 +108,7 @@
 				</div>
 				<div class="todo">
 					<div class="head">
-						<h3>Todos</h3>
-						<i class='bx bx-plus' ></i>
-						<i class='bx bx-filter' ></i>
+						<h3>New Vendors</h3>
 					</div>
 					<ul class="todo-list">
 						<li class="completed">
