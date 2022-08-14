@@ -78,13 +78,13 @@ class FarmerDashController extends Controller
             'product_id' => 'required',
             'farmer_id' => 'required',
         ]);
-        /*$req = new FarmerRequestVendor([
+        $req = new FarmerRequestVendor([
             'farmer_id' => $request->get('farmer_id'), 
             'vendor_id' => $request->get('vendor_id'),
             'product_id' => $request->get('product_id'),
             'customer_order_id' => $request->get('order_id'),
         ]);
-        $req->save();*/
+        $req->save();
         $id=$request->get('order_id');
         $cus_order = CustomerOrderProduct::find($id)->update(['orderstatus' => 'requested']);
         //$cus_order = CustomerOrderProduct::where('id','=',$request->get('order_id'))->update(['orderstatus' => 'req']);
