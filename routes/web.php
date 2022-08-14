@@ -162,6 +162,7 @@ Route::get('/farmer-password',[FarmerDashController::class,'password']);
 Route::post('/farmer-changepassword/{user}',[FarmerDashController::class,'change_password']);
 // Farmer Profile page 
 Route::get('farmer-profile-display',[FarmerDashController::class,'profile']);
+Route::post('farmer-profile-update',[FarmerDashController::class,'profile_update']);
 // Farmer Order Details view
 Route::get('farmer-order-display',[FarmerDashController::class,'order_view']);
 Route::post('farmer-req-vendor',[FarmerDashController::class,'vendor_req']);

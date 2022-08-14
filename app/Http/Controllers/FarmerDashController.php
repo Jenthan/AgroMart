@@ -49,9 +49,32 @@ class FarmerDashController extends Controller
         $userphone=UserPhone::where('user_id',Auth::User()->id)->first();
         return view('farmer-profile.profile',compact('farmer','userphone'));
     }
-    public function profile_update(Request $request,$id)
+    public function profile_update(Request $request)
     {
-
+        $this->validate($request, [
+            'fname'=> 'required',
+            'lname' => 'required',
+            'no' => 'required',
+            'street' => 'required',
+            'city' => 'required',
+            'farmname' => 'required',
+            'phoneno' => 'required',
+            'email' => 'required|email',
+            'gsphoto' => 'required',
+            'password' => 'required',
+        ]);
+        $id = Auth::User()->id;
+        $user = User::where('id','=',$id)->first();
+        $user -> update([
+            'email' => $request->get('email'),
+        ]);
+        $farmer = Farmer::where('user_id','=',$user->id);
+        $farmer -> update([
+            'firstName' => $request->get('fname'),
+            'lastName' => $request->get('lname'),
+            'farmName' => $request->get('farmname'),
+        ]);
+        return redirect('farmer-profile-display')->with('success','Profile updated successfully.!');
     }
     public function order_view()
     {
