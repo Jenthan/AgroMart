@@ -52,7 +52,7 @@ class FarmerDashController extends Controller
     }
     public function profile_update(Request $request,User $user)
     {
-        $this->validate($request, [
+        $validate = Validator::make($request->all(),[
             'fname'=> 'required',
             'lname' => 'required',
             'no' => 'required',
@@ -62,39 +62,51 @@ class FarmerDashController extends Controller
             'phoneno' => 'required',
             'email' => 'required|email',
         ]);
-        
-        $user->email = $request->get('email');
-        $user->update();
-        
-        $farmer = Farmer::where('user_id','=',$user->id)->first();
-        $farmer -> update([
-            'firstName' => $request->get('fname'),
-            'lastName' => $request->get('lname'),
-            'farmName' => $request->get('farmname'),
-            'farmAddressNo' => $request->get('no'),
-            'farmAddressStreet' => $request->get('street'),
-            'farmAddressCity' => $request->get('city'),
-        ]);
-        $mobile = UserPhone::where('user_id',$user->id)->first();
-        $mobile->phone = $request->get('phoneno');
-        $mobile->update();
-
-        if($request->file('prophoto')){
-            $file= $request->file('prophoto');
-            $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('FarmerImage'), $filename);
-            $farmer->prophoto = $filename;
-            $farmer->update();
+        if($user->email != $request->get('email')){
+            $validate_email = Validator::make($request->all(),[
+                'email' => 'required|email|unique:users',
+            ]);
+            if($validate_email->fails()){
+                return back()->with('error','Your Email account already used by Someone...');
+            }
         }
-        if($request->file('gsphoto')){
-            $file= $request->file('gsphoto');
-            $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('GsImage'), $filename);
-            $farmer->gsCertificate = $filename;
-            $farmer->update();
+        if($validate->fails()){
+            return back()->with('error','Invalid Updated Details...');
         }
+        else{
+            $user->email = $request->get('email');
+            $user->update();
+            
+            $farmer = Farmer::where('user_id','=',$user->id)->first();
+            $farmer -> update([
+                'firstName' => $request->get('fname'),
+                'lastName' => $request->get('lname'),
+                'farmName' => $request->get('farmname'),
+                'farmAddressNo' => $request->get('no'),
+                'farmAddressStreet' => $request->get('street'),
+                'farmAddressCity' => $request->get('city'),
+            ]);
+            $mobile = UserPhone::where('user_id',$user->id)->first();
+            $mobile->phone = $request->get('phoneno');
+            $mobile->update();
 
-        return redirect('farmer-profile-display')->with('success','Profile updated successfully.!');
+            if($request->file('prophoto')){
+                $file= $request->file('prophoto');
+                $filename= date('YmdHi').$file->getClientOriginalName();
+                $file-> move(public_path('FarmerImage'), $filename);
+                $farmer->prophoto = $filename;
+                $farmer->update();
+            }
+            if($request->file('gsphoto')){
+                $file= $request->file('gsphoto');
+                $filename= date('YmdHi').$file->getClientOriginalName();
+                $file-> move(public_path('GsImage'), $filename);
+                $farmer->gsCertificate = $filename;
+                $farmer->update();
+            }
+
+            return redirect('farmer-profile-display')->with('success','Profile updated successfully.!');
+        }
     }
     public function order_view()
     {

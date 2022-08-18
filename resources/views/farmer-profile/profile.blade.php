@@ -7,7 +7,12 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-
+        @if ($message = Session::get('error'))
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <strong>{{ $message }}</strong>
+            </div>
+        @endif
         <form method="post" action="{{url('farmer-profile-update',$user->id)}}" enctype="multipart/form-data">
             @csrf
             <div class="row">
@@ -74,7 +79,7 @@
                                     <!-- Form Group (phone number)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputPhone">Phone number</label>
-                                        <input class="form-control" name="phoneno" type="tel" placeholder="Enter your phone number" value="{{$userphone->phone}}">
+                                        <input class="form-control" name="phoneno" type="number" placeholder="Enter your phone number" value="{{$userphone->phone}}">
                                     </div>
                                 </div>
                                 <!-- Form Group (email address)-->
