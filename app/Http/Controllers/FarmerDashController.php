@@ -45,11 +45,12 @@ class FarmerDashController extends Controller
     }
     public function profile()
     {
+        $user = User::where('id',Auth::User()->id)->first();
         $farmer=Farmer::where('user_id',Auth::User()->id)->first();
         $userphone=UserPhone::where('user_id',Auth::User()->id)->first();
-        return view('farmer-profile.profile',compact('farmer','userphone'));
+        return view('farmer-profile.profile',compact('user','farmer','userphone'));
     }
-    public function profile_update(Request $request)
+    public function profile_update(Request $request,User $user)
     {
         $this->validate($request, [
             'fname'=> 'required',
@@ -60,20 +61,39 @@ class FarmerDashController extends Controller
             'farmname' => 'required',
             'phoneno' => 'required',
             'email' => 'required|email',
-            'gsphoto' => 'required',
-            'password' => 'required',
         ]);
-        $id = Auth::User()->id;
-        $user = User::where('id','=',$id)->first();
-        $user -> update([
-            'email' => $request->get('email'),
-        ]);
-        $farmer = Farmer::where('user_id','=',$user->id);
+        
+        $user->email = $request->get('email');
+        $user->update();
+        
+        $farmer = Farmer::where('user_id','=',$user->id)->first();
         $farmer -> update([
             'firstName' => $request->get('fname'),
             'lastName' => $request->get('lname'),
             'farmName' => $request->get('farmname'),
+            'farmAddressNo' => $request->get('no'),
+            'farmAddressStreet' => $request->get('street'),
+            'farmAddressCity' => $request->get('city'),
         ]);
+        $mobile = UserPhone::where('user_id',$user->id)->first();
+        $mobile->phone = $request->get('phoneno');
+        $mobile->update();
+
+        if($request->file('prophoto')){
+            $file= $request->file('prophoto');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('FarmerImage'), $filename);
+            $farmer->prophoto = $filename;
+            $farmer->update();
+        }
+        if($request->file('gsphoto')){
+            $file= $request->file('gsphoto');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('GsImage'), $filename);
+            $farmer->gsCertificate = $filename;
+            $farmer->update();
+        }
+
         return redirect('farmer-profile-display')->with('success','Profile updated successfully.!');
     }
     public function order_view()

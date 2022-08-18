@@ -1,18 +1,14 @@
 @extends('farmer-dash/base')
 @section('main')
 <main>
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
     <div class="container-x px-4 mt-4">
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{{ $message }}</p>
             </div>
         @endif
-        <form method="post" action="{{url('farmer-profile-update')}}" enctype="multipart/form-data">
+
+        <form method="post" action="{{url('farmer-profile-update',$user->id)}}" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-xl-4">
@@ -73,7 +69,7 @@
                                     <!-- Form Group (Email Address-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                        <input class="form-control" name="email" type="email" placeholder="Enter your email address" value="{{Auth::User()->email}}">
+                                        <input class="form-control" name="email" type="email" placeholder="Enter your email address" value="{{$user->email}}">
                                     </div>
                                     <!-- Form Group (phone number)-->
                                     <div class="col-md-6">
@@ -90,7 +86,7 @@
                                 </div>
                                
                                 <!-- Save changes button-->
-                                <button class="btn btn-primary" type="submit">Save changes</button>
+                                <button type="submit" class="btn btn-primary" >Save changes</button>
                             
                         </div>
                     </div>

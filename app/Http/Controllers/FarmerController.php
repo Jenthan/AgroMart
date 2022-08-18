@@ -25,11 +25,12 @@ class FarmerController extends Controller
      */
     public function index()
     {
-        $order_count=CustomerOrderProduct::where('orderstatus','=','confirmed')->count();
+        $fid = Farmer::where('user_id',Auth::User()->id)->first();
+
+        $order_count=CustomerOrderProduct::where('orderstatus','=','confirmed')->where('farmer_id',$fid->id)->count();
         $cus_count=Customer::all()->count();
         $vendor_count=Vendor::all()->count();
 
-        $fid = Farmer::where('user_id',Auth::User()->id)->first();
         $recents = DB::table('customer_order_products')
         ->join('customers','customers.id','=','customer_order_products.customer_id')
         ->join('farmers','farmers.id','=','customer_order_products.farmer_id')
