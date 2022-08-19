@@ -10,9 +10,7 @@ class DeliverProduct extends Model
     use HasFactory;
     protected $table = "deliver_products";
     protected $fillable =[
-        'customer_id',
-        'product_id',
-        'vendor_id',
+        'farmer_request_vendors_id',
         'deliverstatus',
     ];
 
