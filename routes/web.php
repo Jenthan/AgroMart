@@ -49,6 +49,7 @@ Route::get('/searchVeg',[MainController::class,'vegDisplay']);
 Route::get('/searchfruit',[MainController::class,'fruitDisplay']);
 Route::get('/searchmilk',[MainController::class,'milkDisplay']);
 Route::get('/leastveg',[MainController::class,'leastvegDisplay']);
+Route::get('/leastfruit',[MainController::class,'leastfruitDisplay']);
 Route::get('/cuslogout',[MainController::class,'logout']);
 Route::post('/cusprosearch',[MainController::class,'cusproductsearch']);
 

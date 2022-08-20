@@ -85,7 +85,7 @@
                 <div class="content">
                 <h3>Least Unit Price</h3>
                     <p>Fruits</p>
-                    <a href="#" class="btnno">check out</a>
+                    <a href="{{'/leastfruit'}}" class="btnno">check out</a>
                 </div>
             </div>
         </section>

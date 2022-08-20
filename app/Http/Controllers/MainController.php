@@ -107,9 +107,18 @@ class MainController extends Controller
     }
 
     public function leastvegDisplay(){
-        
+        //code
+        //$products=DB::table('products')->where->('productType','=')->orderBy('unitPrice', 'asc')->get();
+        $products=Product::all()->where('productType','=','vegetable')->orderBy('unitPrice', 'asc')->get();
         return view('product.index',compact('products'));
     }
+
+    public function leastfruitDisplay(){
+        //code
+        $products=Product::all()->where('productType','=','fruit')->orderBy('unitPrice', 'asc')->get();
+        return view('product.index',compact('products'));
+    }
+
     public function logout(){
         Auth::logout();
         return redirect(url('/'));
