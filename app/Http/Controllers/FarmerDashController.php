@@ -9,6 +9,7 @@ use App\Models\Vendor;
 use App\Models\UserPhone;
 use App\Models\CustomerOrderProduct;
 use App\Models\Farmer;
+use App\Models\FarmerRequestVendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
