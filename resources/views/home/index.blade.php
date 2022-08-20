@@ -76,7 +76,7 @@
                 <div class="content">
                     <h3>Least Unit Price</h3>
                     <p>Vegitables</p>
-                    <a href="#" class="btnno">check out</a>
+                    <a href="{{url('/leastveg')}}" class="btnno">check out</a>
                 </div>
             </div>
 
