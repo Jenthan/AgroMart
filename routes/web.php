@@ -117,9 +117,9 @@ Route::post('/cusprosearch',[MainController::class,'cusproductsearch']);
 
     // vendor routes starts
     Route::get('/vendorLogout',[VendorController::class,'logout']);
-    Route::get('/vendorDashboard',[VendorController::class,'vendorDashboard']);
+    Route::get('/vendorDashboard',[VendorController::class,'vendorDashboard'])->name('vendorDashboard');
     Route::get('/vendorOrders',[VendorController::class,'orderDetails']);
-    Route::get('/venderDeliveryDetails',[VendorController::class,'venderDeliveryDetails']);
+    Route::get('/venderDeliveryDetails',[VendorController::class,'venderDeliveryDetails'])->name('venderDeliveryDetails');
     Route::get('/cancelledOrders',[VendorController::class,'cancelledOrders']);
     Route::get('/cancelledDeliverStatus/{id}',[VendorController::class,'cancelledDeliverStatus']);
     Route::get('/acceptDeliverStatus/{id}',[VendorController::class,'acceptDeliverStatus']);
@@ -132,6 +132,11 @@ Route::post('/cusprosearch',[MainController::class,'cusproductsearch']);
     Route::get('/createVehicle',[VendorController::class,'createVehicle']);
     Route::post('/storeVehicle',[VendorController::class,'storeVehicle']);
     Route::delete('/vehicleDelete/{id}',[VendorController::class,'vehicleDelete']);
+    Route::get('/reqaccepted/{id}',[VendorController::class,'requestaccepted']);
+    Route::get('/reqrejected/{id}',[VendorController::class,'requestrejected']);
+    Route::get('/requestpending/{id}',[VendorController::class,'reqpending']);
+    Route::get('/requestdelivered/{id}',[VendorController::class,'reqdelivered']);
+    Route::get('/deliveredOrders',[VendorController::class,'venderDeliveredOrderDetails']);
 
 
 
