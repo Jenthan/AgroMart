@@ -15,14 +15,9 @@ class CreateDeliverProductsTable extends Migration
     {
         Schema::create('deliver_products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');					
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
-			$table->unsignedBigInteger('product_id');					
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-			$table->unsignedBigInteger('vendor_id');					
-            $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');  
-            $table->integer('orderQuantity');
-            $table->enum('deliverstatus',['delivered','processing','pending','cancelled'])->nullable();  
+            $table->unsignedBigInteger('farmer_request_vendors_id');					
+            $table->foreign('farmer_request_vendors_id')->references('id')->on('farmer_request_vendors')->onDelete('cascade');
+            $table->enum('deliverstatus',['delivered','processing','pending'])->nullable();  
             $table->timestamps();
         });
     }

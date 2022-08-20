@@ -33,6 +33,7 @@ class CustomerMakeOrderController extends Controller
     }
 
     public function addtocardOrder(Request $request){
+        /*
         $this->validate($request, [
             'quantity'=> 'required',
             
@@ -65,6 +66,32 @@ class CustomerMakeOrderController extends Controller
         $temporder->save();
         
        return redirect()->back();
+       */
+        $this->validate($request, [
+            'quantity'=> 'required',
+            'pid' => 'required',
+        ]);
+        $cus_id = Auth::User()->id;
+        $ncustomer = Customer::where('user_id',$cus_id)->first();
+        $cid = $ncustomer->id;
+
+        $pid = $request->get('pid');
+        $p = Product::where('id',$request->get('pid'))->first();
+        $fid = $p->farmer_id;
+        
+        // dd($fid );
+        //dd($request->pid);
+        $torderstatus = "notconfirmed";
+        $temporder = new CustomerOrderProduct([
+            'product_id' => $request->get('pid'),
+            'customer_id' => $cid,
+            'farmer_id'=>$fid,
+            'orderstatus'=>$torderstatus,
+            'qty' => $request->get('quantity'),    
+        ]);
+
+        $temporder->save();
+        return redirect()->back()->with('success','Your order is successfully!');
     }
 
     public function addtocarddisplay(){

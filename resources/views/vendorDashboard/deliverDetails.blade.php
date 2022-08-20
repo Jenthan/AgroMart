@@ -73,8 +73,11 @@
                                 <th>Product Name</th>
 								<th>Farmer Name</th>
                                 <th>quantity</th>
-								<th>Order Date</th>
+								<th>Order  Date</th>
+								<th>Order Accepted Date</th>
 								<th>Order Address </th>
+								<th>Order Status</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -82,23 +85,66 @@
 							$i=0;
 							@endphp
 							@foreach($orders as $order)
-								@if($order->user_id == Auth::user()->id && $order->deliverstatus == 'processing')
+							@if($order->deliverstatus != "delivered")
+								
 									<tr>
 										<td>{{++$i}}</td>
-										<td>{{$order->customerName}}</td>
-										<td>{{$order->productName}}</td>
+										
+										@foreach($cusorderproduct as $cusorp)
+											@if($order->cusorderid == $cusorp->id)
+												@foreach($customers as $customer)
+													@if($cusorp->customer_id == $customer->id)
+												         <td>{{$customer->customerName}}</td>
+													@endif
+												@endforeach
+											@endif
+										@endforeach
+
+										@foreach($products as $product)
+											@if($order->productid == $product->id)
+										<td>{{$product->productName}}</td>
+											@endif
+										@endforeach
+
+										@foreach($farmers as $farmer)
+											@if($order->farmerid == $farmer->id)
+										<td>{{$farmer->firstName}}{{$farmer->lastName}}</td>
+											@endif
+										@endforeach
+
+										@foreach($cusorderproduct as $cusorp)
+											@if($order->cusorderid == $cusorp->id)
+										<td>{{$cusorp->qty}}</td>
+										<td>{{$cusorp->updated_at}}</td>
+											@endif
+										@endforeach
+
+										<td>{{$order->frvupdated_at}}</td>
+
+										@foreach($cusorderproduct as $cusorp)
+											@if($order->cusorderid == $cusorp->id)
+												@foreach($customers as $customer)
+													@if($cusorp->customer_id == $customer->id)
+												         <td>{{$customer->customerAddressNo}},
+															{{$customer->customerAddressStreet}},{{$customer->customerAddressCity}}</td>
+													@endif
+												@endforeach
+											@endif
+										@endforeach
+
+										@if($order->deliverstatus == "processing")
+										<td>Processing</td>
 										<td>
-											@foreach($farmers as $farmer)
-												@if($order->farmer_id == $farmer->id)
-													{{$farmer->firstName}} {{$farmer->lastName}}
-												@endif
-											@endforeach
+										<a href="{{url('requestpending',$order->dpid)}}"><button class="btn btn-primary">Pending</button></a>
 										</td>
-										<td>{{$order->orderQuantity}}</td>
-										<td>{{$order->productName}}</td>
-										<td>{{$order->orderAddressNo}}, {{$order->orderAddressStreet}}, {{$order->orderAddressCity}}</td>
+										@elseif($order->deliverstatus == "pending")
+										<td>Pending</td>
+										<td>
+										<a href="{{url('requestdelivered',$order->dpid)}}"><button class="btn btn-success">Delivered</button></a>
+										</td>
+										@endif
 									</tr>
-								@endif
+								@endif	
 							@endforeach	
 						</tbody>
 					</table>

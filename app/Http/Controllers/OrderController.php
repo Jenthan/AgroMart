@@ -23,11 +23,9 @@ class OrderController extends Controller
     
         $cid;
     $id = Auth::User()->id;
-    $ncustomer = Customer::all()->where('user_id',$id);
-        foreach($ncustomer as $cus){
-        $cid = $cus->id;    
-        }
-        
+    $ncustomer = Customer::all()->where('user_id',$id)->first();
+    $cid = $ncustomer->id;
+        //dd($cid);
          //$user = User::all()->where('role','customer');
          //$order = CustomerOrderProduct::all();
          $temorder = FarmerRequestVendor::all();
@@ -35,22 +33,15 @@ class OrderController extends Controller
          $orderte = DB::table('farmer_request_vendors')
          ->join('farmers','farmers.id','=','farmer_request_vendors.farmer_id')
          ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
+         ->join('products','products.id','=','farmer_request_vendors.product_id')
          ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
-         ->select('customer_order_products.qty','customer_order_products.updated_at',
-         'vendors.firstName','vendors.lastName','farmer_request_vendors.requeststatus',
-         'customer_order_products.orderstatus')
+         ->select('customer_order_products.qty','customer_order_products.updated_at as oupdated_at' ,'farmer_request_vendors.customer_order_id',
+         'vendors.firstName','vendors.lastName','farmer_request_vendors.requeststatus','products.productName','products.unitPrice',
+         'customer_order_products.orderstatus','farmer_request_vendors.updated_at')
          ->where('customer_order_products.customer_id','=', $cid)
+         ->where('customer_order_products.orderstatus','=', "confirmed")
+         ->orderBy('customer_order_products.updated_at', 'desc')
          ->get();
-
-         $products = DB::table('customer_order_products')
-    ->join('products','products.id','=','customer_order_products.product_id')
-    ->join('customers','customers.id','=','customer_order_products.customer_id')
-    ->join('farmers','farmers.id','=','customer_order_products.farmer_id')
-    ->select('products.productName','customer_order_products.id')
-    ->where('customer_order_products.customer_id','=', $cid)
-    ->get();
-
-        dd($products);
-         return view('customerdashboard.orders',compact('ncustomer','orderte','products'));
+         return view('customerdashboard.orders',compact('orderte'));
     }
 }

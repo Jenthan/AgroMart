@@ -25,7 +25,7 @@
 					<span class="text">Download PDF</span>
 				</a>   -->
 			</div>
-
+<!--
 			<ul class="box-info">
 				<li>
                     <form class="form-inline">
@@ -48,7 +48,7 @@
                         <button type="submit" class="btn btn-primary mx-sm-5 mb-2">Search</button>
                     </form>
 				</li>
-                <!--
+               
 				<li>
 					<i class='bx bxs-group' ></i>
 					<span class="text">
@@ -62,8 +62,8 @@
 						<h3>$2543</h3>
 						<p>Total Sales</p>
 					</span>
-				</li>  -->
-			</ul>  
+				</li>  
+			</ul>   -->
 
 
 			<div class="table-data">
@@ -77,51 +77,26 @@
 								<th>CustomerName</th>
                                 <th>ProductName</th>
                                 <th>quantity</th>
-								<th>OrderDate</th>
+								<th>OrderAcceptedDate</th>
 								<th>Status</th>
 							</tr>
 						</thead>
 						<tbody>
+							@php
+							$id=1;
+							@endphp
+							@foreach($orders as $order)
 							<tr>
+								<td>{{$id++}}</td>
+								<td>{{$order->customerName}}</td>
+								<td>{{$order->ProductName}}</td>
+								<td> {{$order->orderQuantity}}</td>
+								<td> {{$order->created_at}}</td>
 								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
+									<button class="btn btn-success">{{$order->deliverstatus}}</button>						
 								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
 							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status process">Process</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
+							@endforeach
 						</tbody>
 					</table>
 				</div>

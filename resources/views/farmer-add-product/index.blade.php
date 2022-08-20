@@ -10,9 +10,17 @@
 					<span class="text">Add Product</span>
 				</a>
             </div>
-			<div>
-				@yield('editpro')
-			</div>
+				@if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
+				@if ($message = Session::get('error'))
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">x</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
 			<table>
 				<thead>
 					<tr>
@@ -40,7 +48,8 @@
 							<td>{{$product->qty}} kg</td>
 							<td>
 								<a href="{{url('edit-product',$product->id)}}" class="status completed">Edit</a>
-								<a href="{{url('delete-product',$product->id)}}" class="status completed">Delete</a>
+								<a href="{{url('show-product',$product->id)}}" class="status process">Show</a>
+								<a href="" class="status pending">Delete</a>
 							</td>
 						</tr>
 						@endif

@@ -94,7 +94,7 @@ class FarmerMakeProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('farmer-add-product.show',compact('product'));
     }
 
     /**
@@ -139,15 +139,30 @@ class FarmerMakeProductController extends Controller
         return redirect('add-product')->with('success','Product updated successfully.!');
     }
 
+    public function delete(Product $product)
+    {
+        return view('farmer-add-product.delete',compact('product'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request,Product $product)
     {
-        $product->delete();
-        return redirect('add-product')->with('success','The product was deleted successfully.!');
+        $this->validate($request,[
+            'state' => 'required',
+        ]);
+        if('DELETE' == $request->get('state'))
+        {
+            $product->delete();
+            return redirect('add-product')->with('success','The product was deleted successfully.!');
+        }
+        else
+        {
+            return back()->with('error','Failed to delete the Product.!');
+        }    
     }
 }

@@ -9,6 +9,8 @@ use App\Models\Customer;
 use App\Models\DeliverDetail;
 use App\Models\DeliverProduct;
 use App\Models\UserPhone;
+use App\Models\FarmerRequestVendor;
+use App\Models\CustomerOrderProduct;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -27,77 +29,104 @@ class VendorController extends Controller
         return redirect('/');
     }
     public function vendorDashboard(){
-        $totalOrders = DB::table('deliver_products')->where('deliverstatus', 'pending')->count();
-
-        $orders = DB::table('deliver_products')
-        ->join('customers','deliver_products.customer_id','=','customers.id')
-        ->join('vendors','vendors.id','=','deliver_products.vendor_id')
-        ->select('customers.customerName','deliver_products.deliverstatus','vendors.user_id')
+       $vid;
+       $totalOrders = 0;
+       $id = Auth::User()->id;
+       $nvendor = Vendor::all()->where('user_id',$id);
+       foreach($nvendor as $ven){
+       $vid = $ven->id;
+           
+       }
+      
+       
+        $orders = DB::table('farmer_request_vendors')
+        ->join('products','products.id','=','farmer_request_vendors.product_id')
+        ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
+        ->join('farmers','farmers.id','=','farmer_request_vendors.farmer_id')
+        ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
+        ->select('products.productName','customer_order_products.qty','customer_order_products.updated_at','farmer_request_vendors.requeststatus','customer_order_products.customer_id',
+        'farmers.firstName','farmers.lastName','products.unitPrice','farmers.farmAddressCity','customer_order_products.orderstatus','farmer_request_vendors.id as frid')
+        ->where('farmer_request_vendors.vendor_id','=', $vid)
+        ->where('farmer_request_vendors.requeststatus','=',NULL)
         ->get();
+        foreach($orders as $or){
+            $totalOrders++;
 
-        return view('vendorDashboard.index',compact('orders','totalOrders'));
+        }
+
+        $customers = Customer::all();
+
+        return view('vendorDashboard.index',compact('orders','totalOrders','customers'));
     }
     public function orderDetails(){
-        $orders = DB::table('deliver_products')
-        ->join('customers','deliver_products.customer_id','=','customers.id')
-        ->join('products','products.id','=','deliver_products.product_id')
-        ->join('deliver_details','deliver_details.deliver_id','=','deliver_products.id')
-        ->join('vendors','vendors.id','=','deliver_products.vendor_id')
-        ->select('customers.customerName','products.productName','vendors.user_id','products.farmer_id','deliver_products.id','deliver_products.vendor_id','deliver_products.orderQuantity','deliver_products.deliverstatus','deliver_details.orderAddressNo','deliver_details.orderAddressStreet','deliver_details.orderAddressCity')
-        ->get();
+        $vid;
+        $totalOrders = 0;
+        $id = Auth::User()->id;
+        $nvendor = Vendor::all()->where('user_id',$id);
+        foreach($nvendor as $ven){
+        $vid = $ven->id;     
+        }
+        
+         $orders = DB::table('farmer_request_vendors')
+         ->join('products','products.id','=','farmer_request_vendors.product_id')
+         ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
+         ->join('farmers','farmers.id','=','farmer_request_vendors.farmer_id')
+         ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
+         ->select('products.productName','customer_order_products.qty','customer_order_products.updated_at','farmer_request_vendors.requeststatus','customer_order_products.customer_id',
+         'farmers.firstName as ffname','farmers.lastName as flname','products.unitPrice','farmers.*','farmers.farmAddressCity','customer_order_products.orderstatus','farmer_request_vendors.id as frid')
+         ->where('farmer_request_vendors.vendor_id','=', $vid)
+         ->where('farmer_request_vendors.requeststatus','=','accepted')
+         ->get();
 
-        $farmers = Farmer::All();
+        $customers = Customer::all();
+        $farmers = Farmer::all();
 
-        return view('vendorDashboard.orderDetails',compact('farmers','orders'));
+        return view('vendorDashboard.orderDetails',compact('farmers','orders','customers'));
     }
     public function venderDeliveryDetails(){
         $orders = DB::table('deliver_products')
-        ->join('customers','deliver_products.customer_id','=','customers.id')
-        ->join('products','products.id','=','deliver_products.product_id')
-        ->join('deliver_details','deliver_details.deliver_id','=','deliver_products.id')
-        ->join('vendors','vendors.id','=','deliver_products.vendor_id')
-        ->select('customers.customerName','products.productName','vendors.user_id','products.farmer_id','deliver_products.id','deliver_products.vendor_id','deliver_products.orderQuantity','deliver_products.deliverstatus','deliver_details.orderAddressNo','deliver_details.orderAddressStreet','deliver_details.orderAddressCity')
+        ->join('farmer_request_vendors','farmer_request_vendors.id','=','deliver_products.farmer_request_vendors_id')
+        ->select('deliver_products.*','farmer_request_vendors.*','deliver_products.id as dpid',
+        'deliver_products.farmer_request_vendors_id as farmervendorid','farmer_request_vendors.farmer_id as farmerid',
+        'farmer_request_vendors.vendor_id as vendorid','farmer_request_vendors.product_id as productid',
+        'farmer_request_vendors.customer_order_id as cusorderid','farmer_request_vendors.updated_at as frvupdated_at')
         ->get();
 
         $farmers = Farmer::All();
+        $customers = Customer::all();
+        $vendors = Vendor::all();
+        $products = Product::all();
+        $cusorderproduct = CustomerOrderProduct::all();
 
-        return view('vendorDashboard.deliverDetails',compact('farmers','orders'));
+        return view('vendorDashboard.deliverDetails',compact('farmers','orders','vendors','customers','cusorderproduct','products'));
     }
     public function cancelledOrders(){
-        $orders = DB::table('deliver_products')
-        ->join('customers','deliver_products.customer_id','=','customers.id')
-        ->join('products','products.id','=','deliver_products.product_id')
-        ->join('deliver_details','deliver_details.deliver_id','=','deliver_products.id')
-        ->join('vendors','vendors.id','=','deliver_products.vendor_id')
-        ->select('customers.customerName','products.productName','vendors.user_id','products.farmer_id','deliver_products.id','deliver_products.vendor_id','deliver_products.orderQuantity','deliver_products.deliverstatus','deliver_details.orderAddressNo','deliver_details.orderAddressStreet','deliver_details.orderAddressCity')
-        ->get();
+        $vid;
+        $totalOrders = 0;
+        $id = Auth::User()->id;
+        $nvendor = Vendor::all()->where('user_id',$id);
+        foreach($nvendor as $ven){
+        $vid = $ven->id;     
+        }
+        
+         $orders = DB::table('farmer_request_vendors')
+         ->join('products','products.id','=','farmer_request_vendors.product_id')
+         ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
+         ->join('farmers','farmers.id','=','farmer_request_vendors.farmer_id')
+         ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
+         ->select('products.productName','customer_order_products.qty','customer_order_products.updated_at','farmer_request_vendors.requeststatus','customer_order_products.customer_id',
+         'farmers.firstName as ffname','farmers.lastName as flname','products.unitPrice','farmers.*','farmers.farmAddressCity','customer_order_products.orderstatus','farmer_request_vendors.id as frid')
+         ->where('farmer_request_vendors.vendor_id','=', $vid)
+         ->where('farmer_request_vendors.requeststatus','=','cancelled')
+         ->get();
 
-        $farmers = Farmer::All();
+        $customers = Customer::all();
+        $farmers = Farmer::all();
 
-        return view('vendorDashboard.cancelOrders',compact('farmers','orders'));
+        return view('vendorDashboard.deliveredOrders',compact('farmers','orders','customers'));
     }
 
-    public function cancelledDeliverStatus(Request $request, $id)
-    {
-        $order = DeliverProduct::find($id);
-        $order->deliverstatus = ('cancelled');
-        $order->save();
-        return back();
-    }
-    public function acceptDeliverStatus(Request $request, $id)
-    {
-        $order = DeliverProduct::find($id);
-        $order->deliverstatus = ('processing');
-        $order->save();
-        return back();
-    }
-    public function doneDeliverStatus(Request $request, $id)
-    {
-        $order = DeliverProduct::find($id);
-        $order->deliverstatus = ('delivered');
-        $order->save();
-        return back();
-    }
+    
 
     public function editVendor()
     {
@@ -172,8 +201,8 @@ class VendorController extends Controller
     } 
     public function vehicleIndex(){
 
-        $vehicles = DB::table('vehicles')->where('user_id', Auth::user()->id)->get();
-        return view('vendorDashboard.vehicleIndex',compact( 'vehicles'));
+        $vehicles = Vehicle::where('user_id', Auth::user()->id)->latest()->paginate(5);
+        return view('vendorDashboard.vehicleIndex',compact( 'vehicles'))->with('1',(request()->input('page',1)-1)*5);
     }
     public function createVehicle(){
         
@@ -222,6 +251,60 @@ class VendorController extends Controller
         return view('register.regivendor');
     }
 
+
+    public function requestaccepted($id){
+        $farmerreqvendor = FarmerRequestVendor::find($id);
+        $deliverproduct = new DeliverProduct([
+            'farmer_request_vendors_id' =>$id,
+            'deliverstatus' =>'processing'
+        ]);
+        $farmerreqvendor->requeststatus = "accepted";
+        $deliverproduct->save();
+        $farmerreqvendor->update();
+        return redirect()->route('vendorDashboard');
+    }
+
+    public function requestrejected($id){
+        $farmerreqvendor = FarmerRequestVendor::find($id);
+        $farmerreqvendor->requeststatus = "cancelled";
+
+        $farmerreqvendor->update();
+        return redirect()->route('vendorDashboard');
+    }
+
+    public function reqpending($id){
+       $deliverproducts = DeliverProduct::find($id);
+        $deliverproducts->deliverstatus = "pending";
+        $deliverproducts->update();
+        return redirect()->route('venderDeliveryDetails');
+    }
+
+    public function reqdelivered($id){
+        $deliverproducts = DeliverProduct::find($id);
+         $deliverproducts->deliverstatus = "delivered";
+         $deliverproducts->update();
+         return redirect()->route('venderDeliveryDetails');
+     }
+
+     //delivered orders
+
+     public function venderDeliveredOrderDetails(){
+        $orders = DB::table('deliver_products')
+        ->join('farmer_request_vendors','farmer_request_vendors.id','=','deliver_products.farmer_request_vendors_id')
+        ->select('deliver_products.*','farmer_request_vendors.*','deliver_products.id as dpid',
+        'deliver_products.farmer_request_vendors_id as farmervendorid','farmer_request_vendors.farmer_id as farmerid',
+        'farmer_request_vendors.vendor_id as vendorid','farmer_request_vendors.product_id as productid',
+        'farmer_request_vendors.customer_order_id as cusorderid','farmer_request_vendors.updated_at as frvupdated_at')
+        ->get();
+
+        $farmers = Farmer::All();
+        $customers = Customer::all();
+        $vendors = Vendor::all();
+        $products = Product::all();
+        $cusorderproduct = CustomerOrderProduct::all();
+
+        return view('vendorDashboard.deliveredOrders',compact('farmers','orders','vendors','customers','cusorderproduct','products'));
+    }
     
 
 }

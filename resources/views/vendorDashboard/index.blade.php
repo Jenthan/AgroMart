@@ -1,7 +1,6 @@
 @extends('vendorDashboard.home')
 
 @section('main')
-
 <main>
     <div class="head-title">
 				<div class="left">
@@ -43,28 +42,29 @@
 							<tr>
 								<th>Customer</th>
 								<th>Date Order</th>
-								<th>Status</th>
+								<th>ProductName</th>
+								<th>Quantity</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach($orders as $order)
-								@if($order->user_id == Auth::user()->id)
+						
+							@if($order->requeststatus != 'null')
+								
 								<tr>
-									<td>{{$order->customerName}}</td>
-									<td>01-10-2021</td>
+									@foreach($customers as $customer)
+										@if($order->customer_id == $customer->id)
+										<td>{{$customer->customerName}}</td>
+										@endif
+									@endforeach
+									<td>{{$order->updated_at}}</td>
+									<th>{{$order->productName}}</th>
+									<td>{{$order->qty}}</td>
 									<td>
-									@if($order->deliverstatus == 'pending')
-										<span class="status pending">Pending</span>
-									@endif
-									@if($order->deliverstatus == 'cancelled')
-										<span class="status cancell">Cancelled</span>
-									@endif
-									@if($order->deliverstatus == 'processing')
-										<span class="status process">Delivering</span>
-									@endif
-									@if($order->deliverstatus == 'delivered')
-										<span class="status completed">Delivered</span>
-									@endif
+									
+										<a href="{{url('/reqaccepted',$order->frid)}}"><button class="btn btn-primary">Accept</button></a>
+										<a href="{{url('/reqrejected',$order->frid)}}"><button class="btn btn-success">Rejected</button></a>
 									</td>
 								</tr>
 								@endif
