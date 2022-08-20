@@ -165,4 +165,9 @@ class FarmerMakeProductController extends Controller
             return back()->with('error','Failed to delete the Product.!');
         }    
     }
+    public function destroy2(Product $product)
+    {
+        $product->delete();
+        return redirect('add-product')->with('success','The product was deleted successfully.!');
+    }
 }

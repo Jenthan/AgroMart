@@ -49,7 +49,7 @@
 							<td>
 								<a href="{{url('edit-product',$product->id)}}" class="status completed">Edit</a>
 								<a href="{{url('show-product',$product->id)}}" class="status process">Show</a>
-								<a href="" class="status pending">Delete</a>
+								<a href="{{url('delete-product2',$product->id)}}" onclick="return confirm('Are you sure?')" class="status pending">Delete</a>
 							</td>
 						</tr>
 						@endif
