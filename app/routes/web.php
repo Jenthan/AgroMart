@@ -117,9 +117,9 @@ Route::post('/cusprosearch',[MainController::class,'cusproductsearch']);
 
     // vendor routes starts
     Route::get('/vendorLogout',[VendorController::class,'logout']);
-    Route::get('/vendorDashboard',[VendorController::class,'vendorDashboard'])->name('vendorDashboard');
+    Route::get('/vendorDashboard',[VendorController::class,'vendorDashboard']);
     Route::get('/vendorOrders',[VendorController::class,'orderDetails']);
-    Route::get('/venderDeliveryDetails',[VendorController::class,'venderDeliveryDetails'])->name('venderDeliveryDetails');
+    Route::get('/venderDeliveryDetails',[VendorController::class,'venderDeliveryDetails']);
     Route::get('/cancelledOrders',[VendorController::class,'cancelledOrders']);
     Route::get('/cancelledDeliverStatus/{id}',[VendorController::class,'cancelledDeliverStatus']);
     Route::get('/acceptDeliverStatus/{id}',[VendorController::class,'acceptDeliverStatus']);
@@ -132,11 +132,6 @@ Route::post('/cusprosearch',[MainController::class,'cusproductsearch']);
     Route::get('/createVehicle',[VendorController::class,'createVehicle']);
     Route::post('/storeVehicle',[VendorController::class,'storeVehicle']);
     Route::delete('/vehicleDelete/{id}',[VendorController::class,'vehicleDelete']);
-    Route::get('/reqaccepted/{id}',[VendorController::class,'requestaccepted']);
-    Route::get('/reqrejected/{id}',[VendorController::class,'requestrejected']);
-    Route::get('/requestpending/{id}',[VendorController::class,'reqpending']);
-    Route::get('/requestdelivered/{id}',[VendorController::class,'reqdelivered']);
-    Route::get('/deliveredOrders',[VendorController::class,'venderDeliveredOrderDetails']);
 
 
 
@@ -158,25 +153,25 @@ Route::get('/create-product',[FarmerMakeProductController::class,'create']);
 Route::post('/store-product',[FarmerMakeProductController::class,'store']);
 Route::get('/edit-product/{product}',[FarmerMakeProductController::class,'edit']);
 Route::post('/update-product/{product}',[FarmerMakeProductController::class,'update']);
-Route::get('/show-product/{product}',[FarmerMakeProductController::class,'show']);
-Route::get('/deleteview-product/{product}',[FarmerMakeProductController::class,'delete']);
-Route::post('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
+Route::get('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
 
 // Farmer Password Change
 Route::get('/farmer-password',[FarmerDashController::class,'password']);
 Route::post('/farmer-changepassword/{user}',[FarmerDashController::class,'change_password']);
 // Farmer Profile page 
 Route::get('farmer-profile-display',[FarmerDashController::class,'profile']);
-Route::post('farmer-profile-update/{user}',[FarmerDashController::class,'profile_update']);
 // Farmer Order Details view
 Route::get('farmer-order-display',[FarmerDashController::class,'order_view']);
-Route::post('farmer-req-vendor',[FarmerDashController::class,'vendor_req']);
+Route::get('farmer-request-view/{id}',[FarmerDashController::class,'farmer_req']);
 
 //Farmer view Vendor details
 Route::get('farmer-vendor-display',[FarmerDashController::class,'vendor_view']);
-//Farmer History for translation of vendor
-Route::get('farmer-hist-display',[FarmerDashController::class,'histo']);
 
+
+
+//Customer
+Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
+Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
 
 
 
@@ -190,12 +185,17 @@ Route::post('/searchdate',[OrderController::class,'searchdate']);
 
 
 
+
+//customer
+Route::get('/customerreg',[CustomerController::class,'customerregistrationview']);
+Route::post('/customerregistration',[CustomerController::class,'customerregistration']);
+
+
 Route::get('/customerlogin',[CustomerController::class,'index'])->name('customerlogin');
 Route::get('/customerorder/{id}',[OrderController::class,'customerOrderindex'])->name('customerorder');
 Route::get('/customerprofile/{id}',[CustomerController::class,'customerprofileview'])->name('customerprofile');
 Route::get('/customerprofileedit/{id}',[CustomerController::class,'customerprofileedit'])->name('customerprofileedit');
 Route::put('/customeredit/{id}',[CustomerController::class,'customereditupdate'])->name('customeredit');
-
 
 Route::post('card',[CustomerMakeOrderController::class,'addtocardOrder']);
 Route::get('carddisplay',[CustomerMakeOrderController::class,'addtocarddisplay']);
@@ -204,3 +204,4 @@ Route::get('/cardcheckout',[CustomerMakeOrderController::class,'cardcheckoutdisp
 Route::get('/searchdate',[CustomerMakeOrderController::class,'searchdatedisplay']);
 Route::get('/searchproduct',[CustomerMakeOrderController::class,'searchproduct']);
   });
+

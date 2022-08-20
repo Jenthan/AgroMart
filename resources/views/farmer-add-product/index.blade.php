@@ -48,7 +48,8 @@
 							<td>{{$product->qty}} kg</td>
 							<td>
 								<a href="{{url('edit-product',$product->id)}}" class="status completed">Edit</a>
-								<a href="{{url('show-product',$product->id)}}" class="status completed">Show</a>
+								<a href="{{url('show-product',$product->id)}}" class="status process">Show</a>
+								<a href="" class="status pending">Delete</a>
 							</td>
 						</tr>
 						@endif
