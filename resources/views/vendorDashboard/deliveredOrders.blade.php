@@ -4,13 +4,13 @@
 <main>
     <div class="head-title">
 				<div class="left">
-					<h1>Deliver Details</h1>
+					<h1>Cancelled Orders</h1>
 					<ul class="breadcrumb">
 							<a class="active" href="{{url('/vendorDashboard')}}">Home</a>
 						</li>
                         <li><i class='bx bx-chevron-right' ></i></li>
                         <li>
-							<a  href="#">Deliver Details</a>
+							<a  href="#">Cancelled Orders</a>
 						</li>
 					</ul>
 				</div>
@@ -63,7 +63,7 @@
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3> Orders</h3>
+						<h3>Delivered Orders</h3>
 					</div>
 					<table>
 						<thead>
@@ -72,12 +72,11 @@
 								<th>Customer Name</th>
                                 <th>Product Name</th>
 								<th>Farmer Name</th>
-                                <th>quantity</th>
-								<th>Order  Date</th>
-								<th>Order Accepted Date</th>
-								<th>Order Address </th>
-								<th>Order Status</th>
-								<th>Action</th>
+                                <th>Quantity</th>
+								<th>unitPrice</th>
+								<th>Order Date</th>
+								<th>Delivery Date</th>
+								<th>Shipping Address</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -85,7 +84,7 @@
 							$i=0;
 							@endphp
 							@foreach($orders as $order)
-							@if($order->deliverstatus != "delivered")
+							@if($order->deliverstatus == "delivered")
 								
 									<tr>
 										<td>{{++$i}}</td>
@@ -115,6 +114,17 @@
 										@foreach($cusorderproduct as $cusorp)
 											@if($order->cusorderid == $cusorp->id)
 										<td>{{$cusorp->qty}}</td>
+											@endif
+										@endforeach
+
+										@foreach($products as $product)
+											@if($order->productid == $product->id)
+										<td>{{$product->unitPrice}}</td>
+											@endif
+										@endforeach
+
+										@foreach($cusorderproduct as $cusorp)
+											@if($order->cusorderid == $cusorp->id)
 										<td>{{$cusorp->updated_at}}</td>
 											@endif
 										@endforeach
@@ -132,17 +142,7 @@
 											@endif
 										@endforeach
 
-										@if($order->deliverstatus == "processing")
-										<td>Processing</td>
-										<td>
-										<a href="{{url('requestpending',$order->dpid)}}"><button class="btn btn-primary">Pending</button></a>
-										</td>
-										@elseif($order->deliverstatus == "pending")
-										<td>Pending</td>
-										<td>
-										<a href="{{url('requestdelivered',$order->dpid)}}"><button class="btn btn-success">Delivered</button></a>
-										</td>
-										@endif
+					
 									</tr>
 								@endif	
 							@endforeach	

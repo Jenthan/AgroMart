@@ -28,6 +28,14 @@
                     preview.style.display = "block";
                 }
            }
+		function change_gs(event){
+			if(event.target.files.length > 0){
+				var src = URL.createObjectURL(event.target.files[0]);
+				var preview = document.getElementById("gs_picture_new");
+                    preview.src = src;
+                    preview.style.display = "block";
+			}
+		}
     </script>
 
 
@@ -74,8 +82,8 @@
 					<span class="text">Vendors</span>
 				</a>
 			</li>
-			<li>
-				<a href="#">
+			<li class="{{ (request()->is('farmer-hist-display')) ? 'active' : '' }}">
+				<a href="{{url('farmer-hist-display')}}">
 					<i class='bx bxs-doughnut-chart' ></i>
 					<span class="text">History</span>
 				</a>
@@ -86,21 +94,10 @@
 					<span class="text">Change Password</span>
 				</a>
 			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-message-dots' ></i>
-					<span class="text">Message</span>
-				</a>
-			</li>
 			
 		</ul>
 		<ul class="side-menu">
-			<li>
-				<a href="#">
-					<i class='bx bxs-cog' ></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
+			
 			<li>
 				<a href="{{url('logout')}}" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
@@ -117,7 +114,9 @@
 	<section id="content">
 		<!-- NAVBAR -->
 		<nav>
+			
 			<i class='bx bx-menu' ></i>
+			<!--
 			<a href="#" class="nav-link">Categories</a>
 			<form action="#">
 				<div class="form-input">
@@ -127,13 +126,7 @@
 			</form>
 			<input type="checkbox" id="switch-mode" hidden>
 			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
-				<i class='bx bxs-bell' ></i>
-				<span class="num">8</span>
-			</a>
-			<a href="#" class="profile">
-				<img src="admin/images/people.png">
-			</a>
+		-->
 		</nav>
 		<!-- NAVBAR -->
 
