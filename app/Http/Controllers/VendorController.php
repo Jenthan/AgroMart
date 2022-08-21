@@ -9,6 +9,7 @@ use App\Models\Customer;
 use App\Models\DeliverDetail;
 use App\Models\DeliverProduct;
 use App\Models\UserPhone;
+use App\Models\FarmerRequestVendor;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
