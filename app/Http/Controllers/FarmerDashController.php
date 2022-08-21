@@ -45,13 +45,68 @@ class FarmerDashController extends Controller
     }
     public function profile()
     {
+        $user = User::where('id',Auth::User()->id)->first();
         $farmer=Farmer::where('user_id',Auth::User()->id)->first();
         $userphone=UserPhone::where('user_id',Auth::User()->id)->first();
-        return view('farmer-profile.profile',compact('farmer','userphone'));
+        return view('farmer-profile.profile',compact('user','farmer','userphone'));
     }
-    public function profile_update(Request $request,$id)
+    public function profile_update(Request $request,User $user)
     {
+        $validate = Validator::make($request->all(),[
+            'fname'=> 'required',
+            'lname' => 'required',
+            'no' => 'required',
+            'street' => 'required',
+            'city' => 'required',
+            'farmname' => 'required',
+            'phoneno' => 'required',
+            'email' => 'required|email',
+        ]);
+        if($user->email != $request->get('email')){
+            $validate_email = Validator::make($request->all(),[
+                'email' => 'required|email|unique:users',
+            ]);
+            if($validate_email->fails()){
+                return back()->with('error','Your Email account already used by Someone...');
+            }
+        }
+        if($validate->fails()){
+            return back()->with('error','Invalid Updated Details...');
+        }
+        else{
+            $user->email = $request->get('email');
+            $user->update();
+            
+            $farmer = Farmer::where('user_id','=',$user->id)->first();
+            $farmer -> update([
+                'firstName' => $request->get('fname'),
+                'lastName' => $request->get('lname'),
+                'farmName' => $request->get('farmname'),
+                'farmAddressNo' => $request->get('no'),
+                'farmAddressStreet' => $request->get('street'),
+                'farmAddressCity' => $request->get('city'),
+            ]);
+            $mobile = UserPhone::where('user_id',$user->id)->first();
+            $mobile->phone = $request->get('phoneno');
+            $mobile->update();
 
+            if($request->file('prophoto')){
+                $file= $request->file('prophoto');
+                $filename= date('YmdHi').$file->getClientOriginalName();
+                $file-> move(public_path('FarmerImage'), $filename);
+                $farmer->prophoto = $filename;
+                $farmer->update();
+            }
+            if($request->file('gsphoto')){
+                $file= $request->file('gsphoto');
+                $filename= date('YmdHi').$file->getClientOriginalName();
+                $file-> move(public_path('GsImage'), $filename);
+                $farmer->gsCertificate = $filename;
+                $farmer->update();
+            }
+
+            return redirect('farmer-profile-display')->with('success','Profile updated successfully.!');
+        }
     }
     public function order_view()
     {
@@ -85,6 +140,10 @@ class FarmerDashController extends Controller
             'customer_order_id' => $request->get('order_id'),
         ]);
         $req->save();
+        $id=$request->get('order_id');
+        $cus_order = CustomerOrderProduct::find($id)->update(['orderstatus' => 'requested']);
+        //$cus_order = CustomerOrderProduct::where('id','=',$request->get('order_id'))->update(['orderstatus' => 'req']);
+        //$cus_order -> update(['orderstatus' => 'req']);
         return back()->with('success','Vendor request is successfully.!');
     }
 

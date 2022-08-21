@@ -22,7 +22,7 @@ class CreateCustomerOrderProductsTable extends Migration
             $table->unsignedBigInteger('farmer_id');					
             $table->foreign('farmer_id')->references('id')->on('farmers')->onDelete('cascade');   
 			$table->string('qty');
-            $table->enum('orderstatus',['confirmed','notconfirmed']); 
+            $table->enum('orderstatus',['confirmed','notconfirmed','requested','delivered']); 
             $table->time('ordertime')->nullable();
             $table->timestamps();
         });

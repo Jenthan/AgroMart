@@ -48,6 +48,7 @@ Route::post('checkhomesearch',[MainController::class,'checkhomesearchDisplay']);
 Route::get('/searchVeg',[MainController::class,'vegDisplay']);
 Route::get('/searchfruit',[MainController::class,'fruitDisplay']);
 Route::get('/searchmilk',[MainController::class,'milkDisplay']);
+Route::get('/leastveg',[MainController::class,'leastvegDisplay']);
 Route::get('/cuslogout',[MainController::class,'logout']);
 Route::post('/cusprosearch',[MainController::class,'cusproductsearch']);
 
@@ -117,9 +118,9 @@ Route::post('/cusprosearch',[MainController::class,'cusproductsearch']);
 
     // vendor routes starts
     Route::get('/vendorLogout',[VendorController::class,'logout']);
-    Route::get('/vendorDashboard',[VendorController::class,'vendorDashboard']);
+    Route::get('/vendorDashboard',[VendorController::class,'vendorDashboard'])->name('vendorDashboard');
     Route::get('/vendorOrders',[VendorController::class,'orderDetails']);
-    Route::get('/venderDeliveryDetails',[VendorController::class,'venderDeliveryDetails']);
+    Route::get('/venderDeliveryDetails',[VendorController::class,'venderDeliveryDetails'])->name('venderDeliveryDetails');
     Route::get('/cancelledOrders',[VendorController::class,'cancelledOrders']);
     Route::get('/cancelledDeliverStatus/{id}',[VendorController::class,'cancelledDeliverStatus']);
     Route::get('/acceptDeliverStatus/{id}',[VendorController::class,'acceptDeliverStatus']);
@@ -132,6 +133,11 @@ Route::post('/cusprosearch',[MainController::class,'cusproductsearch']);
     Route::get('/createVehicle',[VendorController::class,'createVehicle']);
     Route::post('/storeVehicle',[VendorController::class,'storeVehicle']);
     Route::delete('/vehicleDelete/{id}',[VendorController::class,'vehicleDelete']);
+    Route::get('/reqaccepted/{id}',[VendorController::class,'requestaccepted']);
+    Route::get('/reqrejected/{id}',[VendorController::class,'requestrejected']);
+    Route::get('/requestpending/{id}',[VendorController::class,'reqpending']);
+    Route::get('/requestdelivered/{id}',[VendorController::class,'reqdelivered']);
+    Route::get('/deliveredOrders',[VendorController::class,'venderDeliveredOrderDetails']);
 
 
 
@@ -162,6 +168,7 @@ Route::get('/farmer-password',[FarmerDashController::class,'password']);
 Route::post('/farmer-changepassword/{user}',[FarmerDashController::class,'change_password']);
 // Farmer Profile page 
 Route::get('farmer-profile-display',[FarmerDashController::class,'profile']);
+Route::post('farmer-profile-update/{user}',[FarmerDashController::class,'profile_update']);
 // Farmer Order Details view
 Route::get('farmer-order-display',[FarmerDashController::class,'order_view']);
 Route::post('farmer-req-vendor',[FarmerDashController::class,'vendor_req']);

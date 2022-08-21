@@ -13,7 +13,6 @@
                         <th>Address</th>
 						<th>Vehicle Type</th>
 						<th>Mobile</th>
-                        <th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -27,7 +26,6 @@
                             <td>{{$vendor->addressNo}}, {{$vendor->addressStreet}}, {{$vendor->addressCity}}</td>
                             <td>{{$vendor->vehicleType}}</td>
                             <td>{{$vendor->phone}}</td>
-                            <td><a href="#" class="status completed">SHOW</a></td>
                         </tr>
                     @endforeach
                 </tbody>

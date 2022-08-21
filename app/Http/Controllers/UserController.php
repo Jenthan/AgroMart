@@ -150,7 +150,8 @@ class UserController extends Controller
                     }elseif(Auth::user()->role =='customer'){
                         return view('cusindex2',compact('order','customer','products'));
                     }elseif(Auth::user()->role =='farmer'){
-                        return view('farmer-dash.index',compact('farmer'));
+                        //return view('farmer-dash.index',compact('farmer'));
+                        return redirect('farmer-base');
                     }elseif(Auth::user()->role =='vender'){
                         return redirect('/vendorDashboard');
                     }
@@ -189,8 +190,8 @@ class UserController extends Controller
                 'email'=> 'required|email',
                 'password' => 'required',
                 'vehicleNo' => 'required',
-                'password' => 'min:6|required_with:confirmpassword|same:confirmpassword',
-                'confirmpassword' => 'min:6'
+               // 'password' => 'min:6|required_with:confirmpassword|same:confirmpassword',
+                //'confirmpassword' => 'min:6'
             ]);
             $user = new User([
                 'email' => $request->get('email'),

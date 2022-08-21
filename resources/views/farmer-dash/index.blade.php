@@ -4,7 +4,7 @@
 <main>
     <div class="head-title">
 				<div class="left">
-					<h1>Dashboard {{Auth::User()->id}}</h1>
+					<h1>Dashboard</h1>
 					<ul class="breadcrumb">
 						<li>
 							<a href="#">Dashboard</a>
@@ -15,31 +15,33 @@
 						</li>
 					</ul>
 				</div>
-				<a href="#" class="btn-download">
-					<i class='bx bxs-cloud-download' ></i>
-					<span class="text">Download PDF</span>
-				</a>
 			</div>
-			hi i am farmer
 			<ul class="box-info">
 				<li>
 					<i class='bx bxs-calendar-check' ></i>
 					<span class="text">
-						<h3>1020</h3>
+						<h3>{{$order_count}}</h3>
 						<p>New Order</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-group' ></i>
 					<span class="text">
-						<h3>2834</h3>
-						<p>Visitors</p>
+						<h3>{{$cus_count}}</h3>
+						<p>Customers</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-group' ></i>
+					<span class="text">
+						<h3>{{$vendor_count}}</h3>
+						<p>Vendors</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-dollar-circle' ></i>
 					<span class="text">
-						<h3>$2543</h3>
+						<h3>Rs. 0.00/=</h3>
 						<p>Total Sales</p>
 					</span>
 				</li>
@@ -50,8 +52,6 @@
 				<div class="order">
 					<div class="head">
 						<h3>Recent Orders</h3>
-						<i class='bx bx-search' ></i>
-						<i class='bx bx-filter' ></i>
 					</div>
 					<table>
 						<thead>
@@ -62,78 +62,57 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status process">Process</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
+							@foreach($recents as $recent)
+								@if($recent->status == 'notconfirmed')
+									<tr>
+										<td>
+											<img src="">
+											<p>{{$recent->name}}</p>
+										</td>
+										<td>{{$recent->date}}</td>
+										<td><span class="status pending">Pending</span></td>
+									</tr>
+								@elseif($recent->status == 'confirmed')
+									<tr>
+										<td>
+											<img src="">
+											<p>{{$recent->name}}</p>
+										</td>
+										<td>{{$recent->date}}</td>
+										<td><span class="status completed">Confirmed</span></td>
+									</tr>
+								@endif
+							@endforeach
 						</tbody>
 					</table>
 				</div>
-				<div class="todo">
+				<div class="order">
 					<div class="head">
-						<h3>Todos</h3>
-						<i class='bx bx-plus' ></i>
-						<i class='bx bx-filter' ></i>
+						<h3>New Vendors</h3>
 					</div>
-					<ul class="todo-list">
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-					</ul>
+					<table>
+						<thead>
+							<tr>
+								<th>Profile</th>
+								<th>Full Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach($vendors as $vendor)
+							<tr>
+								<td>
+									<img src="{{url('public/vendorImages/'.$vendor->prophoto)}}">
+									<p></p>
+								</td>
+								<td>
+									<p>{{$vendor->firstName}} {{$vendor->lastName}}</p>
+								</td>
+							</tr>
+							@endforeach
+						</tbody>
+					</table>
 				</div>
+				
 			</div>    
 
 		</main>
