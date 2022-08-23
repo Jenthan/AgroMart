@@ -106,6 +106,10 @@ class MainController extends Controller
         return view('product.index',compact('products'));
     }
 
+    public function leastvegDisplay(){
+        
+        return view('product.index',compact('products'));
+    }
     public function logout(){
         Auth::logout();
         return redirect(url('/'));
