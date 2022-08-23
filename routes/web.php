@@ -172,8 +172,8 @@ Route::get('farmer-profile-display',[FarmerDashController::class,'profile']);
 Route::post('farmer-profile-update/{user}',[FarmerDashController::class,'profile_update']);
 // Farmer Order Details view
 Route::get('farmer-order-display',[FarmerDashController::class,'order_view']);
-
 Route::post('farmer-req-vendor',[FarmerDashController::class,'vendor_req']);
+Route::get('farmer-req-close/{id}',[FarmerDashController::class,'close_request']);
 
 //Farmer view Vendor details
 Route::get('farmer-vendor-display',[FarmerDashController::class,'vendor_view']);
