@@ -23,8 +23,8 @@ class CreateFarmerRequestVendorsTable extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->unsignedBigInteger('customer_order_id');					
             $table->foreign('customer_order_id')->references('id')->on('customer_order_products')->onDelete('cascade');
-            $table->enum('requeststatus',['cancelled','accepted'])->nullable();
-            $table->int('vendorcharge')->nullable();
+            $table->enum('requeststatus',['cancelled','accepted','requested','delivered'])->nullable();
+            $table->integer('vendorcharge')->nullable();
             $table->timestamps();
         });
     }
