@@ -48,6 +48,7 @@ Route::post('checkhomesearch',[MainController::class,'checkhomesearchDisplay']);
 Route::get('/searchVeg',[MainController::class,'vegDisplay']);
 Route::get('/searchfruit',[MainController::class,'fruitDisplay']);
 Route::get('/searchmilk',[MainController::class,'milkDisplay']);
+Route::get('/leastveg',[MainController::class,'leastvegDisplay']);
 Route::get('/cuslogout',[MainController::class,'logout']);
 Route::post('/cusprosearch',[MainController::class,'cusproductsearch']);
 
@@ -161,6 +162,7 @@ Route::post('/update-product/{product}',[FarmerMakeProductController::class,'upd
 Route::get('/show-product/{product}',[FarmerMakeProductController::class,'show']);
 Route::get('/deleteview-product/{product}',[FarmerMakeProductController::class,'delete']);
 Route::post('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
+Route::get('/delete-product2/{product}',[FarmerMakeProductController::class,'destroy2']);
 
 // Farmer Password Change
 Route::get('/farmer-password',[FarmerDashController::class,'password']);
@@ -171,6 +173,7 @@ Route::post('farmer-profile-update/{user}',[FarmerDashController::class,'profile
 // Farmer Order Details view
 Route::get('farmer-order-display',[FarmerDashController::class,'order_view']);
 Route::post('farmer-req-vendor',[FarmerDashController::class,'vendor_req']);
+Route::get('farmer-req-close/{id}',[FarmerDashController::class,'close_request']);
 
 //Farmer view Vendor details
 Route::get('farmer-vendor-display',[FarmerDashController::class,'vendor_view']);
