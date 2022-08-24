@@ -63,7 +63,7 @@
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3> Orders</h3>
+						<h3>Delivered Orders</h3>
 					</div>
 					<table>
 						<thead>
@@ -72,9 +72,11 @@
 								<th>Customer Name</th>
                                 <th>Product Name</th>
 								<th>Farmer Name</th>
-                                <th>quantity</th>
+                                <th>Quantity</th>
+								<th>unitPrice</th>
 								<th>Order Date</th>
-								<th>Order Address</th>
+								<th>Delivery Date</th>
+								<th>Shipping Address</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -82,23 +84,67 @@
 							$i=0;
 							@endphp
 							@foreach($orders as $order)
-								@if($order->user_id == Auth::user()->id && $order->deliverstatus == 'cancelled')
+							@if($order->deliverstatus == "delivered")
+								
 									<tr>
 										<td>{{++$i}}</td>
-										<td>{{$order->customerName}}</td>
-										<td>{{$order->productName}}</td>
-										<td>
-											@foreach($farmers as $farmer)
-												@if($order->farmer_id == $farmer->id)
-													{{$farmer->firstName}} {{$farmer->lastName}}
-												@endif
-											@endforeach
-										</td>
-										<td>{{$order->orderQuantity}}</td>
-										<td>{{$order->productName}}</td>
-										<td>{{$order->orderAddressNo}}, {{$order->orderAddressStreet}}, {{$order->orderAddressCity}}</td>									
+										
+										@foreach($cusorderproduct as $cusorp)
+											@if($order->cusorderid == $cusorp->id)
+												@foreach($customers as $customer)
+													@if($cusorp->customer_id == $customer->id)
+												         <td>{{$customer->customerName}}</td>
+													@endif
+												@endforeach
+											@endif
+										@endforeach
+
+										@foreach($products as $product)
+											@if($order->productid == $product->id)
+										<td>{{$product->productName}}</td>
+											@endif
+										@endforeach
+
+										@foreach($farmers as $farmer)
+											@if($order->farmerid == $farmer->id)
+										<td>{{$farmer->firstName}}{{$farmer->lastName}}</td>
+											@endif
+										@endforeach
+
+										@foreach($cusorderproduct as $cusorp)
+											@if($order->cusorderid == $cusorp->id)
+										<td>{{$cusorp->qty}}</td>
+											@endif
+										@endforeach
+
+										@foreach($products as $product)
+											@if($order->productid == $product->id)
+										<td>{{$product->unitPrice}}</td>
+											@endif
+										@endforeach
+
+										@foreach($cusorderproduct as $cusorp)
+											@if($order->cusorderid == $cusorp->id)
+										<td>{{$cusorp->updated_at}}</td>
+											@endif
+										@endforeach
+
+										<td>{{$order->frvupdated_at}}</td>
+
+										@foreach($cusorderproduct as $cusorp)
+											@if($order->cusorderid == $cusorp->id)
+												@foreach($customers as $customer)
+													@if($cusorp->customer_id == $customer->id)
+												         <td>{{$customer->customerAddressNo}},
+															{{$customer->customerAddressStreet}},{{$customer->customerAddressCity}}</td>
+													@endif
+												@endforeach
+											@endif
+										@endforeach
+
+					
 									</tr>
-								@endif
+								@endif	
 							@endforeach	
 						</tbody>
 					</table>

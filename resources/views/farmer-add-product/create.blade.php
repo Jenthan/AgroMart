@@ -6,6 +6,17 @@
                 <div class="head">
                     <h3>Add New Product</h3>
                 </div>
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
+        @if ($message = Session::get('error'))
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <strong>{{ $message }}</strong>
+            </div>
+        @endif
     <form method="post" action="{{url('store-product')}}" enctype="multipart/form-data">
         @csrf
     <div class="form-group row">

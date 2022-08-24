@@ -63,7 +63,7 @@
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3> Orders</h3>
+						<h3> Accepted Orders</h3>
 					</div>
 					<table>
 						<thead>
@@ -74,8 +74,8 @@
 								<th>Farmer Name</th>
                                 <th>Quantity</th>
 								<th>Order Date</th>
+								<th>Farmer Address</th>
 								<th>Order Address</th>
-								<th>Status</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -83,38 +83,28 @@
 							$i=0;
 							@endphp
 							@foreach($orders as $order)
-								@if($order->user_id == Auth::user()->id)
+								
 									<tr>
 										<td>{{++$i}}</td>
-										<td>{{$order->customerName}}</td>
+										@foreach($customers as $customer)
+											@if($order->customer_id == $customer->id)
+											<td>{{$customer->customerName}}</td>
+											@endif
+									    @endforeach
 										<td>{{$order->productName}}</td>
+										<td>{{$order->ffname}} {{$order->flname}}</td>
+										<td>{{$order->qty}}</td>
+										<td>{{$order->updated_at}}</td>
+										<td>{{$order->farmAddressNo}}, {{$order->farmAddressStreet}}, {{$order->farmAddressCity}}</td>
+										@foreach($customers as $customer)
+											@if($order->customer_id == $customer->id)
+											<td>{{$customer->customerAddressNo}},{{$customer->customerAddressStreet}},{{$customer->customerAddressCity}}</td>
+											@endif
+									    @endforeach
 										<td>
-											@foreach($farmers as $farmer)
-												@if($order->farmer_id == $farmer->id)
-													{{$farmer->firstName}} {{$farmer->lastName}}
-												@endif
-											@endforeach
-										</td>
-										<td>{{$order->orderQuantity}}</td>
-										<td>{{$order->productName}}</td>
-										<td>{{$order->orderAddressNo}}, {{$order->orderAddressStreet}}, {{$order->orderAddressCity}}</td>
-										<td>
-											@if($order->deliverstatus=="pending")
-													<a href="{{url('/acceptDeliverStatus',$order->id)}}" class="status pending">Accept ?</a>
-													<a href="{{url('/cancelledDeliverStatus',$order->id)}}" class="status cancelling">Cancel ?</a>
-											@endif											
-											@if($order->deliverstatus=="delivered")
-												<span class="status completed">Delivered</span>
-											@endif
-											@if($order->deliverstatus=="cancelled")
-												<span class="status cancell">Cancelled</span>
-											@endif
-											@if($order->deliverstatus=="processing")
-												<a href="{{url('/doneDeliverStatus',$order->id)}}" class="status process">Delivered ?</a>
-											@endif
+											
 										</td>
 									</tr>
-								@endif
 							@endforeach	
 						</tbody>
 					</table>

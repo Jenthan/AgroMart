@@ -60,16 +60,13 @@ class FarmerDashController extends Controller
         ->join('farmers','farmers.id','=','customer_order_products.farmer_id')
         ->join('products','products.id','=','customer_order_products.product_id')
         ->select('customers.customerName','customers.customerAddressNo','customers.customerAddressStreet',
-        'products.productName','products.unitPrice','customerAddressCity','customer_order_products.id','customer_order_products.qty as qty')
+        'products.productName','products.unitPrice','customerAddressCity','customer_order_products.id as id','customer_order_products.qty as qty')
         ->where('farmers.id',$fid->id)
         ->get();
         $vendors = Vendor::all();
         return view('farmer-order.order',compact('orders','vendors'));
     }
-    public function farmer_req()
-    {
-
-    }
+    
 
     public function vendor_view()
     {
@@ -88,7 +85,7 @@ class FarmerDashController extends Controller
      */
     public function index()
     {
-        //
+        return view('farmer-order.select');
     }
 
     /**

@@ -43,9 +43,9 @@
 				</a>
 			</li>
             <li class="{{ (request()->is('cancelledOrders')) ? 'active' : '' }}"> 
-				<a href="{{url('/cancelledOrders')}}">
+				<a href="{{url('/deliveredOrders')}}">
 					<i class='bx bxs-shopping-bag-alt' ></i>
-					<span class="text">Cancelled Orders</span>
+					<span class="text">Delivered Orders</span>
 				</a>
 			</li>
            
