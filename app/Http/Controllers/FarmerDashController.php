@@ -111,6 +111,7 @@ class FarmerDashController extends Controller
     public function order_view()
     {
         $fid = Farmer::where('user_id',Auth::User()->id)->first();
+        
         $orders = DB::table('customer_order_products')
         ->join('customers','customers.id','=','customer_order_products.customer_id')
         ->join('farmers','farmers.id','=','customer_order_products.farmer_id')
@@ -121,12 +122,18 @@ class FarmerDashController extends Controller
         'customer_order_products.qty as qty')
         ->where('farmers.id',$fid->id)
         ->get();
+        //dd($orders);
+
         $requests = DB::table('farmer_request_vendors')
+        ->join('products','products.id','=','farmer_request_vendors.product_id')
         ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
+        ->join('farmers','farmers.id','=','farmer_request_vendors.farmer_id')
+        ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
         ->select('vendors.firstName','vendors.lastName',
         'farmer_request_vendors.customer_order_id')
         ->where('farmer_request_vendors.farmer_id',$fid->id)
         ->get();
+
         $vendors = Vendor::all();
         return view('farmer-order.order',compact('orders','vendors','requests'));
     }
