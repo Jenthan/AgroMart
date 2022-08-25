@@ -61,7 +61,7 @@ class FarmerMakeProductController extends Controller
             'farmerId' => 'required',
         ]);
         if($validator->fails()){
-            return back() -> with('error','Invalid Details...!');
+            return back() -> withInput() -> with('error','Invalid Details...!');
         }
         else
         {
@@ -83,8 +83,6 @@ class FarmerMakeProductController extends Controller
             return redirect('add-product')->with('success','Your product added successfully.!');
         }
     }
-
-
     
     /**
      * Display the specified resource.

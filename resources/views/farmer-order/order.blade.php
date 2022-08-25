@@ -48,28 +48,25 @@
                                     $t = $order->qty;
                                     $am = $up * $t;
                                 @endphp 
-                                {{$am}}
+                                Rs. {{$am}}.00/=
                             </td>
                             <form method="post" action="{{url('farmer-req-vendor')}}">
                                 @csrf
                             <td>
-                                
-                                <div class="form-group row">
-                                    <div class="col-sm-10">
-                                        <select name="vendor_id" class="form-control">
-                                            <option value="">Select Vendor</option>
-                                            @foreach($vendors as $vendor)
-                                                <option value="{{$vendor->id}}">{{$vendor->firstName}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <input type="hidden" name="order_id" value="{{$order->orderid}}">
-                                    <input type="hidden" name="farmer_id" value="{{$order->farmid}}">
-                                    <input type="hidden" name="product_id" value="{{$order->proid}}">                                   
-                                </div>                            
+                                <div class="col-sm-10">
+                                    <select name="vendor_id" class="form-control">
+                                        <option value="">Select Vendor</option>
+                                        @foreach($vendors as $vendor)
+                                            <option value="{{$vendor->id}}">{{$vendor->firstName}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <input type="hidden" name="order_id" value="{{$order->orderid}}">
+                                <input type="hidden" name="farmer_id" value="{{$order->farmid}}">
+                                <input type="hidden" name="product_id" value="{{$order->proid}}">                                                      
                             </td>
                             <td>
-                                <button type="submit" class="status completed">REQ</button>
+                                <button type="submit" class="status completed">Req</button>
                                 <a href="{{url('farmer-req-close',$order->orderid)}}" onclick="return confirm('Are you close the requests?')" class="status completed">Close</a>
                             </td>
                             </form>
@@ -79,12 +76,24 @@
                                 @if($order->orderid == $req->customer_order_id)
                                     <tr>
                                         <td></td>
+                                        <td>{{$j++}}. Vendor : </td>
+                                        <td>{{$req->firstName}} {{$req->lastName}}</td>
+                                        <td>Expect Charge :</td>
                                         <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>{{$j++}}. {{$req->firstName}} {{$req->lastName}}</td>
+                                        <td>
+                                            @if($req->vendorcharge == null)
+                                                <span class="status pending">Pending</span> 
+                                            @elseif($req->vendorcharge > 0)
+                                                <label>Rs. {{$req->vendorcharge}}.00/=</label>                             
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($req->vendorcharge == null)
+                                                <label>Action :  </label><span class="status pending">Pending</span> 
+                                            @elseif($req->vendorcharge > 0)
+                                                <label>Action : <a href="" class="status process">Accept</a></label>                                    
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endif
                             @endforeach
@@ -102,7 +111,7 @@
                                     $t = $order->qty;
                                     $am = $up * $t;
                                 @endphp 
-                                {{$am}}
+                                Rs. {{$am}}.00/=
                             </td>
                             <td>Wait for Confirmation</td>
                             <td><span class="status pending">Pending</span></td>

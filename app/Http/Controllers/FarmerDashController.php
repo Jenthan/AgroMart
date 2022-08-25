@@ -121,6 +121,7 @@ class FarmerDashController extends Controller
         'farmers.id as farmid','products.id as proid','customer_order_products.orderstatus',
         'customer_order_products.qty as qty')
         ->where('farmers.id',$fid->id)
+        ->orderBy('customer_order_products.updated_at','DESC')
         ->get();
         //dd($orders);
 
@@ -129,7 +130,7 @@ class FarmerDashController extends Controller
         ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
         ->join('farmers','farmers.id','=','farmer_request_vendors.farmer_id')
         ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
-        ->select('vendors.firstName','vendors.lastName',
+        ->select('vendors.firstName','vendors.lastName','farmer_request_vendors.vendorcharge',
         'farmer_request_vendors.customer_order_id')
         ->where('farmer_request_vendors.farmer_id',$fid->id)
         ->get();

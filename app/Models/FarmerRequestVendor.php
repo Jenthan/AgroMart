@@ -15,6 +15,7 @@ class FarmerRequestVendor extends Model
         'product_id',
         'customer_order_id',
         'requeststatus',
+        'vendorcharge',
     ];
 
     
