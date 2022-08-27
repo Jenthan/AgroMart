@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Auth;
 use validator;
+use DB;
 
 class MainController extends Controller
 {
@@ -109,13 +110,19 @@ class MainController extends Controller
     public function leastvegDisplay(){
         //code
         //$products=DB::table('products')->where->('productType','=')->orderBy('unitPrice', 'asc')->get();
-        $products=Product::all()->where('productType','=','vegetable')->orderBy('unitPrice', 'asc')->get();
+        $products=DB::table('products')
+        ->where('productType','=','vegetable')
+        ->orderBy('unitPrice', 'asc')
+        ->get();
         return view('product.index',compact('products'));
     }
 
     public function leastfruitDisplay(){
         //code
-        $products=Product::all()->where('productType','=','fruit')->orderBy('unitPrice', 'asc')->get();
+        $products=DB::table('products')
+        ->where('productType','=','fruit')
+        ->orderBy('unitPrice', 'asc')
+        ->get();
         return view('product.index',compact('products'));
     }
 
