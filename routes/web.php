@@ -138,6 +138,7 @@ Route::post('/cusprosearch',[MainController::class,'cusproductsearch']);
     Route::get('/requestpending/{id}',[VendorController::class,'reqpending']);
     Route::get('/requestdelivered/{id}',[VendorController::class,'reqdelivered']);
     Route::get('/deliveredOrders',[VendorController::class,'venderDeliveredOrderDetails']);
+    Route::post('/vendordeliverycharge/{id}',[VendorController::class,'vendordeliverycharge']);
 
 
 
