@@ -266,6 +266,9 @@ footer .box-container{
     color:var(--green);
   }
   
+  .product .box-container .box{
+    padding: 2px 16px;
+  }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
