@@ -131,7 +131,8 @@ class FarmerDashController extends Controller
         ->join('farmers','farmers.id','=','farmer_request_vendors.farmer_id')
         ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
         ->select('vendors.firstName','vendors.lastName','farmer_request_vendors.vendorcharge',
-        'farmer_request_vendors.customer_order_id')
+        'farmer_request_vendors.customer_order_id',
+        'farmer_request_vendors.id as reqid','farmer_request_vendors.requeststatus')
         ->where('farmer_request_vendors.farmer_id',$fid->id)
         ->get();
 
@@ -166,10 +167,16 @@ class FarmerDashController extends Controller
             return back()->with('success','Vendor request is successfully.!');
         }
     }
+    public function vendor_req_confirm($id)
+    {
+        $req = FarmerRequestVendor::find($id)->update(['requeststatus' => 'requested']);
+        return back() -> with('success','Request to Vendor for Deliver the order successfully..!');
+
+    }
     public function close_request($id)
     {
         $order = CustomerOrderProduct::where('id','=',$id)->first();
-        $req = FarmerRequestVendor::where('customer_order_id',$order->id)->get();
+        $req = FarmerRequestVendor::where('customer_order_id',$order->id)->first();
         if($req->isEmpty())
         {
             return back()->with('error','Not selected the any Vendor...!');

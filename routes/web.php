@@ -174,7 +174,7 @@ Route::post('farmer-profile-update/{user}',[FarmerDashController::class,'profile
 Route::get('farmer-order-display',[FarmerDashController::class,'order_view']);
 Route::post('farmer-req-vendor',[FarmerDashController::class,'vendor_req']);
 Route::get('farmer-req-close/{id}',[FarmerDashController::class,'close_request']);
-
+Route::get('farmer-con-vendor/{id}',[FarmerDashController::class,'vendor_req_confirm']);
 //Farmer view Vendor details
 Route::get('farmer-vendor-display',[FarmerDashController::class,'vendor_view']);
 //Farmer History for translation of vendor
