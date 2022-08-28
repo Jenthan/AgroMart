@@ -125,7 +125,7 @@
                 <label for="quantity" name="quantity">Quantity</label>
                 <input type="number"></br>
                 <input type="hidden" name="fid" value="{{$product->farmer_id}}" disabled></br>
-                <a href="{{url('homelogin')}}" > <button onclick="logincusalert()" class="btn btn-success">Add to card </button></a>
+                <a href="{{url('homelogin')}}" > <button onclick="logincusalert()" class="btn btn-success">Add to Cart </button></a>
                 
 
             </form>
