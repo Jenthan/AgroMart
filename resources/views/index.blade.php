@@ -58,7 +58,9 @@
        <!-- <a href="{{url('farmer')}}">Farmer</a> -->
         <a href="{{url('product')}}">Product</a>
       <!--  <a href="{{url('vender')}}">Vender</a>  -->
-        <!-- <a href="#">Contact</a> -->
+      <a href="#">Contact</a>
+      
+
     </nav>
     <div class="icons">
         <a onclick="ordersalert()" class="fas fa-shopping-cart"></a>

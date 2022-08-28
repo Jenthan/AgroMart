@@ -11,6 +11,7 @@ use App\Models\DeliverProduct;
 use App\Models\UserPhone;
 use App\Models\FarmerRequestVendor;
 use App\Models\CustomerOrderProduct;
+
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -44,10 +45,11 @@ class VendorController extends Controller
         ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
         ->join('farmers','farmers.id','=','farmer_request_vendors.farmer_id')
         ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
-        ->select('products.productName','customer_order_products.qty','customer_order_products.updated_at','farmer_request_vendors.requeststatus','customer_order_products.customer_id',
-        'farmers.firstName','farmers.lastName','products.unitPrice','farmers.farmAddressCity','customer_order_products.orderstatus','farmer_request_vendors.id as frid')
+        ->select('products.productName','products.*','customer_order_products.qty','customer_order_products.updated_at','farmer_request_vendors.requeststatus','customer_order_products.customer_id',
+        'farmers.firstName','farmers.lastName','products.unitPrice','farmers.*','farmers.farmAddressCity','customer_order_products.orderstatus','farmer_request_vendors.id as frid')
         ->where('farmer_request_vendors.vendor_id','=', $vid)
         ->where('farmer_request_vendors.requeststatus','=',NULL)
+        ->where('farmer_request_vendors.vendorcharge','=',NULL)
         ->get();
         foreach($orders as $or){
             $totalOrders++;
@@ -251,27 +253,6 @@ class VendorController extends Controller
         return view('register.regivendor');
     }
 
-
-    public function requestaccepted($id){
-        $farmerreqvendor = FarmerRequestVendor::find($id);
-        $deliverproduct = new DeliverProduct([
-            'farmer_request_vendors_id' =>$id,
-            'deliverstatus' =>'processing'
-        ]);
-        $farmerreqvendor->requeststatus = "accepted";
-        $deliverproduct->save();
-        $farmerreqvendor->update();
-        return redirect()->route('vendorDashboard');
-    }
-
-    public function requestrejected($id){
-        $farmerreqvendor = FarmerRequestVendor::find($id);
-        $farmerreqvendor->requeststatus = "cancelled";
-
-        $farmerreqvendor->update();
-        return redirect()->route('vendorDashboard');
-    }
-
     public function reqpending($id){
        $deliverproducts = DeliverProduct::find($id);
         $deliverproducts->deliverstatus = "pending";
@@ -306,5 +287,15 @@ class VendorController extends Controller
         return view('vendorDashboard.deliveredOrders',compact('farmers','orders','vendors','customers','cusorderproduct','products'));
     }
     
+    public function vendordeliverycharge(Request $request ,$id){
+        $request->validate([
+            'delivercharge'=>'required'
+        ]);
+        $farmerreqvendor = FarmerRequestVendor::find($id);
+        $farmerreqvendor->vendorcharge = $request->get('delivercharge');
+        $farmerreqvendor->update();
+
+        return redirect()->route('vendorDashboard')->with('success', 'cost send successfully');
+    }
 
 }
