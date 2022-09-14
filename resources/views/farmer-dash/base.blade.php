@@ -17,6 +17,7 @@
 
 	<link rel='stylesheet' href="{{ asset('/farmer/style.css')}}">
 
+	<link rel='stylesheet' href="{{ asset('/farmer/order.css')}}">
 	<script src="farmer.profile.js"></script>
 	
 	<script>

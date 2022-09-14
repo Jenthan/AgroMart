@@ -33,11 +33,11 @@
                 @php
                     $i=1;
                 @endphp
-				<tbody>
+			    <tbody>
                     @foreach($orders as $order)
                         @if($order->orderstatus == "confirmed")
                         <tr>
-                            <td>{{$i++}}</td>
+                            <td><span class="status completed">({{$i++}})</span></td>
                             <td>{{$order->customerName}}</td>
                             <td>{{$order->customerAddressNo}}, {{$order->customerAddressStreet}}, {{$order->customerAddressCity}}</td>
                             <td>{{$order->productName}}</td>
@@ -74,9 +74,9 @@
                             @php $j=1; @endphp
                             @foreach($requests as $req)
                                 @if($order->orderid == $req->customer_order_id)
-                                    <tr>
+                                    <tr class="order_tr_req">
                                         <td></td>
-                                        <td>{{$j++}}. Vendor : </td>
+                                        <td><span class="status process">{{$j++}}</span> Vendor : </td>
                                         <td>{{$req->firstName}} {{$req->lastName}}</td>
                                         <td>Expect Charge :</td>
                                         <td></td>
@@ -89,20 +89,21 @@
                                         </td>
                                         <td>
                                             @if($req->vendorcharge == null)
-                                                <label>Action :  </label><span class="status pending">Pending</span> 
+                                                <label>Action :-  </label><span class="status pending">Pending</span> 
                                             @elseif($req->vendorcharge > 0 && $req->requeststatus == null)
-                                                <label>Action : <a href="{{url('farmer-con-vendor',$req->reqid)}}" class="status process">Accept</a></label>  
+                                                <label>Action :- <a href="{{url('farmer-con-vendor',$req->reqid)}}" class="status process">Accept</a></label>  
                                             @elseif($req->requeststatus == 'requested')           
-                                                <label class="status completed"> Requested </label>
+                                                <label>Status :-</label><span class="status completed">Requested</span> 
                                             @endif
                                         </td>
                                     </tr>
+                                
                                 @endif
                             @endforeach
                         
                         @elseif($order->orderstatus == "notconfirmed")
                         <tr>
-                            <td>{{$i++}}</td>
+                            <td><span class="status pending">({{$i++}})</span></td>
                             <td>{{$order->customerName}}</td>
                             <td>{{$order->customerAddressNo}}, {{$order->customerAddressStreet}}, {{$order->customerAddressCity}}</td>
                             <td>{{$order->productName}}</td>
