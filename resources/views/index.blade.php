@@ -42,12 +42,11 @@
 </head>
 <body>
 
+<div class="logo-container">
+         <img class="logo" src="images/logo.png" alt="logo">
+</div>
+
 <div class="grid_1">
-    <div id="logo">
-         
-            <img src="images/logo.png" alt="logo">
-    </div>
- 
  <header id="header">
     <div class="header-2">
 
@@ -58,7 +57,7 @@
        <!-- <a href="{{url('farmer')}}">Farmer</a> -->
         <a href="{{url('product')}}">Product</a>
       <!--  <a href="{{url('vender')}}">Vender</a>  -->
-      <a href="#">Contact</a>
+      <!-- <a href="#">Contact</a> -->
       
 
     </nav>

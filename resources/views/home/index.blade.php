@@ -35,7 +35,7 @@
             </div>
             <div class="box">
             <a href="{{url('/searchmilk')}}">
-                   <h3>juice</h3>
+                   <h3>Milk</h3>
                </a>
                 <a href="{{url('/searchmilk')}}"><img src="images/category-2.png" alt=""></a>
             </div>
