@@ -183,7 +183,7 @@ class FarmerDashController extends Controller
     {
         $order = CustomerOrderProduct::where('id','=',$id)->first();
         $req = FarmerRequestVendor::where('customer_order_id',$order->id)->first();
-        if($req->isEmpty())
+        if($req == null)
         {
             return back()->with('error','Not selected the any Vendor...!');
         }
