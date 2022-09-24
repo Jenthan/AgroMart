@@ -91,9 +91,16 @@
                                             @if($req->vendorcharge == null)
                                                 <label>Action :-  </label><span class="status pending">Pending</span> 
                                             @elseif($req->vendorcharge > 0 && $req->requeststatus == null)
-                                                <label>Action :- <a href="{{url('farmer-con-vendor',$req->reqid)}}" class="status process">Accept</a></label>  
+                                            <form method="post" action="{{url('farmer-con-vendor',$req->reqid)}}">
+                                                @csrf
+                                                <input type="hidden" name="status" value="pending">
+                                                <!--<label>Action :- <a href="{{url('farmer-con-vendor',$req->reqid)}}" class="status process">Accept</a></label> -->
+                                                <label>Action :- <button type="submit" class="status process">Accept</button></label>
+                                            </form>
                                             @elseif($req->requeststatus == 'requested')           
                                                 <label>Status :-</label><span class="status completed">Requested</span> 
+                                            @elseif($req->requeststatus == 'delivered')           
+                                                <label>Status :-</label><span class="status completed">Delivered</span> 
                                             @endif
                                         </td>
                                     </tr>

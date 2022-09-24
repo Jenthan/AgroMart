@@ -17,4 +17,8 @@ class DeliverProduct extends Model
     public function deleverdetail(){
         return $this->belongsTo('App\Models\DeliverDetails');
     }
+
+    public function request(){
+        return $this->belongsTo('App\Models\FarmerRequestVendor');
+    }
 }

@@ -10,6 +10,7 @@ use App\Models\UserPhone;
 use App\Models\CustomerOrderProduct;
 use App\Models\Farmer;
 use App\Models\FarmerRequestVendor;
+use App\Models\DeliverProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -167,9 +168,14 @@ class FarmerDashController extends Controller
             return back()->with('success','Vendor request is successfully.!');
         }
     }
-    public function vendor_req_confirm($id)
+    public function vendor_req_confirm(Request $request,$id)
     {
         $req = FarmerRequestVendor::find($id)->update(['requeststatus' => 'requested']);
+        $delivery = new DeliverProduct([
+            'farmer_request_vendors_id' => $id,
+            'deliverstatus' => $request->get('status'),
+        ]);
+        $delivery->save();
         return back() -> with('success','Request to Vendor for Deliver the order successfully..!');
 
     }
@@ -201,7 +207,14 @@ class FarmerDashController extends Controller
 
     public function histo()
     {
-        return view('farmer-history.history');
+        $hists = DB::table('farmer_request_vendors')
+        ->join('deliver_products','deliver_products.farmer_request_vendors_id','=','farmer_request_vendors.id')
+        ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
+        ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
+        ->join('customers','customers.id','=','customer_order_products.customer_id')
+        ->join('products','products.id','=','customer_order_products.product_id')
+        ->get();
+        return view('farmer-history.history',compact('hists'));
     }
 
    

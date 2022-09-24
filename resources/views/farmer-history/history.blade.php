@@ -25,6 +25,18 @@
                   <th>Delivery Date</th>
                   <th>Status</th>
                 </tr>
+                @foreach($hists as $hist)
+                <tr>
+                  <td>i</td>
+                  <td>{{$hist->customerName}}</td>
+                  <td>{{$hist->productName}}</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                @endforeach
               </thead>
             </table>
     </div>
