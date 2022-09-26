@@ -213,6 +213,10 @@ class FarmerDashController extends Controller
         ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
         ->join('customers','customers.id','=','customer_order_products.customer_id')
         ->join('products','products.id','=','customer_order_products.product_id')
+        ->select('customers.customerName','products.productName','customer_order_products.qty',
+        'products.unitPrice','vendors.firstName','vendors.lastName','customer_order_products.updated_at as ordertime',
+        'farmer_request_vendors.created_at as request','deliver_products.updated_at as deliverdate',
+        'deliver_products.deliverstatus')
         ->get();
         return view('farmer-history.history',compact('hists'));
     }

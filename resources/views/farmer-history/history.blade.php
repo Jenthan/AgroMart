@@ -25,16 +25,23 @@
                   <th>Delivery Date</th>
                   <th>Status</th>
                 </tr>
+                @php $i = 1 @endphp
                 @foreach($hists as $hist)
                 <tr>
-                  <td>i</td>
+                  <td>{{$i++}}</td>
                   <td>{{$hist->customerName}}</td>
                   <td>{{$hist->productName}}</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>{{$hist->qty}}</td>
+                  <td>{{$hist->qty * $hist->unitPrice}}</td>
+                  <td>{{$hist->firstName}} {{$hist->lastName}}</td>
+                  <td>{{$hist->ordertime}}</td>
+                  <td>{{$hist->request}}</td>
+                  <td>{{$hist->deliverdate}}</td>
+                  @if($hist->deliverstatus == "delivered")
+                    <td><span class="status completed">Delivered</span></td>
+                  @else
+                    <td><span class="status process">Processing</span></td>
+                  @endif
                 </tr>
                 @endforeach
               </thead>
