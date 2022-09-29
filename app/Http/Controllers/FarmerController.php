@@ -31,6 +31,21 @@ class FarmerController extends Controller
         $cus_count=Customer::all()->count();
         $vendor_count=Vendor::all()->count();
 
+        $sales = DB::table('farmer_request_vendors')
+        ->join('deliver_products','deliver_products.farmer_request_vendors_id','=','farmer_request_vendors.id')
+        ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
+        ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
+        ->join('customers','customers.id','=','customer_order_products.customer_id')
+        ->join('products','products.id','=','customer_order_products.product_id')
+        ->select('customer_order_products.qty','products.unitPrice as up')
+        ->where('deliver_products.deliverstatus','delivered')
+        ->get();
+        $tsales=0;
+        foreach($sales as $sale)
+        {
+            $tsales = $tsales + ($sale->qty * $sale->up);
+        }
+
         $recents = DB::table('customer_order_products')
         ->join('customers','customers.id','=','customer_order_products.customer_id')
         ->join('farmers','farmers.id','=','customer_order_products.farmer_id')
@@ -44,7 +59,7 @@ class FarmerController extends Controller
         ->take(5)->get();
 
         $vendors = Vendor::take(5)->get();
-        return view('farmer-dash.index',compact('order_count','cus_count','vendor_count','recents','vendors'));
+        return view('farmer-dash.index',compact('order_count','cus_count','vendor_count','recents','vendors','tsales'));
     }
 
     public function farmerregistrationview(){

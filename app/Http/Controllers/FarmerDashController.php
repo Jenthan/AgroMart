@@ -217,6 +217,7 @@ class FarmerDashController extends Controller
         'products.unitPrice','vendors.firstName','vendors.lastName','customer_order_products.updated_at as ordertime',
         'farmer_request_vendors.created_at as request','deliver_products.updated_at as deliverdate',
         'deliver_products.deliverstatus')
+        ->orderBy('deliver_products.updated_at','desc')
         ->get();
         return view('farmer-history.history',compact('hists'));
     }
