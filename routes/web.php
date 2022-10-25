@@ -16,7 +16,7 @@ use App\Http\Controllers\FarmerDashController;
 use App\Http\Controllers\FarmerMakeProductController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerMakeOrderController;
-
+use App\Http\Controllers\FarmerSearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -181,7 +181,8 @@ Route::post('farmer-con-vendor/{id}',[FarmerDashController::class,'vendor_req_co
 Route::get('farmer-vendor-display',[FarmerDashController::class,'vendor_view']);
 //Farmer History for translation of vendor
 Route::get('farmer-hist-display',[FarmerDashController::class,'histo']);
-
+//Farmer Search
+Route::post('farmer-search',[FarmerSearchController::class,'search']);
 
 
 
