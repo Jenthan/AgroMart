@@ -207,6 +207,8 @@ class FarmerDashController extends Controller
 
     public function histo()
     {
+        $fid = Farmer::where('user_id',Auth::User()->id)->first();
+
         $hists = DB::table('farmer_request_vendors')
         ->join('deliver_products','deliver_products.farmer_request_vendors_id','=','farmer_request_vendors.id')
         ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
@@ -216,7 +218,9 @@ class FarmerDashController extends Controller
         ->select('customers.customerName','products.productName','customer_order_products.qty',
         'products.unitPrice','vendors.firstName','vendors.lastName','customer_order_products.updated_at as ordertime',
         'farmer_request_vendors.created_at as request','deliver_products.updated_at as deliverdate',
+        'farmer_request_vendors.farmer_id',
         'deliver_products.deliverstatus')
+        ->where('farmer_request_vendors.farmer_id','=',$fid->id)
         ->orderBy('deliver_products.updated_at','desc')
         ->get();
         return view('farmer-history.history',compact('hists'));

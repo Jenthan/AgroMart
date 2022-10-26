@@ -37,8 +37,9 @@ class FarmerController extends Controller
         ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
         ->join('customers','customers.id','=','customer_order_products.customer_id')
         ->join('products','products.id','=','customer_order_products.product_id')
-        ->select('customer_order_products.qty','products.unitPrice as up')
+        ->select('customer_order_products.qty','products.unitPrice as up','farmer_request_vendors.farmer_id')
         ->where('deliver_products.deliverstatus','delivered')
+        ->where('farmer_request_vendors.farmer_id','=',$fid->id)
         ->get();
         $tsales=0;
         foreach($sales as $sale)
