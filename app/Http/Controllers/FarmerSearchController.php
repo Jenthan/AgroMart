@@ -30,7 +30,7 @@ class FarmerSearchController extends Controller
         $products = Product::where('productName','like',$data.'%')->get();
         
         $user=User::all()->where('role','farmer');
-        $farmer=Farmer::all();
+        //$farmer=Farmer::all();
         $id = Auth::User()->id;
         $farmer = Farmer::all()->where('user_id',$id);
 
