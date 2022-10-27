@@ -51,8 +51,7 @@
 				<div class="order">
 					<div class="head">
 						<h3>Recent Orders</h3>
-						<i class='bx bx-search' ></i>
-						<i class='bx bx-filter' ></i>
+						
 					</div>
 					<table>
 						<thead>
@@ -65,6 +64,7 @@
 						<tbody>
 							@foreach($ors as $or)
 							<tr>
+								
 								<td>
 									{{$or->customerName}}
 								</td>
@@ -77,76 +77,17 @@
 				</div>
            </div>
 		</div>
-		<!-- Form Group (phone number)-->
-		<div class="col-md-6">
-		<div class="table-data">
-				<div class="order">
-					<div class="head">
-						<h3>Recent Delivered Orders</h3>
-						<i class='bx bx-search' ></i>
-						<i class='bx bx-filter' ></i>
-					</div>
-					<table>
-						<thead>
-							<tr>
-								<th>CustomerName</th>
-								<th>Date Order</th>
-								
-							</tr>
-						</thead>
-						<tbody>
-							@foreach($reorders as $reorder)
-							<tr>
-								<td>
-									{{$reorder->customerName}}
-								</td>
-								<td>{{$reorder->updated_at}}</td>
-							</tr>
-							@endforeach
-							
-						</tbody>
-					</table>
-				</div>
-			</div>
+		<!-- Form Group (phone number) -->
+
+		
 
 		</div>
-	</div>
+	</div>     
 
 	
 			
 			
-				<!--
-				<div class="todo">
-					<div class="head">
-						<h3>Todos</h3>
-						<i class='bx bx-plus' ></i>
-						<i class='bx bx-filter' ></i>
-					</div>
-					<ul class="todo-list">
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-					</ul>
-				</div>  -->
-			   
-
+				
 		</main>
 
 @endsection
