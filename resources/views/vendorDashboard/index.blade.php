@@ -2,6 +2,18 @@
 
 @section('main')
 <main>
+
+@if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
+                @if ($message = Session::get('error'))
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">x</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
     <div class="head-title">
 				<div class="left">
 					<h1>Vendor Dashboard</h1>
@@ -41,10 +53,14 @@
 						<thead>
 							<tr>
 								<th>Customer</th>
+								<th>Delivery Address</th>
 								<th>Date Order</th>
 								<th>ProductName</th>
 								<th>Quantity</th>
-								<th>Action</th>
+								<th>Unit price</th>
+								<th>Farmer Name</th>
+								<th>Farmer Address</th>
+								<th>Enter Delivery Charge</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -56,15 +72,22 @@
 									@foreach($customers as $customer)
 										@if($order->customer_id == $customer->id)
 										<td>{{$customer->customerName}}</td>
+										<td>{{$customer->customerAddressNo}},{{$customer->customerAddressStreet}},{{$customer->customerAddressCity}}</td>
 										@endif
 									@endforeach
 									<td>{{$order->updated_at}}</td>
 									<th>{{$order->productName}}</th>
 									<td>{{$order->qty}}</td>
+									<td>{{$order->unitPrice}}</td>
+									<td>{{$order->firstName}}{{$order->lastName}}</td>
+									<td>{{$order->farmAddressNo}},{{$order->farmAddressStreet}},{{$order->farmAddressCity}}</td>
 									<td>
-									
-										<a href="{{url('/reqaccepted',$order->frid)}}"><button class="btn btn-primary">Accept</button></a>
-										<a href="{{url('/reqrejected',$order->frid)}}"><button class="btn btn-success">Rejected</button></a>
+										<form action="{{url('/vendordeliverycharge',$order->frid)}}" method="post">
+											@csrf
+											<input type="number" name="delivercharge" id="delivercharge">
+											<button type="submit" class="btn btn-primary">Done</button>
+										</form>
+	
 									</td>
 								</tr>
 								@endif

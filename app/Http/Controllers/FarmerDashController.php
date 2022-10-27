@@ -10,6 +10,7 @@ use App\Models\UserPhone;
 use App\Models\CustomerOrderProduct;
 use App\Models\Farmer;
 use App\Models\FarmerRequestVendor;
+use App\Models\DeliverProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -111,6 +112,7 @@ class FarmerDashController extends Controller
     public function order_view()
     {
         $fid = Farmer::where('user_id',Auth::User()->id)->first();
+        
         $orders = DB::table('customer_order_products')
         ->join('customers','customers.id','=','customer_order_products.customer_id')
         ->join('farmers','farmers.id','=','customer_order_products.farmer_id')
@@ -120,9 +122,23 @@ class FarmerDashController extends Controller
         'farmers.id as farmid','products.id as proid','customer_order_products.orderstatus',
         'customer_order_products.qty as qty')
         ->where('farmers.id',$fid->id)
+        ->orderBy('customer_order_products.updated_at','DESC')
         ->get();
+        //dd($orders);
+
+        $requests = DB::table('farmer_request_vendors')
+        ->join('products','products.id','=','farmer_request_vendors.product_id')
+        ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
+        ->join('farmers','farmers.id','=','farmer_request_vendors.farmer_id')
+        ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
+        ->select('vendors.firstName','vendors.lastName','farmer_request_vendors.vendorcharge',
+        'farmer_request_vendors.customer_order_id',
+        'farmer_request_vendors.id as reqid','farmer_request_vendors.requeststatus')
+        ->where('farmer_request_vendors.farmer_id',$fid->id)
+        ->get();
+
         $vendors = Vendor::all();
-        return view('farmer-order.order',compact('orders','vendors'));
+        return view('farmer-order.order',compact('orders','vendors','requests'));
     }
 
     public function vendor_req(Request $request)
@@ -133,18 +149,50 @@ class FarmerDashController extends Controller
             'product_id' => 'required',
             'farmer_id' => 'required',
         ]);
-        $req = new FarmerRequestVendor([
-            'farmer_id' => $request->get('farmer_id'), 
-            'vendor_id' => $request->get('vendor_id'),
-            'product_id' => $request->get('product_id'),
-            'customer_order_id' => $request->get('order_id'),
+        $reqcheck = FarmerRequestVendor::where('customer_order_id',$request->get('order_id'))
+            ->where('vendor_id',$request->get('vendor_id'))->first();
+        if($reqcheck != null)
+        {
+            return back()->with('error','Already requested to this Vendor.!');
+        }
+        else
+        {
+            $req = new FarmerRequestVendor([
+                'farmer_id' => $request->get('farmer_id'), 
+                'vendor_id' => $request->get('vendor_id'),
+                'product_id' => $request->get('product_id'),
+                'customer_order_id' => $request->get('order_id'),
+            ]);
+            $req->save();
+            $id=$request->get('order_id');
+            return back()->with('success','Vendor request is successfully.!');
+        }
+    }
+    public function vendor_req_confirm(Request $request,$id)
+    {
+        $req = FarmerRequestVendor::find($id)->update(['requeststatus' => 'requested']);
+        $delivery = new DeliverProduct([
+            'farmer_request_vendors_id' => $id,
+            'deliverstatus' => $request->get('status'),
         ]);
-        $req->save();
-        $id=$request->get('order_id');
-        $cus_order = CustomerOrderProduct::find($id)->update(['orderstatus' => 'requested']);
-        //$cus_order = CustomerOrderProduct::where('id','=',$request->get('order_id'))->update(['orderstatus' => 'req']);
-        //$cus_order -> update(['orderstatus' => 'req']);
-        return back()->with('success','Vendor request is successfully.!');
+        $delivery->save();
+        return back() -> with('success','Request to Vendor for Deliver the order successfully..!');
+
+    }
+    public function close_request($id)
+    {
+        $order = CustomerOrderProduct::where('id','=',$id)->first();
+        $req = FarmerRequestVendor::where('customer_order_id',$order->id)->first();
+        if($req == null)
+        {
+            return back()->with('error','Not selected the any Vendor...!');
+        }
+        else 
+        {
+            $order = CustomerOrderProduct::find($id)->update(['orderstatus' => 'requested']);
+            return back()->with('success','Customer order is closed successfully.!');
+            
+        }
     }
 
     public function vendor_view()
@@ -159,82 +207,24 @@ class FarmerDashController extends Controller
 
     public function histo()
     {
-        return view('farmer-history.history');
+        $fid = Farmer::where('user_id',Auth::User()->id)->first();
+
+        $hists = DB::table('farmer_request_vendors')
+        ->join('deliver_products','deliver_products.farmer_request_vendors_id','=','farmer_request_vendors.id')
+        ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
+        ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
+        ->join('customers','customers.id','=','customer_order_products.customer_id')
+        ->join('products','products.id','=','customer_order_products.product_id')
+        ->select('customers.customerName','products.productName','customer_order_products.qty',
+        'products.unitPrice','vendors.firstName','vendors.lastName','customer_order_products.updated_at as ordertime',
+        'farmer_request_vendors.created_at as request','deliver_products.updated_at as deliverdate',
+        'farmer_request_vendors.farmer_id',
+        'deliver_products.deliverstatus')
+        ->where('farmer_request_vendors.farmer_id','=',$fid->id)
+        ->orderBy('deliver_products.updated_at','desc')
+        ->get();
+        return view('farmer-history.history',compact('hists'));
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
+   
 }

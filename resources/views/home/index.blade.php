@@ -85,7 +85,7 @@
                 <div class="content">
                 <h3>Least Unit Price</h3>
                     <p>Fruits</p>
-                    <a href="#" class="btnno">check out</a>
+                    <a href="{{'/leastfruit'}}" class="btnno">check out</a>
                 </div>
             </div>
         </section>
@@ -125,7 +125,7 @@
                 <label for="quantity" name="quantity">Quantity</label>
                 <input type="number"></br>
                 <input type="hidden" name="fid" value="{{$product->farmer_id}}" disabled></br>
-                <a href="{{url('homelogin')}}" > <button onclick="logincusalert()" class="btn btn-success">Add to card </button></a>
+                <a href="{{url('homelogin')}}" > <button onclick="logincusalert()" class="btn btn-success">Add to Cart </button></a>
                 
 
             </form>

@@ -16,7 +16,7 @@ use App\Http\Controllers\FarmerDashController;
 use App\Http\Controllers\FarmerMakeProductController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerMakeOrderController;
-
+use App\Http\Controllers\FarmerSearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +49,7 @@ Route::get('/searchVeg',[MainController::class,'vegDisplay']);
 Route::get('/searchfruit',[MainController::class,'fruitDisplay']);
 Route::get('/searchmilk',[MainController::class,'milkDisplay']);
 Route::get('/leastveg',[MainController::class,'leastvegDisplay']);
+Route::get('/leastfruit',[MainController::class,'leastfruitDisplay']);
 Route::get('/cuslogout',[MainController::class,'logout']);
 Route::post('/cusprosearch',[MainController::class,'cusproductsearch']);
 
@@ -138,6 +139,7 @@ Route::post('/cusprosearch',[MainController::class,'cusproductsearch']);
     Route::get('/requestpending/{id}',[VendorController::class,'reqpending']);
     Route::get('/requestdelivered/{id}',[VendorController::class,'reqdelivered']);
     Route::get('/deliveredOrders',[VendorController::class,'venderDeliveredOrderDetails']);
+    Route::post('/vendordeliverycharge/{id}',[VendorController::class,'vendordeliverycharge']);
 
 
 
@@ -160,8 +162,8 @@ Route::post('/store-product',[FarmerMakeProductController::class,'store']);
 Route::get('/edit-product/{product}',[FarmerMakeProductController::class,'edit']);
 Route::post('/update-product/{product}',[FarmerMakeProductController::class,'update']);
 Route::get('/show-product/{product}',[FarmerMakeProductController::class,'show']);
-Route::get('/deleteview-product/{product}',[FarmerMakeProductController::class,'delete']);
-Route::post('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
+Route::get('/delete-product/{product}',[FarmerMakeProductController::class,'destroy']);
+
 
 // Farmer Password Change
 Route::get('/farmer-password',[FarmerDashController::class,'password']);
@@ -172,12 +174,14 @@ Route::post('farmer-profile-update/{user}',[FarmerDashController::class,'profile
 // Farmer Order Details view
 Route::get('farmer-order-display',[FarmerDashController::class,'order_view']);
 Route::post('farmer-req-vendor',[FarmerDashController::class,'vendor_req']);
-
+Route::get('farmer-req-close/{id}',[FarmerDashController::class,'close_request']);
+Route::post('farmer-con-vendor/{id}',[FarmerDashController::class,'vendor_req_confirm']);
 //Farmer view Vendor details
 Route::get('farmer-vendor-display',[FarmerDashController::class,'vendor_view']);
 //Farmer History for translation of vendor
 Route::get('farmer-hist-display',[FarmerDashController::class,'histo']);
-
+//Farmer Search
+Route::post('farmer-search',[FarmerSearchController::class,'search']);
 
 
 

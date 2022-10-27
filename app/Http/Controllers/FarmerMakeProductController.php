@@ -61,7 +61,7 @@ class FarmerMakeProductController extends Controller
             'farmerId' => 'required',
         ]);
         if($validator->fails()){
-            return back() -> with('error','Invalid Details...!');
+            return back() -> withInput() -> with('error','Invalid Details...!');
         }
         else
         {
@@ -83,8 +83,6 @@ class FarmerMakeProductController extends Controller
             return redirect('add-product')->with('success','Your product added successfully.!');
         }
     }
-
-
     
     /**
      * Display the specified resource.
@@ -139,10 +137,6 @@ class FarmerMakeProductController extends Controller
         return redirect('add-product')->with('success','Product updated successfully.!');
     }
 
-    public function delete(Product $product)
-    {
-        return view('farmer-add-product.delete',compact('product'));
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -152,17 +146,7 @@ class FarmerMakeProductController extends Controller
      */
     public function destroy(Request $request,Product $product)
     {
-        $this->validate($request,[
-            'state' => 'required',
-        ]);
-        if('DELETE' == $request->get('state'))
-        {
-            $product->delete();
-            return redirect('add-product')->with('success','The product was deleted successfully.!');
-        }
-        else
-        {
-            return back()->with('error','Failed to delete the Product.!');
-        }    
+        $product->delete();
+        return redirect('add-product')->with('success','The product was deleted successfully.!');
     }
 }
