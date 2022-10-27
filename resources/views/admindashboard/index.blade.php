@@ -76,8 +76,9 @@
 					</table>
 				</div>
            </div>
-		</div>
+		</div>  -->
 		<!-- Form Group (phone number)-->
+		
 		<div class="col-md-6">
 		<div class="table-data">
 				<div class="order">
@@ -95,6 +96,7 @@
 							</tr>
 						</thead>
 						<tbody>
+							<!--
 							@foreach($reorders as $reorder)
 							<tr>
 								<td>
@@ -103,6 +105,7 @@
 								<td>{{$reorder->updated_at}}</td>
 							</tr>
 							@endforeach
+-->
 							
 						</tbody>
 					</table>

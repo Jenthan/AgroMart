@@ -111,7 +111,8 @@ class FarmerDashController extends Controller
     }
     public function order_view()
     {
-        $fid = Farmer::where('user_id',Auth::User()->id)->first();
+        //dd(Auth::User()->id);
+        $fid = Farmer::where('user_id',Auth::User()->id)->get();
         
         $orders = DB::table('customer_order_products')
         ->join('customers','customers.id','=','customer_order_products.customer_id')

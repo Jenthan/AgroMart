@@ -48,7 +48,7 @@ class AdminController extends Controller
         ->where('customer_order_products.orderstatus','=', 'confirmed')
         ->orderBy('customer_order_products.id', 'desc')->take(10)
         ->get();
-
+/*
         $reorders = DB::table('deliver_products')
         ->join('vendors','vendors.id','=','deliver_products.vendor_id')
         ->join('customers','customers.id','=','deliver_products.customer_id')
@@ -57,7 +57,7 @@ class AdminController extends Controller
         'products.productName','customers.customerName','products.unitPrice','deliver_products.updated_at')
         ->where('deliver_products.deliverstatus','=', 'delivered')
         ->orderBy('deliver_products.updated_at', 'desc')->take(10)
-        ->get();
+        ->get();  */
       // $or = CustomerOrderProduct::orderBy('id', 'desc')->take(10)->get();
       // dd($or);
         foreach($orders as $order){
@@ -68,7 +68,7 @@ class AdminController extends Controller
         }
 
         $c2= $c2-1;
-        return view('admindashboard.index',compact('user','orders','product','c1','c2','ors','reorders'));
+        return view('admindashboard.index',compact('user','orders','product','c1','c2','ors'));
     }
 
     /**
