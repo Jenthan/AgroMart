@@ -264,6 +264,7 @@ class VendorController extends Controller
         $deliverproducts = DeliverProduct::find($id);
          $deliverproducts->deliverstatus = "delivered";
          $deliverproducts->update();
+         $req = FarmerRequestVendor::where('id',$deliverproducts->farmer_request_vendors_id)->update(['requeststatus' => 'delivered']);
          return redirect()->route('venderDeliveryDetails');
      }
 

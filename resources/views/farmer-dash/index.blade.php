@@ -41,7 +41,7 @@
 				<li>
 					<i class='bx bxs-dollar-circle' ></i>
 					<span class="text">
-						<h3>Rs. 0.00/=</h3>
+						<h3>Rs {{$tsales}}.00/=</h3>
 						<p>Total Sales</p>
 					</span>
 				</li>

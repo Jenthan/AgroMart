@@ -55,12 +55,6 @@
                         <label class="form-control">{{$product->productType}}</label>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label"><a class="btn btn-danger" href="{{url('deleteview-product',$product->id)}}" role="button">Delete the Product</a></label>
-                </div>
-                
-                    @yield('delete')
-              
         </div>
     </div>
 </main>

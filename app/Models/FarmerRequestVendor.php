@@ -17,6 +17,8 @@ class FarmerRequestVendor extends Model
         'requeststatus',
         'vendorcharge',
     ];
-
+    public function delivery(){
+        return $this->hasOne('App\Models\DeliverProduct');
+    }
     
 }
