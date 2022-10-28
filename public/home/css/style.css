@@ -20,6 +20,7 @@ html{
    max-width: 1200px;
    margin:0 auto;
    padding:3rem 2rem;
+   display: contents;
 }
 
 .container .title{
@@ -34,6 +35,7 @@ html{
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
    gap:2rem;
+   margin-top: 4rem;
 }
 
 .container .products-container .product{
@@ -89,12 +91,15 @@ html{
    display: none;
    padding:2rem;
    text-align: center;
-   background: #fff;
+   background: #ece6e6;;
    position: relative;
    margin:2rem;
    width: 40rem;
 }
-
+.products-preview .preview .ip{
+   border:black;
+   color: #222;
+}
 .products-preview .preview.active{
    display: inline-block;
 }
