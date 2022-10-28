@@ -97,11 +97,11 @@
             <div class="box">
                 <h3>our location</h3>
                 <div class="links">
-                    <a href="#">Jaffna</a>
-                    <a href="#">Kilinochchi</a>
-                    <a href="#">Mullaithivu</a>
-                    <a href="#">Vavuniya</a>
-                    <a href="#">Batticaloa</a>
+                <a>Jaffna</a>
+                    <a>Kilinochchi</a>
+                    <a>Mullaithivu</a>
+                    <a>Vavuniya</a>
+                    <a>Batticaloa</a>
                 </div>
             </div>
 

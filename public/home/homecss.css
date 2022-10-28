@@ -143,6 +143,11 @@
     display: inline-block;
     gap: 20px;
   }
+
+  #deal .container{
+    display:inline;
+    margin-right: 20px;
+  }
   
   
   
