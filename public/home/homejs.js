@@ -1,3 +1,18 @@
+function pleaselogin() {  
+  
+    alert ("Please Login the System");  
+ } 
+ 
+ function ordersalert() {  
+  
+  
+    alert ("Only Registered customers can check his/her card details");  
+ }
+ function logincusalert(){
+    alert("Only Registered customers can order");
+ }
+
+
 let menu = document.querySelector('#menu-bar');
 let navbar = document.querySelector('.navbar');
 let header = document.querySelector('.header-2');

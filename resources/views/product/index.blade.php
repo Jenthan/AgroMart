@@ -2,16 +2,17 @@
 
 @section('searchbar')
 <div id="search">
-    <div class="search">
-        <a href="#">
-        <div class="icon"></div>
-        </a>
+<form method="post" action="{{url('checkhomesearch')}}">
+        @csrf
+        <div class="search">
+            <button type="submit" class="icon"></button>
+                <div class="input">
+                        <input type="text" placeholder="Search product Here...." id="mysearch" name="searchvalue">
+                </div>
+            <span class="clear" onclick="document.getElementById('mysearch').value =''"></span>
+        </div>
         
-            <div class="input">
-                    <input type="text" placeholder="Search" id="farmersearch">
-            </div>
-        <span class="clear" onclick="document.getElementById('farmersearch').value =''"></span>
-    </div>
+    </form> 
 
     
 </div>
@@ -27,10 +28,10 @@
         <div class="box-container">
 
             <div class="box">
-                <a href="#">
+                <a href="{{url('/searchVeg')}}">
                      <h3>vegitables</h3>
                 </a>
-                   <a href="#" class="btn">
+                   <a href="{{url('/searchVeg')}}" class="btn">
                       <img src="images/category-1.png" alt="">
                    </a>
             </div>
@@ -38,22 +39,14 @@
             <a href="#">
                    <h3>juice</h3>
                </a>
-                <a href="#"><img src="images/category-2.png" alt=""></a>
+                <a href="{{url('/searchmilk')}}"><img src="images/category-2.png" alt=""></a>
             </div>
+            
             <div class="box">
-            <a href="#">
-                   <h3>meat</h3>
-               </a>
-                
-                  <a href="#" class="btn">
-                       <img src="images/category-3.png" alt="">
-                  </a>
-            </div>
-            <div class="box">
-            <a href="#">
+            <a href="{{url('/searchfruit')}}">
                    <h3>fruit</h3>
                </a>
-                    <a href="#" class="btn">
+                    <a href="{{url('/searchfruit')}}" class="btn">
                     <img src="images/category-4.png" alt="">
                     </a>
             </div>
@@ -66,106 +59,50 @@
 @endsection
 
 
+
+
 @section('content-1')
 <div id="content1">
+<div class="container">
+
+<h3 class="title"> organic products </h3>
+
+<div class="products-container">
+@php
+$i = 0;
+@endphp
+@foreach($products as $product)
+<div class="product" data-name="p-{{$i++}}">
+      <img src="{{url('public/productImage/'.$product->productImg)}}" alt="">
+      <h3>{{$product->productName}}</h3>
+      <div class="price">Rs. {{$product->unitPrice}}.00</div>
+   </div>
+@endforeach
+   
+</div>
+
+</div>
+
+<div class="products-preview">
+    @php
+    $i = 0;
+    @endphp
+    @foreach($products as $product)
+    <div class="preview" data-target="p-{{$i++}}">
+    <i class="fas fa-times"></i>
+    <img src="{{url('public/productImage/'.$product->productImg)}}" alt="">
+    <h3>{{$product->productName}}</h3>
+
     
-    <div class="cardtotal ">
-        <div class="card">
-           <form action="#" method="post">
-             <div class="image">
-                 <img class="avatar" src="images/mango.jpg" alt="description of "></br>
-            </div>
-            
-                <input type="text" name="pname" id="pname" value="Mango" disabled></br><br/>
-                <label for="pprice" name="pprice"><span>Price</span></label>
-                <input type="text" name="pprice" value="Rs.30" disabled></br><br/>
-                <label for="quantity" name="quantity">Quantity</label>
-                <input type="number" name="quantity" ></br></br>
-                <input type="submit" class="btn btn-success" value="Add to card">
+    <div class="price">Rs. {{$product->unitPrice}}.00</div>
+    <div class="buttons">
+        <!--<a href="#" class="buy">buy now</a>  -->
+        <a href="#"  class="cart"> <button class ="btn" onclick ="logincusalert()"> <h2>add to cart</h2></button></a>
+    </div>
+    </div>
 
-            </form>
-           
-
-           
-        </div>
-
-
-        <div class="card">
-        <form action="#" method="post">
-             <div class="image">
-                 <img class="avatar" src="images/grapes.jpg" alt="description of "></br>
-            </div>
-            
-                <input type="text" name="pname" id="pname" value="grapes" disabled></br><br/>
-                <label for="pprice" name="pprice"><span>Price</span></label>
-                <input type="text" name="pprice" value="Rs.30" disabled></br><br/>
-                <label for="quantity" name="quantity">Quantity</label>
-                <input type="number" name="quantity" ></br></br>
-                <input type="submit" class="btn btn-success" value="Add to card">
-
-            </form>
-        </div>
-        <div class="card">
-        <form action="#" method="post">
-             <div class="image">
-                 <img class="avatar" src="images/egg.jpg" alt="description of "></br>
-            </div>
-            
-                <input type="text" name="pname" id="pname" value="egg" disabled></br><br/>
-                <label for="pprice" name="pprice"><span>Price</span></label>
-                <input type="text" name="pprice" value="Rs.30" disabled></br><br/>
-                <label for="quantity" name="quantity">Quantity</label>
-                <input type="number" name="quantity" ></br></br>
-                <input type="submit" class="btn btn-success" value="Add to card">
-
-            </form>
-        </div>
-        <div class="card">
-        <form action="#" method="post">
-             <div class="image">
-                 <img class="avatar" src="images/banana.jpg" alt="description of "></br>
-            </div>
-            
-                <input type="text" name="pname" id="pname" value="banana" disabled></br><br/>
-                <label for="pprice" name="pprice"><span>Price</span></label>
-                <input type="text" name="pprice" value="Rs.30" disabled></br><br/>
-                <label for="quantity" name="quantity">Quantity</label>
-                <input type="number" name="quantity" ></br></br>
-                <input type="submit" class="btn btn-success" value="Add to card">
-
-            </form>
-        </div>
-        <div class="card">
-        <form action="#" method="post">
-             <div class="image">
-                 <img class="avatar" src="images/bringal.jpg" alt="description of "></br>
-            </div>
-            
-                <input type="text" name="pname" id="pname" value="bringal" disabled></br><br/>
-                <label for="pprice" name="pprice"><span>Price</span></label>
-                <input type="text" name="pprice" value="Rs.30" disabled></br><br/>
-                <label for="quantity" name="quantity">Quantity</label>
-                <input type="number" name="quantity" ></br></br>
-                <input type="submit" class="btn btn-success" value="Add to card">
-
-            </form>
-        </div>
-        <div class="card">
-        <form action="#" method="post">
-             <div class="image">
-                 <img class="avatar" src="images/apple.jpg" alt="description of "></br>
-            </div>
-            
-                <input type="text" name="pname" id="pname" value="apple" disabled></br><br/>
-                <label for="pprice" name="pprice"><span>Price</span></label>
-                <input type="text" name="pprice" value="Rs.30" disabled></br><br/>
-                <label for="quantity" name="quantity">Quantity</label>
-                <input type="number" name="quantity" ></br></br>
-                <input type="submit" class="btn btn-success" value="Add to card">
-
-            </form>
-        </div>
-    </div>         
+    @endforeach
+</div>        
 </div>
 @endsection
 
