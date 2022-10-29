@@ -44,8 +44,8 @@
                 <div class="preview">
                     <img id="file-ip-1-preview">
                 </div>
-                <label for="file-ip-1">Upload Image</label>
-                <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);" name="prophoto">
+                <label for="prophoto">Upload Image</label>
+                <input type="file" id="prophoto" accept="image/*" onchange="showPreview(event);" name="prophoto">
 
             </div>
         </div> 

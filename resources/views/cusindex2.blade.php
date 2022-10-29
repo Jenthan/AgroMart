@@ -31,65 +31,6 @@
             </ul>
         </div><br />
         @endif
-
-        <div class="container">
-
-
-
-<div class="products-container">
-@php
-$i = 0;
-@endphp
-@foreach($products as $product)
-
-<div class="product" data-name="p-{{$i++}}">
-      <img src="{{url('public/productImage/'.$product->productImg)}}" alt="">
-      <h3>{{$product->productName}}</h3>
-      <div class="price">Rs. {{$product->unitPrice}}.00</div>
-   
-</div>
-
-@endforeach
-   
-</div>
-
-</div>
-
-<div class="products-preview">
-    @php
-    $i = 0;
-    @endphp
-    @foreach($products as $product)
-    <div class="preview" data-target="p-{{$i++}}">
-    <i class="fas fa-times"></i>
-
-    <form action="{{url('/card')}}" method="post">
-            @csrf
-             
-                 <img class="avatar" src="{{url('public/productImage/'.$product->productImg)}}" alt="description of ">
-                <input type="hidden" name="pname" id="pname" value="{{$product->productName}}"  disabled></br><br/>
-                <label for="pprice" name="pprice"><span>Price</span></label></br>
-                <input type="hidden" name="pprice" value="Rs. {{$product->unitPrice}}.00"  disabled></br><br/>
-                <h3>{{$product->productName}}</h3>
-                 <div class="price">Rs. {{$product->unitPrice}}.00</div>
-                 
-                <h2> <label for="quantity" name="quantity">Quantity</label>  </h2>
-                 
-                <div class="ip">
-                <input type="number" name="quantity" >
-                </div> 
-                <input type="hidden" name="pid" value="{{$product->id}}">
-
-                <div class="buttons">
-                   <a class="card"><input type="submit" class="btn btn-success" value="Add to card"></a>
-                </div>
-            </form>
-    
-    </div>
-
-    @endforeach
-</div> 
-<!--      
 <div class="cardtotal">
         @foreach($products as $product)
         <div class="card">
@@ -108,9 +49,12 @@ $i = 0;
 
                 <input type="submit" class="btn btn-success" value="Add to card">
             </form>
+            
         </div>
         @endforeach
-</div>  -->
+        
+</div>
+{{ $products->Links()}}
 </div>
 
 @endsection
