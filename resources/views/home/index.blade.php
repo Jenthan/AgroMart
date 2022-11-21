@@ -42,7 +42,7 @@
             
             <div class="box">
             <a href="{{url('/searchfruit')}}">
-                   <h3>fruit</h3>
+                   <h3>fruits</h3>
                </a>
                     <a href="{{url('/searchfruit')}}" class="btn">
                     <img src="images/category-4.png" alt="">

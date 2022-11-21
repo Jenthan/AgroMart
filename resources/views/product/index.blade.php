@@ -37,14 +37,14 @@
             </div>
             <div class="box">
             <a href="#">
-                   <h3>juice</h3>
+                   <h3>Milk</h3>
                </a>
                 <a href="{{url('/searchmilk')}}"><img src="images/category-2.png" alt=""></a>
             </div>
             
             <div class="box">
             <a href="{{url('/searchfruit')}}">
-                   <h3>fruit</h3>
+                   <h3>fruits</h3>
                </a>
                     <a href="{{url('/searchfruit')}}" class="btn">
                     <img src="images/category-4.png" alt="">
@@ -78,10 +78,10 @@
                     <input type="text" name="pname" id="pname" value="{{$product->productName}}" disabled></br><br/>
                     <label for="pprice" name="pprice"><span>Price</span></label>
                     <input type="text" name="pprice" value="Rs. {{$product->unitPrice}}.00" disabled></br><br/>
-                    <label for="quantity" name="quantity">Quantity</label>
-                    <input type="number" name="quantity" ></br></br>
+                    <!--<label for="quantity" name="quantity">Quantity</label>
+                    <input type="number" name="quantity" ></br></br>-->
                     
-                    <input type="submit" onclick="logincusalert()" class="btn btn-success" value="Add to card">
+                    <input type="submit" onclick="logincusalert()" class="btn btn-success" value="Add to cart">
                     
                 </form>
             </div>

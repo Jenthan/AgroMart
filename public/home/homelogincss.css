@@ -8,6 +8,7 @@
 }
 
 #content1 .homeloginform .box {
+    
     width: 320px;
     height: 420px;
     background: #000;
@@ -40,6 +41,7 @@
     margin: 0;
     padding: 0;
     font-weight: bold;
+    text-align: left;
 }
 
 #content1 .homeloginform .box input {
@@ -47,10 +49,10 @@
     margin-bottom: 20px;
 }
 
-#content1 .homeloginform .box input[type="text"], input[type="password"]
+#content1 .homeloginform .box input[type="email"], input[type="password"]
 {
     border: none;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid rgb(204, 201, 201);
     background: transparent;
     outline: none;
     height: 40px;
@@ -66,24 +68,25 @@
     background: #fb2525;
     font-size: 18px;
     border-radius: 20px;
+    color: #fff;
     
 }
 
-.loginbox .homeloginform input[type="submit"]:hover
+#content1 .homeloginform .box input[type="submit"]:hover
 {
     cursor: pointer;
-    background: #ffc107;
+    background: #ec7404;
     color: #000;
 }
 
-.loginbox .homeloginform a {
+#content1 .homeloginform .box a {
     text-decoration: none;
     font-size: 12px;
     line-height: 20px;
-    color: darkgray;
+    color: darkgrey;
 }
 
-.loginbox .homeloginform a:hover 
+#content1 .homeloginform .box a:hover 
 {
     color: #ffc107;
 }
