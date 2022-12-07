@@ -8,6 +8,7 @@
    text-decoration: none;
    transition: all .2s linear;
    text-transform: capitalize;
+   font-size: medium;
 }
 
 html{

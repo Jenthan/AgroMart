@@ -3,7 +3,8 @@
 @section('deal')
 <div id="deal">
     <div class="container">
-    <div class="row mb-3">
+    
+    <!--<div class="row mb-3">
         
         
         <div class="col input-group">
@@ -15,7 +16,7 @@
         </div>
         
     </div>
-    <br>
+    <br> -->
     <table class="table table-bordered">
         <thead class="table-secondary">
             <tr>
@@ -75,7 +76,7 @@
             </tr>
         </tfoot>
     </table>
-
+<!--
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item disabled">
@@ -92,7 +93,7 @@
             </a>
             </li>
         </ul>
-    </nav>
+    </nav>   -->
 
     </div>
 

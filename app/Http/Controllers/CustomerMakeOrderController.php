@@ -141,6 +141,7 @@ class CustomerMakeOrderController extends Controller
         'farmers.firstName','farmers.lastName','products.unitPrice','farmers.farmAddressCity',
         'customer_order_products.orderstatus','customer_order_products.updated_at')
         ->where('customer_order_products.customer_id','=', $cid)
+        ->where('customer_order_products.orderstatus','=', 'confirmed')
         ->get();
         foreach($ordert as $or){
             $date = $or->updated_at;
