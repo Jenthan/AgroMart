@@ -64,13 +64,11 @@
             <nav class="navbar">
                 <img class="logo_img" src="images/logo.png" alt="logo"> &nbsp;
                 <a href="{{url('/')}}">Home</a> &nbsp;
-            <!-- <a href="{{url('farmer')}}">Farmer</a> -->
+                <!-- <a href="{{url('farmer')}}">Farmer</a> -->
                 <a href="{{url('product')}}">Product</a> &nbsp;
-            <!--  <a href="{{url('vender')}}">Vender</a>  -->
-            
-            
-
+                <!--  <a href="{{url('vender')}}">Vender</a>  -->
             </nav>
+            
             <div class="icons">
                 <a onclick="ordersalert()" class="fas fa-shopping-cart"></a>
             <!--  <a href="#" class="fas fa-heart"></a>  -->
