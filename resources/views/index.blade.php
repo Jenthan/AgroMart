@@ -52,34 +52,33 @@
 <body>
 
 <div class="grid_1">
-    <div id="logo">
+    <!--<div id="logo">
          
             <img src="images/logo.png" alt="logo">
-    </div>
- 
- <header id="header">
-    <div class="header-2">
+    </div>-->
+    <header id="header">
+        <div class="header-2">
 
-       <div id="menu-bar" class="fas fa-bars"></div>
+        <!--<div id="menu-bar" class="fas fa-bars"></div>-->
 
-    <nav class="navbar">
-        <a href="{{url('/')}}">Home</a>
-       <!-- <a href="{{url('farmer')}}">Farmer</a> -->
-        <a href="{{url('product')}}">Product</a>
-      <!--  <a href="{{url('vender')}}">Vender</a>  -->
-      
-      
+            <nav class="navbar">
+                <img class="logo_img" src="images/logo.png" alt="logo"> &nbsp;
+                <a href="{{url('/')}}">Home</a> &nbsp;
+            <!-- <a href="{{url('farmer')}}">Farmer</a> -->
+                <a href="{{url('product')}}">Product</a> &nbsp;
+            <!--  <a href="{{url('vender')}}">Vender</a>  -->
+            
+            
 
-    </nav>
-    <div class="icons">
-        <a onclick="ordersalert()" class="fas fa-shopping-cart"></a>
-    <!--  <a href="#" class="fas fa-heart"></a>  -->
-        <a href="{{url('homelogin')}}" onclick="pleaselogin()" class="fas fa-user-circle"></a>
-    </div>
-
-    </div>
- </header>
- @yield('searchbar')
+            </nav>
+            <div class="icons">
+                <a onclick="ordersalert()" class="fas fa-shopping-cart"></a>
+            <!--  <a href="#" class="fas fa-heart"></a>  -->
+                <a href="{{url('homelogin')}}" onclick="pleaselogin()" class="fas fa-user-circle"></a>
+            </div>
+        </div>
+    </header>
+@yield('searchbar')
 @yield('sidebar')
 @yield('content-1')
 @yield('pagination')
