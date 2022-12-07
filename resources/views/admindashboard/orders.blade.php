@@ -79,6 +79,7 @@
                                 <th>ProductName</th>
                                 <th>quantity</th>
 								<th>OrderAcceptedDate</th>
+								<th>Order status</th>
 								
 							</tr>
 						</thead>

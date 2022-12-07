@@ -146,10 +146,10 @@ class CustomerMakeOrderController extends Controller
         foreach($ordert as $or){
             $date = $or->updated_at;
         }
-        $newdate = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
+       // $newdate = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
        //dd($newdate);
        
-        return view('card.checkout',compact('ordert','newdate'));
+        return view('card.checkout',compact('ordert'));
     }
 
    public function searchdatedisplay(Request $request){
