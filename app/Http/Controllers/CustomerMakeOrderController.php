@@ -79,19 +79,27 @@ class CustomerMakeOrderController extends Controller
         $p = Product::where('id',$request->get('pid'))->first();
         $fid = $p->farmer_id;
         
+        if($p->qty < $request->get('quantity') )
+        {
+            return redirect()->back()->with('message','Your ordered quantity is higher than the current Stock...');
+        }
         // dd($fid );
         //dd($request->pid);
-        $torderstatus = "notconfirmed";
-        $temporder = new CustomerOrderProduct([
-            'product_id' => $request->get('pid'),
-            'customer_id' => $cid,
-            'farmer_id'=>$fid,
-            'orderstatus'=>$torderstatus,
-            'qty' => $request->get('quantity'),    
-        ]);
+        else {
+            $torderstatus = "notconfirmed";
+            $temporder = new CustomerOrderProduct([
+                'product_id' => $request->get('pid'),
+                'customer_id' => $cid,
+                'farmer_id'=>$fid,
+                'orderstatus'=>$torderstatus,
+                'qty' => $request->get('quantity'),    
+            ]);
 
-        $temporder->save();
-        return redirect()->back()->with('success','Your order is successfully!');
+            $temporder->save();
+            $p->qty = $p->qty - $request->get('quantity');
+            $p->save();
+            return redirect()->back()->with('success','Your order is successfully!');
+        }
     }
 
     public function addtocarddisplay(){
