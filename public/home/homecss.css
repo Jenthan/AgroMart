@@ -548,4 +548,10 @@ footer .box-container{
     display: block;
     color: #59ee60;
   } 
+
+  .logo_img 
+  {
+    height: 50px;
+    width:250px;
+  }
   
