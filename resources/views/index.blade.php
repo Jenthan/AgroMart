@@ -59,7 +59,7 @@
     <header id="header">
         <div class="header-2">
 
-        <!--<div id="menu-bar" class="fas fa-bars"></div>-->
+        <div id="menu-bar" class="fas fa-bars"></div>
 
             <nav class="navbar">
                 <img class="logo_img" src="images/logo.png" alt="logo"> &nbsp;
