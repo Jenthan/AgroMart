@@ -74,27 +74,28 @@
 					<table>
 						<thead>
 							<tr>
-								<th>CustomerName</th>
+								<th>No</th>
+								<th>VendorName</th>
                                 <th>ProductName</th>
                                 <th>quantity</th>
 								<th>OrderAcceptedDate</th>
-								<th>Status</th>
+								
 							</tr>
 						</thead>
 						<tbody>
 							@php
-							$id=1;
+							$i=1;
 							@endphp
-							@foreach($orders as $order)
+							@foreach($frvorders as $order)
 							<tr>
-								<td>{{$id++}}</td>
-								<td>{{$order->customerName}}</td>
-								<td>{{$order->ProductName}}</td>
-								<td> {{$order->orderQuantity}}</td>
+								
+								<td>{{$i++}}</td>
+								<td>{{$order->firstName}}{{$order->lastName}}</td> 
+								<td>{{$order->productName}}</td>
+								<td> {{$order->qty}}</td>
 								<td> {{$order->created_at}}</td>
-								<td>
-									<button class="btn btn-success">{{$order->deliverstatus}}</button>						
-								</td>
+							    
+							
 							</tr>
 							@endforeach
 						</tbody>

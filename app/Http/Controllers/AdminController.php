@@ -32,6 +32,7 @@ class AdminController extends Controller
         $c2=0;
         $user = User::all();
         $product = Product::all();
+        $farmerreqorder = FarmerRequestVendor::all();
 
         $orders = DB::table('customer_order_products')
         ->join('products','products.id','=','customer_order_products.product_id')
@@ -50,14 +51,17 @@ class AdminController extends Controller
         ->get();
 /*
         $reorders = DB::table('deliver_products')
-        ->join('vendors','vendors.id','=','deliver_products.vendor_id')
-        ->join('customers','customers.id','=','deliver_products.customer_id')
-        ->join('products','products.id','=','deliver_products.product_id')
-        ->select('deliver_products.orderQuantity','deliver_products.created_at' ,'deliver_products.deliverstatus',
-        'products.productName','customers.customerName','products.unitPrice','deliver_products.updated_at')
+        ->join('farmer_request_vendors','farmer_request_vendors.id','=','deliver_products.farmer_request_vendors_id')
+        ->select('deliver_products.*','farmer_request_vendors.*')
         ->where('deliver_products.deliverstatus','=', 'delivered')
         ->orderBy('deliver_products.updated_at', 'desc')->take(10)
+<<<<<<< HEAD
         ->get();  */
+=======
+        ->get();
+
+        
+>>>>>>> master
       // $or = CustomerOrderProduct::orderBy('id', 'desc')->take(10)->get();
       // dd($or);
         foreach($orders as $order){
@@ -68,7 +72,11 @@ class AdminController extends Controller
         }
 
         $c2= $c2-1;
+<<<<<<< HEAD
         return view('admindashboard.index',compact('user','orders','product','c1','c2','ors'));
+=======
+        return view('admindashboard.index',compact('user','orders','product','c1','c2','ors','reorders','farmerreqorder'));
+>>>>>>> master
     }
 
     /**
@@ -138,14 +146,30 @@ class AdminController extends Controller
     }
 
     public function admindashorders(){
-        $orders = DB::table('deliver_products')
-         ->join('vendors','vendors.id','=','deliver_products.vendor_id')
-         ->join('customers','customers.id','=','deliver_products.customer_id')
-         ->join('products','products.id','=','deliver_products.product_id')
-         ->select('deliver_products.orderQuantity','deliver_products.created_at' ,'deliver_products.deliverstatus',
-         'products.productName','customers.customerName','products.unitPrice')
-         ->get();
-        return view('admindashboard.orders',compact('orders'));
+        $farmerreqorder = FarmerRequestVendor::all();
+
+         $deorders = DB::table('deliver_products')
+        ->join('farmer_request_vendors','farmer_request_vendors.id','=','deliver_products.farmer_request_vendors_id')
+        ->select('deliver_products.*','farmer_request_vendors.*')
+        ->get();
+
+        $frvorders = DB::table('farmer_request_vendors')
+        ->join('products','products.id','=','farmer_request_vendors.product_id')
+        ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
+        ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
+        ->join('farmers','farmers.id','=','farmer_request_vendors.farmer_id')
+        ->select('products.*','farmer_request_vendors.*','customer_order_products.*','vendors.*','farmers.*','customer_order_products.updated_at as update')
+        ->orderBy('customer_order_products.updated_at', 'desc')
+        ->get();
+
+      /*  $orders = DB::table('customer_order_products')
+        ->join('products','products.id','=','customer_order_products.product_id')
+        ->join('customers','customers.id','=','customer_order_products.customer_id')
+        ->join('farmers','farmers.id','=','customer_order_products.farmer_id')
+        ->select('products.*','customer_order_products.*','customers.*','farmers.*')
+        ->get(); */
+       
+        return view('admindashboard.orders',compact('frvorders'));
     }
 
     public function customerdisplay(){

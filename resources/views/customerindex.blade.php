@@ -40,6 +40,12 @@
     <!--- bootstrap css --->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="customer/customerproductsdisplay.css">
+
+<!-- custom css file link  -->
+<link rel="stylesheet" href="home/css/style.css">
+
+<!-- custom js file link  -->
+<script src="home/js/script.js" defer></script>
 </head>
 <body>
 
@@ -97,11 +103,11 @@
             <div class="box">
                 <h3>our location</h3>
                 <div class="links">
-                    <a href="#">Jaffna</a>
-                    <a href="#">Kilinochchi</a>
-                    <a href="#">Mullaithivu</a>
-                    <a href="#">Vavuniya</a>
-                    <a href="#">Batticaloa</a>
+                <a>Jaffna</a>
+                    <a>Kilinochchi</a>
+                    <a>Mullaithivu</a>
+                    <a>Vavuniya</a>
+                    <a>Batticaloa</a>
                 </div>
             </div>
 
