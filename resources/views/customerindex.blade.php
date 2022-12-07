@@ -103,11 +103,11 @@
             <div class="box">
                 <h3>our location</h3>
                 <div class="links">
-                <a>Jaffna</a>
-                    <a>Kilinochchi</a>
+             <!--   <a>Jaffna</a>  -->
+                 <!--   <a>Kilinochchi</a>
                     <a>Mullaithivu</a>
                     <a>Vavuniya</a>
-                    <a>Batticaloa</a>
+                    <a>Batticaloa</a>  -->
                 </div>
             </div>
 
@@ -122,7 +122,7 @@
 
         </div>
 
-        <h1 class="credit"> created by <span> group D </span> | all rights reserved! </h1>
+        <h1 class="credit"> created by <span> group S_7 </span> | all rights reserved! </h1>
 
  </footer>
 </div>
