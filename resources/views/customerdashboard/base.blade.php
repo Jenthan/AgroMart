@@ -7,13 +7,11 @@
 	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<!-- My CSS -->
-	<link rel="stylesheet" href="admin/admincss.css">
-	<link rel="stylesheet"  href="{{ asset('/customer/customerdash.css')}}">
+		<link rel="stylesheet"  href="{{ asset('admin/admincss.css')}}">
 
     <!-- boortstrap --->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    
 	<title>CustomerHub</title>
 </head>
 <body>
@@ -21,40 +19,23 @@
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-		<a href="{{route('customerlogin')}}" class="brand">
-			<i class='bx bxs-smile'></i>
-			<span class="text">CustomerHub</span>
+	
+		<a href="#" class="brand">
+			<img src="/images/logo.png" alt="" width="230px">
 		</a>
 		<ul class="side-menu top">
-			<li class="active">
+		<li class="{{ (request()->is('customerlogin')) ? 'active' : '' }}">  
 				<a href="{{route('customerlogin')}}">
 					<i class='bx bxs-dashboard' ></i>
-					<span class="text">Dashboard</span>
+					<span class="text">Customer Dashboard</span>
 				</a>
 			</li>
-			<li>
+			<li class="{{ (request()->is('customerorder*')) ? 'active' : '' }}">  
 				<a href="{{route('customerorder',Auth::user()->id)}}">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Orders</span>
 				</a>
-			</li>
-            
-           
-			
-		</ul>
-		<ul class="side-menu">
-			<li>
-				<a href="{{route('customerprofile',Auth::user()->id)}}">
-					<i class='bx bxs-cog' ></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
-				<a href="{{url('/cuslogout')}}" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
-					<span class="text">Logout</span>
-				</a>
-			</li>
+			</li>          
 		</ul>
 	</section>
 	<!-- SIDEBAR -->
@@ -65,10 +46,20 @@
 	<section id="content">
 		<!-- NAVBAR -->
 		<nav>
-			<i class='bx bx-menu' ></i>
-			<a  class="nav-link">Categories</a>
-			   
-			
+			<form action="#">
+				<div class="form-input">
+				</div>
+			</form>
+			<a href="{{route('customerprofile',Auth::user()->id)}}">
+			<i class="fa-solid fa-car-side"></i>
+				</a>
+			<a href="{{route('customerprofile',Auth::user()->id)}}" class="profile">
+				Profile
+			</a>
+            <a href="{{url('/vendorLogout')}}" class="logout">
+                <i class='bx bxs-log-out-circle' ></i>
+                <span class="text">Logout</span>
+            </a>
 		</nav>
 		<!-- NAVBAR -->
 

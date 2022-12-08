@@ -98,16 +98,16 @@ class CustomerController extends Controller
         $customers = Customer::all()->where('user_id',$id);
          $user = User::find($id);
          //dd($user);
-         $usersphone = UserPhone::find($id);
+         $userphone = UserPhone::all()->where('user_id',$id);
 
-         return view('customerdashboard.profileview',compact('customers','user','usersphone'));
+         return view('customerdashboard.profileview',compact('customers','user','userphone'));
     }
 
     public function customerprofileedit($id)
     {
         $customers = Customer::all()->where('user_id',$id);
         $user = User::find($id);
-         $usersphone = UserPhone::find($id);
+        $usersphone = UserPhone::all()->where('user_id',$id);
 
          return view('customerdashboard.profileedit',compact('customers','user','usersphone'));
     }
@@ -117,6 +117,16 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function customerDashboardIndex(){
+        $products = Product::paginate(4);;
+        $order = CustomerOrderProduct::all();
+        $farmer = User::all()->where('role','farmer');
+        $vendor = User::all()->where('role','vender');
+        $customer = User::all()->where('role','customer');
+
+        return view('cusindex2',compact('order','customer','products'))->with('1',(request()->input('page',1)-1)*4);
+
+    }
     public function create()
     {
         //
@@ -180,48 +190,54 @@ class CustomerController extends Controller
 
     public function customereditupdate(Request $request, $id){
         
-        $this->validate($request, [
-            'customerName'=>'required',
-            'email' => 'required|email',
-            'customerAddressNo' => 'required',
-            'customerAddressStreet' => 'required',
-            'customerAddressCity' => 'required',
-            'phone' => 'required'
-        ]);   
+        // $this->validate($request, [
+        //     'customerName'=>'required',
+        //     'email' => 'required|email',
+        //     'customerAddressNo' => 'required',
+        //     'customerAddressStreet' => 'required',
+        //     'customerAddressCity' => 'required',
+        //     'phone' => 'required'
+        // ]);   
         
+        $customer = Customer::find($id);
+        $customer->customerName = $request->get('customerName');
+        $customer->customerAddressNo = $request->get('customerAddressNo');
+        $customer->customerAddressStreet = $request->get('customerAddressStreet');
+        $customer->customerAddressCity = $request->get('customerAddressCity');
+        if($request->file('image')){
+            $currentPhoto = Customer::find($id)->prophoto;  //fecthing user current photo
+
+            if($request->image != $currentPhoto){  //if not matched
+    
+                $userPhoto = public_path('public/customerImage/').$currentPhoto;
+    
+                if(file_exists($userPhoto)){
+    
+                    @unlink($userPhoto); // then delete previous photo
+                    
+                }
+            
+                if($request->file('image')){
+                    $file= $request->file('image');
+                    $filename= date('YmdHi').$file->getClientOriginalName();
+                    $file-> move(public_path('public/customerImage'), $filename);
+                    $customer->prophoto= $filename;
+                }
+            }
+        }
+        $customer->save();
         
+        $uid = Auth::user()->id;
+        $user = User::find($uid);
+        $user->email = $request->get('email');
+        $user->save();
 
-      //  $users->update($request->all());
-     //   $customer->update($request->all());
-      //  $userphone->update($request->all());
+        $pno = UserPhone::all()->where('user_id','=',Auth::user()->id)->first();
+        $pno->phone = $request->get('phone');
+        $pno->save(); 
 
-      //  return redirect()->route('customerprofile',Auth::user()->id)->with('success','customer updated Successfully!');
-      // return back()->with('error','Wrong Login Details');
-      
-      $cus = Customer::all()->where('user_id','=',$id)->first();
-        $cusid=$cus->id;
-       // dd($cusid);
-       $customer = Customer::find($cusid);
-       
-        $customer->customerName = $request->input('customerName');
-        $customer->customerAddressNo = $request->input('customerAddressNo');
-        $customer->customerAddressStreet = $request->input('customerAddressStreet');
-        $customer->customerAddressCity = $request->input('customerAddressCity');
-        
-            $customer->update();
-            //dd($customer);
-        $user = User::find($id);
-        $user->email = $request->input('email');
-        $user->update();
-
-        $pno = UserPhone::all()->where('user_id','=',$id)->first();
-        $pid=$pno->id;
-        $usersphone = UserPhone::find($pid);
-        $usersphone->phone = $request->input('phone');
-        $usersphone->update();   
-
-        return view('customerdashboard.index',compact('customer','user','usersphone'))->with('success','Product updated successfully');
-
+        $ids =   Auth::user()->id;
+        return redirect()->route('customerprofile', [$ids]);
     }
 
 
@@ -243,54 +259,48 @@ class CustomerController extends Controller
             'password' => 'required',
             
         ]);
+        $user = new User([
+            'email' => $request->get('email'),
+            'role' => ('customer'),
+            'password' => Hash::make($request->get('password'))
+        ]);
+        $user->save();
 
-        $customer = new Customer([
+        // $customer = new Customer([
+        //     'customerName' => $request->get('name'),
+        //     'customerAddressNo' => $request->get('no'),
+        //     'customerAddressStreet' => $request->get('street'),
+        //     'customerAddressCity' => $request->get('city'),
+        //     //'productImg' => $request->file('proImg'),
+        //     //'farmer_id' => $request->get('farmerId'),
+        // ]);
+
+        $customer =  new Customer([
+            'user_id' => DB::table('users')->where('email', $request->get('email'))->value('id'),
             'customerName' => $request->get('name'),
             'customerAddressNo' => $request->get('no'),
             'customerAddressStreet' => $request->get('street'),
-            'customerAddressCity' => $request->get('city'),
-            //'productImg' => $request->file('proImg'),
-            //'farmer_id' => $request->get('farmerId'),
+            'customerAddressCity' => $request->get('city')
         ]);
-
-        $userphone = new UserPhone([
-            'phone' => $request->get('phoneno'),
-        ]);
-
+        
         if (!$request->has('prophoto')) {
             return response()->json(['message' => 'Missing file'], 422);
         }
-
+        
         $image = $request->file('prophoto');
         $imageName =date('YmdHi').'.' . $image->getClientOriginalExtension();
-        $image->move(public_path('customerImage'),$imageName);
+        $image->move(public_path('public/customerImage'),$imageName);
         $customer->prophoto =$imageName ;
 
+        $customer->save(); 
 
-        $customer = new Customer([
-            'customerName' => $request->get('name'),
-            'customerAddressNo' => $request->get('no'),
-            'customerAddressStreet' => $request->get('street'),
-            'customerAddressCity' => $request->get('city'),
-            //'farmer_id' => $request->get('farmerId'),
+        $userphone = new UserPhone([
+            'user_id' => DB::table('users')->where('email', $request->get('email'))->value('id'),
+            'phone' => $request->get('phoneno'),
         ]);
-       
 
-        
+        $userphone->save(); 
 
-        $user = new User([
-            'email' => $request->get('email'),
-            
-            'password' =>Hash::make( $request->get('password')),
-            
-            //'productImg' => $request->file('proImg'),
-            //'farmer_id' => $request->get('farmerId'),
-        ]);
-            $user->role ="customer";
-
-        $user->save();
-        $user->customer()->save($customer);
-        $user->userphone()->save($userphone);
         return redirect('homelogin')->with('success','Customer added successfully.!');
         
             
