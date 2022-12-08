@@ -75,10 +75,10 @@
 						<thead>
 							<tr>
 								<th>No</th>
-								<th>VendorName</th>
-                                <th>ProductName</th>
+								<th>Vendor Name</th>
+                                <th>Product Name</th>
                                 <th>quantity</th>
-								<th>OrderAcceptedDate</th>
+								<th>OrderDate</th>
 								<th>Order status</th>
 								
 							</tr>
@@ -91,11 +91,15 @@
 							<tr>
 								
 								<td>{{$i++}}</td>
-								<td>{{$order->firstName}}{{$order->lastName}}</td> 
+								<td>{{$order->firstName}} {{$order->lastName}}</td> 
 								<td>{{$order->productName}}</td>
 								<td> {{$order->qty}}</td>
 								<td> {{$order->created_at}}</td>
-							    
+								@if($order->requeststatus == "requested")
+								<td>Pending</td>
+							    @elseif($order->requeststatus == "delivered")
+								<td>Delivered</td>
+								@endif
 							
 							</tr>
 							@endforeach

@@ -151,6 +151,7 @@ class AdminController extends Controller
         ->join('customer_order_products','customer_order_products.id','=','farmer_request_vendors.customer_order_id')
         ->join('farmers','farmers.id','=','farmer_request_vendors.farmer_id')
         ->select('products.*','farmer_request_vendors.*','customer_order_products.*','vendors.*','farmers.*','customer_order_products.updated_at as update')
+     //   ->whereNot('farmer_request_vendors','=', 'null')
         ->orderBy('customer_order_products.updated_at', 'desc')
         ->get();
 
