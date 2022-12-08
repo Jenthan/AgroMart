@@ -31,10 +31,15 @@
             </ul>
         </div><br />
         @endif
+        
 
+       
         <div class="container">
 
 
+        @if(Session::has('message'))
+            <p class="alert alert-info">{{ Session::get('message') }}</p>
+        @endif
 
 <div class="products-container">
 @php
@@ -42,6 +47,7 @@ $i = 0;
 @endphp
 @foreach($products as $product)
 
+     
 <div class="product" data-name="p-{{$i++}}">
       <img src="{{url('public/productImage/'.$product->productImg)}}" alt="">
       <h3>{{$product->productName}}</h3>
