@@ -31,6 +31,7 @@
             </ul>
         </div><br />
         @endif
+<<<<<<< HEAD
         
 
        
@@ -96,6 +97,8 @@ $i = 0;
     @endforeach
 </div> 
 <!--      
+=======
+>>>>>>> c1750adc2251048f548b7c4f34f2691cf94553b4
 <div class="cardtotal">
         @foreach($products as $product)
         <div class="card">
@@ -114,9 +117,12 @@ $i = 0;
 
                 <input type="submit" class="btn btn-success" value="Add to card">
             </form>
+            
         </div>
         @endforeach
-</div>  -->
+        
+</div>
+{{ $products->Links()}}
 </div>
 
 @endsection
