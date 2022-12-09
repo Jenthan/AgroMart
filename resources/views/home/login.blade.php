@@ -39,7 +39,7 @@
                     <p>Password</p>
                     <input type="password" name="password" placeholder="Enter Password">
                     <input type="submit" name="" value="Login">
-                    <a href="#">Lost your password?</a><br>
+                  <!--  <a href="#">Lost your password?</a><br>  -->
                     <a href="{{url('user_select')}}">Don't have an account?</a>
                 </form>
         </div>

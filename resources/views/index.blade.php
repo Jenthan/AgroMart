@@ -93,7 +93,7 @@
         <div class="box-container">
 
             <div class="box">
-                <a href="#" class="logo"><i class="fas fa-shopping-basket"></i>AgroCat</a>
+                <a  class="logo"><i class="fas fa-shopping-basket"></i>AgroCat</a>
                 <p>Come and buy product easy</p>
            
             </div>
