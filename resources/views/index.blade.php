@@ -5,7 +5,7 @@
 <html>
 
 <head>
- <title>ArgoCat</title>
+ <title>Agromart</title>
  <link rel="stylesheet" type="text/css" href="stylegrid.css">
  <link href="https://fonts.googleapis.com/css?family=Gugi" rel="stylesheet">
  <link href="layoutgridcss.css" rel="stylesheet" media="all">
