@@ -106,6 +106,7 @@ $i = 0;
 </div>
 @endsection
 
+<!--
 
 @section('pagination')
 <div id="content2">
@@ -129,3 +130,5 @@ $i = 0;
 </div>
 @endsection
 
+
+-->
