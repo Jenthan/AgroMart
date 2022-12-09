@@ -8,7 +8,7 @@
                 <div class="col-xl-4">
                     <!-- Profile picture card-->
                     <div class="card mb-4 mb-xl-0">
-                        <div class="card-header">Farmer Profile Picture</div>
+                        <div class="card-header">Vendor Profile Picture</div>
                         <div class="card-body text-center">
                             <!-- Profile picture image-->
                             <div class="center">

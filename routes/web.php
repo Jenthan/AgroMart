@@ -52,7 +52,7 @@ Route::get('/leastveg',[MainController::class,'leastvegDisplay']);
 Route::get('/leastfruit',[MainController::class,'leastfruitDisplay']);
 Route::get('/cuslogout',[MainController::class,'logout']);
 Route::post('/cusprosearch',[MainController::class,'cusproductsearch']);
-
+Route::get('/productorderdisplay/{id}',[MainController::class,'productorderdiplay']);
 
     Route::get('homelogin',[MainController::class,'homeloginDisplay'])->name('logHome');
     Route::get('adminprofile',[MainController::class,'adminprofileDisplay']);

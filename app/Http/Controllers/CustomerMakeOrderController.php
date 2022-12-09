@@ -79,19 +79,27 @@ class CustomerMakeOrderController extends Controller
         $p = Product::where('id',$request->get('pid'))->first();
         $fid = $p->farmer_id;
         
+        if($p->qty < $request->get('quantity') )
+        {
+            return redirect()->back()->with('message','Your ordered quantity is higher than the current Stock...');
+        }
         // dd($fid );
         //dd($request->pid);
-        $torderstatus = "notconfirmed";
-        $temporder = new CustomerOrderProduct([
-            'product_id' => $request->get('pid'),
-            'customer_id' => $cid,
-            'farmer_id'=>$fid,
-            'orderstatus'=>$torderstatus,
-            'qty' => $request->get('quantity'),    
-        ]);
+        else {
+            $torderstatus = "notconfirmed";
+            $temporder = new CustomerOrderProduct([
+                'product_id' => $request->get('pid'),
+                'customer_id' => $cid,
+                'farmer_id'=>$fid,
+                'orderstatus'=>$torderstatus,
+                'qty' => $request->get('quantity'),    
+            ]);
 
-        $temporder->save();
-        return redirect()->back()->with('success','Your order is successfully!');
+            $temporder->save();
+            $p->qty = $p->qty - $request->get('quantity');
+            $p->save();
+            return redirect()->back()->with('success','Your order is successfully!');
+        }
     }
 
     public function addtocarddisplay(){
@@ -141,14 +149,15 @@ class CustomerMakeOrderController extends Controller
         'farmers.firstName','farmers.lastName','products.unitPrice','farmers.farmAddressCity',
         'customer_order_products.orderstatus','customer_order_products.updated_at')
         ->where('customer_order_products.customer_id','=', $cid)
+        ->where('customer_order_products.orderstatus','=', 'confirmed')
         ->get();
         foreach($ordert as $or){
             $date = $or->updated_at;
         }
-        $newdate = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
+       // $newdate = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
        //dd($newdate);
        
-        return view('card.checkout',compact('ordert','newdate'));
+        return view('card.checkout',compact('ordert'));
     }
 
    public function searchdatedisplay(Request $request){

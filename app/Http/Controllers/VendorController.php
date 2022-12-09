@@ -65,10 +65,11 @@ class VendorController extends Controller
         $totalOrders = 0;
         $id = Auth::User()->id;
         $nvendor = Vendor::all()->where('user_id',$id);
+       
         foreach($nvendor as $ven){
         $vid = $ven->id;     
         }
-        
+       
          $orders = DB::table('farmer_request_vendors')
          ->join('products','products.id','=','farmer_request_vendors.product_id')
          ->join('vendors','vendors.id','=','farmer_request_vendors.vendor_id')
@@ -77,9 +78,9 @@ class VendorController extends Controller
          ->select('products.productName','customer_order_products.qty','customer_order_products.updated_at','farmer_request_vendors.requeststatus','customer_order_products.customer_id',
          'farmers.firstName as ffname','farmers.lastName as flname','products.unitPrice','farmers.*','farmers.farmAddressCity','customer_order_products.orderstatus','farmer_request_vendors.id as frid')
          ->where('farmer_request_vendors.vendor_id','=', $vid)
-         ->where('farmer_request_vendors.requeststatus','=','accepted')
+        ->where('farmer_request_vendors.requeststatus','=','requested')
          ->get();
-
+        // dd($orders);
         $customers = Customer::all();
         $farmers = Farmer::all();
 

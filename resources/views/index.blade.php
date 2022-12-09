@@ -38,39 +38,45 @@
 
     <!--- bootstrap css --->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!-- product dispay css  -->
 
+<!-- font awesome cdn link  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<!-- custom css file link  -->
+<link rel="stylesheet" href="home/css/style.css">
+
+<!-- custom js file link  -->
+<script src="home/js/script.js" defer></script>
 </head>
 <body>
 
 <div class="grid_1">
-    <div id="logo">
+    <!--<div id="logo">
          
             <img src="images/logo.png" alt="logo">
-    </div>
- 
- <header id="header">
-    <div class="header-2">
+    </div>-->
+    <header id="header">
+        <div class="header-2">
 
-       <div id="menu-bar" class="fas fa-bars"></div>
+        <div id="menu-bar" class="fas fa-bars"></div>
 
-    <nav class="navbar">
-        <a href="{{url('/')}}">Home</a>
-       <!-- <a href="{{url('farmer')}}">Farmer</a> -->
-        <a href="{{url('product')}}">Product</a>
-      <!--  <a href="{{url('vender')}}">Vender</a>  -->
-      <a href="#">Contact</a>
-      
-
-    </nav>
-    <div class="icons">
-        <a onclick="ordersalert()" class="fas fa-shopping-cart"></a>
-    <!--  <a href="#" class="fas fa-heart"></a>  -->
-        <a href="{{url('homelogin')}}" onclick="pleaselogin()" class="fas fa-user-circle"></a>
-    </div>
-
-    </div>
- </header>
- @yield('searchbar')
+            <nav class="navbar">
+                <img class="logo_img" src="images/logo.png" alt="logo"> &nbsp;
+                <a href="{{url('/')}}">Home</a> &nbsp;
+                <!-- <a href="{{url('farmer')}}">Farmer</a> -->
+                <a href="{{url('product')}}">Product</a> &nbsp;
+                <!--  <a href="{{url('vender')}}">Vender</a>  -->
+            </nav>
+            
+            <div class="icons">
+                <a onclick="ordersalert()" class="fas fa-shopping-cart"></a>
+            <!--  <a href="#" class="fas fa-heart"></a>  -->
+                <a href="{{url('homelogin')}}" onclick="pleaselogin()" class="fas fa-user-circle"></a>
+            </div>
+        </div>
+    </header>
+@yield('searchbar')
 @yield('sidebar')
 @yield('content-1')
 @yield('pagination')
@@ -87,7 +93,7 @@
         <div class="box-container">
 
             <div class="box">
-                <a href="#" class="logo"><i class="fas fa-shopping-basket"></i>AgroCat</a>
+                <a  class="logo"><i class="fas fa-shopping-basket"></i>AgroCat</a>
                 <p>Come and buy product easy</p>
            
             </div>
@@ -95,11 +101,11 @@
             <div class="box">
                 <h3>our location</h3>
                 <div class="links">
-                    <a href="#">Jaffna</a>
-                    <a href="#">Kilinochchi</a>
-                    <a href="#">Mullaithivu</a>
-                    <a href="#">Vavuniya</a>
-                    <a href="#">Batticaloa</a>
+            <!--    <a>Jaffna</a>  -->
+                 <!--   <a>Kilinochchi</a>
+                    <a>Mullaithivu</a>
+                    <a>Vavuniya</a>
+                    <a>Batticaloa</a>  -->
                 </div>
             </div>
 
@@ -114,7 +120,7 @@
 
         </div>
 
-        <h1 class="credit"> created by <span> group D </span> | all rights reserved! </h1>
+        <h1 class="credit"> created by <span> group S_7 </span> | all rights reserved! </h1>
 
  </footer>
 </div>

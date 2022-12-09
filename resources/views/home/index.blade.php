@@ -104,36 +104,46 @@
    <div id="deal">
    <!-- product section starts  -->
 
-<section class="product" id="product">
+<div class="container">
 
-<h1 class="heading">latest <span>products</span></h1>
+<h3 class="title"> Latest products </h3>
 
-<div class="box-container">
+<div class="products-container">
+@php
+$i = 0;
+@endphp
 @foreach($products as $product)
+<div class="product" data-name="p-{{$i++}}">
+      <img src="{{url('public/productImage/'.$product->productImg)}}" alt="">
+      <h3>{{$product->productName}}</h3>
+      <div class="price">Rs. {{$product->unitPrice}}.00</div>
+   </div>
+@endforeach
+   
+</div>
 
-    <div class="box">
-        
-        
-           <form method="get">
-             <div class="image">
-                 <img class="avatar" src="{{url('public/productImage/'.$product->productImg)}}" alt="description of ">
-            </div></br>
-            
-                <input type="text" name="pname" id="pname" value="{{$product->productName}}" disabled></br><br/>
-                <label for="pprice" name="pprice"><span>Price</span></label>
-                <input type="text" name="pprice" value="Rs. {{$product->unitPrice}}.00" disabled></br><br/>
-                <label for="quantity" name="quantity">Quantity</label>
-                <input type="number"></br>
-                <input type="hidden" name="fid" value="{{$product->farmer_id}}" disabled></br>
-                <a href="{{url('homelogin')}}" > <button onclick="logincusalert()" class="btn btn-success">Add to Cart </button></a>
-                
+</div>
 
-            </form>
+<div class="products-preview">
+    @php
+    $i = 0;
+    @endphp
+    @foreach($products as $product)
+    <div class="preview" data-target="p-{{$i++}}">
+    <i class="fas fa-times"></i>
+    <img src="{{url('public/productImage/'.$product->productImg)}}" alt="">
+    <h3>{{$product->productName}}</h3>
+
+    
+    <div class="price">Rs. {{$product->unitPrice}}.00</div>
+    <div class="buttons">
+        <!--<a href="#" class="buy">buy now</a>  -->
+        <a href="#"  class="cart"> <button class ="btn" onclick ="logincusalert()"> <h2>add to cart</h2></button></a>
     </div>
-    @endforeach
-  </div>
-</section>
+    </div>
 
+    @endforeach
+</div>        
 <!-- product section ends -->
 </div>
 @endsection
