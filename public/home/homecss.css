@@ -143,6 +143,11 @@
     display: inline-block;
     gap: 20px;
   }
+
+  #deal .container{
+    display:inline;
+    margin-right: 20px;
+  }
   
   
   
@@ -543,4 +548,10 @@ footer .box-container{
     display: block;
     color: #59ee60;
   } 
+
+  .logo_img 
+  {
+    height: 50px;
+    width:250px;
+  }
   

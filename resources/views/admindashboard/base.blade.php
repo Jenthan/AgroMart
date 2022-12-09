@@ -26,38 +26,39 @@
 			<i class='bx bxs-smile'></i>
 			<span class="text">AdminHub</span>
 		</a>
+		
 		<ul class="side-menu top">
-			<li class="active">
+			<li class="{{ (request()->is('admindash')) ? 'active' : '' }}">
 				<a href="{{url('/admindash')}}">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
-			<li>
+			<li class="{{ (request()->is('adminorders')) ? 'active' : '' }}">
 				<a href="{{url('adminorders')}}">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Order</span>
 				</a>
 			</li>
-            <li>
+            <li class="{{ (request()->is('admincustomerdisplay')) ? 'active' : '' }}">
 				<a href="{{url('admincustomerdisplay')}}">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Customer</span>
 				</a>
 			</li>
-            <li>
+            <li class="{{ (request()->is('adminvender')) ? 'active' : '' }}">
 				<a href="{{url('/adminvender')}}">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Vendor</span>
 				</a>
 			</li>
-            <li>
+            <li class="{{ (request()->is('adminfarmer')) ? 'active' : '' }}">
 				<a href="{{url('/adminfarmer')}}">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Farmer</span>
 				</a>
 			</li>
-			<li>
+			<li class="{{ (request()->is('adminproduct')) ? 'active' : '' }}">
 				<a href="{{url('adminproduct')}}">
 					<i class='bx bxs-doughnut-chart' ></i>
 					<span class="text">Product</span>

@@ -63,59 +63,50 @@
 
 @section('content-1')
 <div id="content1">
-    
-    <div class="cardtotal">
-    
-        @if(Auth::user() !="null")
-            @foreach($products as $product)
-            <div class="card">
-            
-            <form action="{{url('homelogin')}}"method="get">
-                <div class="image">
-                    <img class="avatar" src="{{url('public/productImage/'.$product->productImg)}}" alt="description of "></br>
-                </div>
-                
-                    <input type="text" name="pname" id="pname" value="{{$product->productName}}" disabled></br><br/>
-                    <label for="pprice" name="pprice"><span>Price</span></label>
-                    <input type="text" name="pprice" value="Rs. {{$product->unitPrice}}.00" disabled></br><br/>
-                    <label for="quantity" name="quantity">Quantity</label>
-                    <input type="number" name="quantity" ></br></br>
-                    
-                    <input type="submit" onclick="logincusalert()" class="btn btn-success" value="Add to card">
-                    
-                </form>
-            </div>
-            @endforeach
-        @else{
-            
-            <div class="card">
-            @foreach($products as $product)
-            <form action="#"method="post">
-                <div class="image">
-                    <img class="avatar" src="{{url('public/productImage/'.$product->productImg)}}" alt="description of "></br>
-                </div>
-                
-                    <input type="text" name="pname" id="pname" value="{{$product->productName}}" disabled></br><br/>
-                    <label for="pprice" name="pprice"><span>Price</span></label>
-                    <input type="text" name="pprice" value="Rs. {{$product->unitPrice}}.00" disabled></br><br/>
-                    <label for="quantity" name="quantity">Quantity</label>
-                    <input type="number" name="quantity" ></br></br>
-                    
-                    <input type="submit" class="btn btn-success" value="Add to card">
-                    
-                </form>
-                @endforeach
-            </div>
-            
-        }
+<div class="container">
 
-        @endif
+<h3 class="title"> organic products </h3>
 
-       
-    </div>         
+<div class="products-container">
+@php
+$i = 0;
+@endphp
+@foreach($products as $product)
+<div class="product" data-name="p-{{$i++}}">
+      <img src="{{url('public/productImage/'.$product->productImg)}}" alt="">
+      <h3>{{$product->productName}}</h3>
+      <div class="price">Rs. {{$product->unitPrice}}.00</div>
+   </div>
+@endforeach
+   
+</div>
+
+</div>
+
+<div class="products-preview">
+    @php
+    $i = 0;
+    @endphp
+    @foreach($products as $product)
+    <div class="preview" data-target="p-{{$i++}}">
+    <i class="fas fa-times"></i>
+    <img src="{{url('public/productImage/'.$product->productImg)}}" alt="">
+    <h3>{{$product->productName}}</h3>
+
+    
+    <div class="price">Rs. {{$product->unitPrice}}.00</div>
+    <div class="buttons">
+        <!--<a href="#" class="buy">buy now</a>  -->
+        <a href="#"  class="cart"> <button class ="btn" onclick ="logincusalert()"> <h2>add to cart</h2></button></a>
+    </div>
+    </div>
+
+    @endforeach
+</div>        
 </div>
 @endsection
 
+<!--
 
 @section('pagination')
 <div id="content2">
@@ -139,3 +130,5 @@
 </div>
 @endsection
 
+
+-->

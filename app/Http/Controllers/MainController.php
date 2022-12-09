@@ -11,7 +11,11 @@ use DB;
 class MainController extends Controller
 {
     public function homeDisplay(){
-        $products = Product::all();
+       // $products = Product::all();
+        $products=DB::table('products')
+        ->orderBy('updated_at', 'desc')
+        ->limit(5)
+        ->get();
         return view('home.index',compact('products'));
     }
 
@@ -131,4 +135,8 @@ class MainController extends Controller
         return redirect(url('/'));
     }
 
+    public function productorderdiplay($id){
+        return view('product.productdisplay');
+
+    }
 }
